@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<head>
+  <!-- Google Analytics -->
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxx-xx"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-xxxxxx-xx');
+    </script>
+  
+
+  <!-- Baidu Tongji -->
+  
+    <script type="text/javascript">
+      // Originial
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  <!-- Baidu Push -->
+  
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+    </script>
+  
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
+  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="It&#39;s an IT blog..."/>
+  <meta name="keyword" content="v-vincen,v-vincen,livemylife,IT  blog,Blog"/>
+  <link rel="shortcut icon" href="/img/avatar/wen.jpg"/>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/beantech.min.css"/>
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css"/>
+    <link rel="stylesheet" href="/css/widget.css"/>
+    <link rel="stylesheet" href="/css/rocket.css"/>
+    <link rel="stylesheet" href="/css/signature.css"/>
+    <link rel="stylesheet" href="/css/catalog.css"/>
+    <link rel="stylesheet" href="/css/livemylife.css"/>
+
+    
+      <!-- wave start -->
+      <link rel="stylesheet" href="/css/wave.css"/>
+      <!-- wave end -->
+    
+
+    
+      <!-- top start (article top hot config) -->
+      <link rel="stylesheet" href="/css/top.css"/>
+      <!-- top end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/scroll.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+      <!-- viewer start (Picture preview) -->
+      <link rel="stylesheet" href="/css/viewer.min.css"/>
+      <!-- viewer end -->
+    
+
+    
+      <!-- Search start -->
+      <link rel="stylesheet" href="/css/search.css"/>
+      <!-- Search end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/themecolor.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+      <!-- gitalk start -->
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"> -->
+      <link rel="stylesheet" href="/css/gitalk.css"/>
+      <!-- gitalk end -->
+    
+  
+
+  <!-- Custom Fonts -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- Hux change font-awesome CDN to qiniu -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
+  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <link rel="canonical" href="http://yang-shiqin.github.io/cn/hexo-github-io搭建自己的博客/">
+  <title>
+    
+      hexo+github.io搭建自己的博客 - Stay passionate!
+    
+  </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+
+	<body ontouchstart="" class="body--light body--dark">
+
+
+		<!-- ThemeColor -->
+		
+		<!-- ThemeColor -->
+<style type="text/css">
+  .body--light {
+    --light-mode: none;
+    --dark-mode: block;
+  }
+  .body--dark {
+    --light-mode: block;
+    --dark-mode: none;
+  }
+  i.mdui-icon.material-icons.light-mode {
+    display: var(--light-mode);
+  }
+  i.mdui-icon.material-icons.dark-mode {
+    display: var(--dark-mode);
+  }
+</style>
+<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
+  <i class="mdui-icon material-icons light-mode"></i>
+  <i class="mdui-icon material-icons dark-mode"></i>
+</div>
+<script>
+  //getCookieValue
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b
+      ? b.pop()
+      : '';
+  }
+  let themeMode = 'dark';
+  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
+    let dbody = document.body.classList;
+    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
+  }
+
+  //setCookieValue
+  var toggleBtn = document.querySelector(".toggle");
+  toggleBtn.addEventListener("click", function () {
+    var e = document.body.classList.contains("body--dark");
+    var cookieString = e
+      ? "dark"
+      : "light";
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
+    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
+  });
+</script>
+
+		
+
+		<!-- Gitter -->
+		
+		<!-- Gitter -->
+<!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'your-community/your-room'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+		
+
+		<!-- Navigation (contains search)-->
+		<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">里里的数字乐园</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/">首页</a>
+          </li>
+
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              标签
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a class="popup-trigger">
+              <span class="search-icon"></span>搜索</a>
+          </li>
+          
+
+          <!-- LangSelect -->
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- progress -->
+<div id="progress">
+  <div class="line" style="width: 0%;"></div>
+</div>
+
+<script>
+  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = "0px"
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+</script>
+
+
+		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
+		<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+
+  <style type="text/css">
+    .body--light {
+      /* intro-header */
+      --intro-header-background-image-url-home: url('/img/header_img/home_bg.jpg');
+      --intro-header-background-image-url-post: url('');
+      --intro-header-background-image-url-page: url('/');
+    }
+    .body--dark {
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/home_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/');
+    }
+
+    header.intro-header {
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url(''); */
+      
+    }
+
+    
+      #signature {/*signature*/
+        background-image: url('/img/signature/yang.png');
+      }
+    
+  </style>
+
+
+
+
+
+<header class="intro-header">
+  <!-- Signature -->
+  <div id="signature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#hexo, web" title="hexo, web">hexo, web</a>
+              
+            </div>
+            <h1>hexo+github.io搭建自己的博客</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by ysq on
+              2021-05-02
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">14</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">2.8k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+            <!-- 不蒜子统计 start -->
+            <span class="meta" id="busuanzi_container_page_pv">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            
+
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- waveoverlay start -->
+  <div class="preview-overlay">
+    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="preview-parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
+      </g>
+    </svg>
+  </div>
+  <!-- waveoverlay end -->
+  
+
+</header>
+
+
+
+		<!-- Main Content (Post contains
+	Pager、
+	tip、
+	socialshare、
+	gitalk、gitment、disqus-comment、
+	Catalog、
+	Sidebar、
+	Featured-Tags、
+	Friends Blog、
+	anchorjs、
+	) -->
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <h2 id="QuickStart">QuickStart</h2>
+<ol>
+<li>安装</li>
+<li>初始化</li>
+<li>更改主题</li>
+<li>本地部署</li>
+</ol>
+<h3 id="前期准备">前期准备</h3>
+<ul>
+<li>安装node.js</li>
+<li>安装git</li>
+</ul>
+<h3 id="安装hexo">安装hexo</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"><span class="comment"># npm install -g hexo         # 似乎更好</span></span><br></pre></td></tr></table></figure>
+<h3 id="Setup-your-blog">Setup your blog</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;dir&gt;   <span class="comment"># you can `cd` to `dir` and `hexo init` too</span></span><br></pre></td></tr></table></figure>
+<p>会生成名为 <code>&lt;dir&gt;</code> 的文件夹，下面有文件：（更详细的介绍见[[hexo+github.io搭建自己的博客#hexo目录结构|hexo目录结构]]）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.landscape.yml</span><br><span class="line">├── _config.yml</span><br><span class="line">├── node_modules</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<h3 id="使用主题（以livemylife为例）">使用主题（以livemylife为例）</h3>
+<h4 id="init">init</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;dir&gt;</span><br><span class="line">rm -rf scaffolds <span class="built_in">source</span> themes _config.landscape.yml _config.yml package.json package-lock.json <span class="comment">#just keep node_modules</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/V-Vincen/hexo-theme-livemylife.git</span><br><span class="line">mv hexo-theme-livemylife/* ./</span><br><span class="line">rm -rf hexo-theme-livemylife</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h4 id="set-theme">set theme</h4>
+<p>Modify the value of <code>theme</code>: in <code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">livemylife</span></span><br></pre></td></tr></table></figure>
+<h4 id="Start-the-Server">Start the Server</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo generate # or `hexo g`, 生成</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Starts a <span class="built_in">local</span> server. By default, this is at `http://localhost:4000/`</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> you can specify the port as port by adding `-p [port]`(`hexo s -p [port]`)</span></span><br><span class="line">hexo server   # or `hexo s`</span><br></pre></td></tr></table></figure>
+<h4 id="配置">配置</h4>
+<p>修改 <code>_config.yml</code>。更详细的见[[hexo+github.io搭建自己的博客#深入livemylife主题配置|深入livemylife主题配置]]</p>
+<h2 id="部署在github-io"><a target="_blank" rel="noopener" href="http://xn--github-200ku57xo36a.io">部署在github.io</a></h2>
+<p>用personal token的方式验证</p>
+<h3 id="前期准备-2">前期准备</h3>
+<ul>
+<li>github账号</li>
+<li>创建username.github.io仓库</li>
+</ul>
+<h3 id="生成personal-token">生成personal token</h3>
+<ol>
+<li>头像-settings-最下面developer settings-personal access token-tokens(classic)-右上角generate new token</li>
+<li>填写 <code>note</code>, <code>expiration</code>(token过期之后就会认证失败，需要重新激活或者使用新的token), 勾选 <code>repo</code></li>
+<li>生成token。<strong>在离开这个界面后这串代码将不再可见，因此在刷新界面或者离开界面前一定复制好这串代码</strong>。</li>
+</ol>
+<h3 id="部署">部署</h3>
+<ol>
+<li><strong>设置部署</strong>。更改 <code>_config.yml</code> 文件最后的 <code>deploy</code> 模块 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">	type:</span> git</span><br><span class="line"><span class="symbol">	repo:</span> https:<span class="comment">//&lt;token&gt;@github.com/Yang-Shiqin/Yang-Shiqin.github.io.git</span></span><br><span class="line"><span class="symbol">	branch:</span> main</span><br></pre></td></tr></table></figure>
+</li>
+<li>部署 <code>hexo clean &amp;&amp; hexo deploy</code> 或 <code>hexo d</code>。注意，<strong>hexo会把你之前的代码删除覆盖</strong></li>
+</ol>
+<h3 id="部署目录和写作目录分开存储">部署目录和写作目录分开存储</h3>
+<p>个人网页保存在 <code>.deploy_git</code> 上传到了 <code>&lt;username&gt;.io</code> 的仓库，而最重要的写作源文件所在文件夹 <code>source</code> 并没有上传到github上。推荐新建一个仓库（可设成private）上传 <code>source</code> 文件夹</p>
+<h2 id="hexo介绍">hexo介绍</h2>
+<h3 id="hexo常用命令汇总">hexo常用命令汇总</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hexo init <span class="comment"># 初始化一个hexo仓库</span></span><br><span class="line">hexo g <span class="comment"># 把文章生成网页</span></span><br><span class="line">hexo s <span class="comment"># Starts a local server</span></span><br><span class="line">hexo d <span class="comment"># 部署</span></span><br><span class="line">hexo new [layout:post/page/draft/..] &lt;title&gt; <span class="comment"># 生成名为新页面/文章/草稿/等，source/_posts/title.md</span></span><br><span class="line">hexo new page tags <span class="comment"># 生成source/tags/index.md</span></span><br><span class="line">hexo new page categories <span class="comment"># 生成source/categories/index.md</span></span><br><span class="line">hexo publish [layout] &lt;title&gt; <span class="comment"># 把draft转换成post，位置也移到_posts下</span></span><br><span class="line">hexo clean <span class="comment"># Remove generated files and cache(public似乎只看文件名，所以改了内容名字没变还设clean一下)</span></span><br></pre></td></tr></table></figure>
+<h3 id="hexo目录结构">hexo目录结构</h3>
+<p><code>hexo init</code> 后的目录结构</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.landscape.yml</span><br><span class="line">├── _config.yml <span class="comment"># 全局配置文件</span></span><br><span class="line">├── node_modules <span class="comment"># 存储已安装的各类依赖包</span></span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json <span class="comment"># hexo框架参数，包括hexo的版本以及相关依赖包的版本</span></span><br><span class="line">├── scaffolds <span class="comment"># 新建文章时，hexo根据此目录下的文件进行构建(信息头模板)</span></span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">└── themes <span class="comment"># 主题</span></span><br></pre></td></tr></table></figure>
+<p><code>source</code> -&gt; <code>public</code> -&gt; <code>.deploy_git</code></p>
+<ul>
+<li><code>hexo g</code> : 根据 <code>source</code> 更新/生成 <code>public</code> 和 <code>db.json</code></li>
+<li><code>hexo d</code> : 根据 <code>public</code> 更新/生成 <code>.deploy_git</code></li>
+<li><code>hexo clean</code> : 清除 <code>db.json</code> 和 <code>public</code></li>
+</ul>
+<h4 id="config-yml"><code>_config.yml</code></h4>
+<p><strong>全局配置文件</strong>，网站的很多信息都在这里配置，诸如网站名称，副标题，描述，作者，语言，主题，部署等等参数。这个文件下面会做较为详细的介绍。</p>
+<h4 id="scaffolds"><code>scaffolds</code></h4>
+<p><strong>模板文件夹</strong>。包含 <code>page</code>，<code>post</code>，<code>draft</code> 三种布局模板，分别对应 页面、要发布的文章、草稿。</p>
+<table>
+<thead>
+<tr>
+<th>布局</th>
+<th>生成路径</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>page</code></td>
+<td><code>source</code></td>
+<td>页面</td>
+</tr>
+<tr>
+<td><code>post</code></td>
+<td><code>source/_posts</code></td>
+<td>文章</td>
+</tr>
+<tr>
+<td><code>draft</code></td>
+<td><code>source/_drafts</code></td>
+<td>草稿</td>
+</tr>
+<tr>
+<td>自定义</td>
+<td><code>source/_posts</code></td>
+<td>自定义模板</td>
+</tr>
+</tbody>
+</table>
+<p>禁用布局只需在文章的yaml头（front/matter）中设置 <code>layout:false</code></p>
+<p>也可以自定义其他类型的模板文件，只需：</p>
+<ol>
+<li>在此目录下创建 <code>xxx.md</code> 模板文件</li>
+<li>在创建文章时指定 <code>xxx</code>：<code>hexo new xxx &lt;title&gt;</code></li>
+</ol>
+<h4 id="source-（重要）"><code>source</code> （重要）</h4>
+<p>资源文件夹，<strong>存放用户资源</strong>（如图片，md、html文件等）。除了 <code>_posts</code> ，其他 <code>_</code> 开头的文件/文件夹都会被忽略。md、html文件会被解析并放到 <code>public</code> 文件夹，其他文件会被拷贝过去</p>
+<ul>
+<li><code>source/_posts</code>：存放md源文件
+<ul>
+<li>md源文件编译成html放到 <code>public</code> 下</li>
+<li>每个页面有以该页面命名的文件夹，也在 <code>source/_posts</code></li>
+</ul>
+</li>
+<li><code>source/categories</code>：分类文件夹，有 <code>index.md</code>，由 <code>hexo new page categories</code> 生成</li>
+<li><code>source/tags</code>：由 <code>hexo new page tags</code> 生成的标签文件夹，自动生成 <code>index.md</code></li>
+<li><code>source/_discarded</code>：删除的页面在这</li>
+</ul>
+<h4 id="public"><code>public</code></h4>
+<p><code>hexo g</code> 根据 <code>source</code> 自动编译生成/更新。生成 <code>index.html</code> 也就是我们最后看到的网页</p>
+<p><code>hexo clean</code> 会清除 <code>db.json</code> 和 <code>public</code></p>
+<h4 id="deploy-git"><code>.deploy_git</code></h4>
+<p><code>hexo d</code> 自动编译生成/更新，将 <code>public</code> 提交到github上后生成 <code>.deploy_git</code>，<strong>这也是我们上传到github中的内容</strong>。内容与 <code>public</code> 差不多。</p>
+<p><code>hexo d</code> 也能生成 <code>db.json</code> 和 <code>public</code></p>
+<h2 id="深入livemylife主题配置-写作过程">深入livemylife主题配置+写作过程</h2>
+<h3 id="livemylife主题配置">livemylife主题配置</h3>
+<ol>
+<li>更改 <code>_config.yml</code></li>
+<li>更改 <code>about/index.md</code></li>
+</ol>
+<p>根目录的 <code>_config.yml</code> 文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主页信息等</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">主页大标题，和一直在左上角的标题</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">主页副标题</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">copyright之类的展示的作者</span></span><br><span class="line"><span class="attr">timezone:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 国际化 Internationalization (i18n) Setting</span></span><br><span class="line"><span class="attr">language:</span> <span class="comment"># 目前该主题只支持en、cn和tw.可自定义，refer to `themes/livemylife/languages/en.yml`.</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">en</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">cn</span></span><br><span class="line"><span class="attr">langselect:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment"># If open, it will automatically generation lang-select button.This button can jump in articles in different languages, but the articles must have the same name.</span></span><br><span class="line">  <span class="attr">options:</span> <span class="comment"># 右上角的语言选择</span></span><br><span class="line">    <span class="attr">en:</span> <span class="string">English</span></span><br><span class="line">    <span class="attr">cn:</span> <span class="string">简体中文</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://yang-shiqin.github.io</span>      <span class="comment"># <span class="doctag">Note:</span> don&#x27;t forget to modify the CNAME file to your url</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:lang/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># CDN Setting（加速）</span></span><br><span class="line"><span class="comment">## Docs: https://www.jsdelivr.com/?docs=gh</span></span><br><span class="line"><span class="comment">## If Github Pages deploy，you can ues jsdelivr settings</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># jsdelivr:</span></span><br><span class="line"><span class="comment">#   jsdelivr_url: https://cdn.jsdelivr.net/gh/</span></span><br><span class="line"><span class="comment">#   github_username: V-Vincen</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">######## Custom Setting Start ########</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 网站设置</span></span><br><span class="line"><span class="attr">SEOTitle:</span> <span class="string">页面小图标标题</span></span><br><span class="line"><span class="attr">email:</span> <span class="string">暂时不知道在哪</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&quot;It&#x27;s an IT blog...没有展示的网站属性&quot;</span></span><br><span class="line"><span class="attr">keyword:</span> <span class="string">&quot;v-vincen,v-vincen,livemylife,IT  blog,Blog,没有展示的网站属性&quot;</span></span><br><span class="line"><span class="attr">header-img:</span> <span class="string">img/header_img/newhome_bg.jpg</span></span><br><span class="line"><span class="attr">archives-img:</span> <span class="string">和archives页面不同，img/header_img/archive_bg2.jpg</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 页面小图标的图标展示(网站图标)</span></span><br><span class="line"><span class="attr">favicon:</span> <span class="string">img/avatar/roguerabbit.jpg</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 签名图片，网页头的右下角. 制作签名: https://fontmeme.com/signature-fonts/</span></span><br><span class="line"><span class="attr">signature:</span> <span class="literal">true</span> <span class="comment"># show signature</span></span><br><span class="line"><span class="attr">signature-img:</span> <span class="string">img/signature/vincent-white.png</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Wave动画设置</span></span><br><span class="line"><span class="attr">wave:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SNS Settings. 其他软件主页链接</span></span><br><span class="line"><span class="comment"># RSS: true</span></span><br><span class="line"><span class="attr">github_username:</span> <span class="string">Yang-Shiqin</span></span><br><span class="line"><span class="comment">#twitter_username: V_Vincen_</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 右侧栏设置</span></span><br><span class="line"><span class="attr">sidebar:</span> <span class="literal">true</span>   <span class="comment"># whether or not using Sidebar.</span></span><br><span class="line"><span class="attr">sidebar-about-description:</span> <span class="string">&quot;Fat people have no future, either thin or die...&quot;</span></span><br><span class="line"><span class="attr">sidebar-avatar:</span> <span class="string">img/avatar/fatpeople.jpg</span>    <span class="comment"># use absolute URL, seeing it&#x27;s used in both `/` and `/about/`</span></span><br><span class="line"><span class="attr">widgets:</span>  <span class="comment"># 小组件</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">visitor</span>   <span class="comment"># busuanzi: https://busuanzi.ibruce.info/</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">featured-tags</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">short-about</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">recent-posts</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">friends-blog</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">archive</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">category</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># widget behavior</span></span><br><span class="line"><span class="comment">## Archive</span></span><br><span class="line"><span class="attr">archive_type:</span> <span class="string">&#x27;monthly&#x27;</span></span><br><span class="line"><span class="attr">show_count:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Featured Tags</span></span><br><span class="line"><span class="attr">featured-tags:</span> <span class="literal">true</span>   <span class="comment"># whether or not using Feature-Tags</span></span><br><span class="line"><span class="attr">featured-condition-size:</span> <span class="number">0</span>    <span class="comment"># A tag will be featured if the size of it is more than this condition value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### Friends. 展示朋友主页链接（没有朋友就不写）</span></span><br><span class="line"><span class="comment">#friends: [&#123;</span></span><br><span class="line"><span class="comment">#        title: &quot;V_Vincen&quot;,</span></span><br><span class="line"><span class="comment">#        href: &quot;https://v-vincen.life/&quot;</span></span><br><span class="line"><span class="comment">#    &#125;,&#123;title: &quot;Bean Tech&quot;, href: &quot;http://beantech.org&quot;&#125;]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Comment Settings. 网站评价系统设置, gitalk或gitment或Disqus</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Gitalk Settings</span></span><br><span class="line"><span class="comment">## Doc:https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">owner:</span>                          <span class="comment"># &#x27;GitHub repo owner&#x27;</span></span><br><span class="line">  <span class="attr">admin:</span>                          <span class="comment"># &#x27;GitHub repo&#x27;</span></span><br><span class="line">  <span class="attr">repo:</span>                           <span class="comment"># [&#x27;GitHub repo owner and collaborators, only these guys can initialize github issues&#x27;]</span></span><br><span class="line">  <span class="attr">clientID:</span>                       <span class="comment"># &#x27;GitHub Application Client ID&#x27;</span></span><br><span class="line">  <span class="attr">clientSecret:</span>                   <span class="comment"># &#x27;GitHub Application Client Secret&#x27;</span></span><br><span class="line">  <span class="attr">perPage:</span> <span class="number">10</span>                     <span class="comment"># Pagination size, with maximum 100.</span></span><br><span class="line">  <span class="attr">pagerDirection:</span> <span class="string">last</span>            <span class="comment"># Comment sorting direction, available values are last and first.</span></span><br><span class="line">  <span class="attr">createIssueManually:</span> <span class="literal">false</span>      <span class="comment"># By default, Gitalk will create a corresponding github issue for your every single page automatically when the logined user is belong to the admin users. You can create it manually by setting this option to true</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">en</span>                    <span class="comment"># Localization language key, en, zh-CN and zh-TW are currently available.</span></span><br><span class="line">  <span class="attr">maxCommentHeight:</span> <span class="number">250</span>           <span class="comment"># An optional number to limit comments&#x27; max height, over which comments will be folded.Default 250.</span></span><br><span class="line">  <span class="attr">proxy:</span> <span class="string">https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token</span>  <span class="comment"># GitHub oauth request reverse proxy for CORS. For example, the demo url is &#x27;https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token&#x27;.You should deploy your own proxy url as in this issue https://github.com/gitalk/gitalk/issues/429.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Analytics settings. 站点分析，https://v-vincen.github.io/en/Analytics-and-Sitemap-Settings/</span></span><br><span class="line"><span class="comment">## Google Analytics</span></span><br><span class="line"><span class="attr">ga_track_id:</span> <span class="string">UA-xxxxxx-xx</span>   <span class="comment"># Format: UA-xxxxxx-xx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Baidu Analytics</span></span><br><span class="line"><span class="attr">ba_track_id:</span> <span class="string">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Sitemap</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Baidusitemap</span></span><br><span class="line"><span class="attr">baidusitemap:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">baidusitemap.xml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">baidu_push:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">######## Custom Setting End ########</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Directory</span></span><br><span class="line"><span class="attr">source_dir:</span> <span class="string">source</span></span><br><span class="line"><span class="attr">public_dir:</span> <span class="string">public</span></span><br><span class="line"><span class="attr">tag_dir:</span> <span class="string">tags</span></span><br><span class="line"><span class="attr">archive_dir:</span> <span class="string">archives</span></span><br><span class="line"><span class="attr">category_dir:</span> <span class="string">categories</span></span><br><span class="line"><span class="attr">code_dir:</span> <span class="string">downloads/code</span></span><br><span class="line"><span class="comment"># 国际化功能</span></span><br><span class="line"><span class="comment"># :lang 为自动检测，网址中的第一段用于检测语言，如zh/index.html是zh(具体取值见language)</span></span><br><span class="line"><span class="comment"># 也可手动设置(会覆盖自动检测)，在yaml头中写lang:指定</span></span><br><span class="line"><span class="attr">i18n_dir:</span> <span class="string">:lang</span></span><br><span class="line"><span class="attr">skip_render:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Writing. 写作设置</span></span><br><span class="line"><span class="attr">new_post_name:</span> <span class="string">:lang/:title.md</span>    <span class="comment"># 默认名称为语言/标题,hexo new title --lang cn 以指定:lang</span></span><br><span class="line"><span class="attr">default_layout:</span> <span class="string">post</span> <span class="comment"># 默认layout为post</span></span><br><span class="line"><span class="attr">auto_spacing:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">titlecase:</span> <span class="literal">false</span>    <span class="comment"># Transform title into titlecase</span></span><br><span class="line"><span class="comment"># New option</span></span><br><span class="line"><span class="comment"># https://hexo.io/docs/configuration.html#Writing</span></span><br><span class="line"><span class="attr">external_link:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">site</span> <span class="comment"># Apply to the whole site</span></span><br><span class="line">  <span class="attr">exclude:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">filename_case:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">render_drafts:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span>   <span class="comment"># 创建文章时自动创建同名文件夹</span></span><br><span class="line"><span class="attr">relative_link:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">future:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">highlight:</span>  <span class="comment"># 代码块highlight</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Category &amp; Tag</span></span><br><span class="line"><span class="attr">default_category:</span> <span class="string">uncategorized</span></span><br><span class="line"><span class="attr">category_map:</span></span><br><span class="line"><span class="attr">tag_map:</span></span><br><span class="line"><span class="attr">home_posts_tag:</span> <span class="literal">true</span>    <span class="comment"># show posts tags</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Date / Time format</span></span><br><span class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></span><br><span class="line"><span class="comment">## You can customize the date format as defined in</span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="attr">date_format:</span> <span class="string">YYYY-MM-DD</span></span><br><span class="line"><span class="attr">time_format:</span> <span class="string">HH:mm:ss</span></span><br><span class="line"><span class="comment"># New option</span></span><br><span class="line"><span class="comment"># https://hexo.io/docs/configuration#Date-Time-format</span></span><br><span class="line"><span class="attr">updated_option:</span> <span class="string">date</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Pagination</span></span><br><span class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">pagination_dir:</span> <span class="string">archives</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># hexo-generator-i18n config</span></span><br><span class="line"><span class="comment">## Docs: https://github.com/xcatliu/hexo-generator-index-i18n</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">pagination_dir:</span> <span class="string">page</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br><span class="line"></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">daily:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Markdown-it config. Markdown渲染器</span></span><br><span class="line"><span class="comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Build Settings</span></span><br><span class="line"><span class="attr">anchorjs:</span> <span class="literal">true</span>    <span class="comment"># if you want to customize anchor. check out line:26 of `anchorjs.ejs`</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># article top</span></span><br><span class="line"><span class="attr">top:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># WordCount Settings</span></span><br><span class="line"><span class="comment">## Dependencies: https://github.com/willin/hexo-wordcount</span></span><br><span class="line"><span class="comment">## Docs: https://www.npmjs.com/package/hexo-wordcount</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="attr">wordcount:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Busuanzi Settings</span></span><br><span class="line"><span class="comment">## Dependencies: https://busuanzi.ibruce.info/</span></span><br><span class="line"><span class="comment">## Docs: https://ibruce.info/</span></span><br><span class="line"><span class="attr">busuanzi:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># top scroll progress</span></span><br><span class="line"><span class="attr">scroll:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Tip</span></span><br><span class="line"><span class="attr">tip:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># copyright: If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Social Share Post</span></span><br><span class="line"><span class="comment">## Docs:https://github.com/overtrue/share.js</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="attr">socialshare:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Viewer config</span></span><br><span class="line"><span class="comment">## Docs:https://github.com/fengyuanchen/viewer</span></span><br><span class="line"><span class="comment">## Demo:https://fengyuanchen.github.io/viewer/</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="attr">viewer:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ThemeColor config. 主题颜色</span></span><br><span class="line"><span class="attr">themecolor:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">mode:</span> <span class="string">dark</span> <span class="comment"># themecolor mode light or dark, default light</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Mouseclick config. 点击鼠标出现的文字和颜色</span></span><br><span class="line"><span class="attr">mouseclick:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">content:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">The</span> <span class="string">first</span> <span class="string">step</span> <span class="string">is</span> <span class="string">as</span> <span class="string">good</span> <span class="string">as</span> <span class="string">half</span> <span class="string">over...</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">Laugh</span> <span class="string">and</span> <span class="string">grow</span> <span class="string">fat...</span></span><br><span class="line">  <span class="attr">color:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&#x27;#9933CC&#x27;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&#x27;#339933&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ribbon config</span></span><br><span class="line"><span class="attr">ribbonDynamic:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Line config</span></span><br><span class="line"><span class="attr">bglinecanvas:</span> <span class="literal">false</span>  <span class="comment"># The special effects will take up a lot of cpu resorces, please open it carefully.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Search Setting</span></span><br><span class="line"><span class="comment">## Search: https://go.kieran.top/post/45/</span></span><br><span class="line"><span class="comment">## Dependencies: https://github.com/V-Vincen/hexo-generator-zip-search</span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.json</span></span><br><span class="line">  <span class="attr">zipPath:</span> <span class="string">search.flv</span></span><br><span class="line">  <span class="attr">versionPath:</span> <span class="string">searchVersion.json</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span>   <span class="comment"># if &#x27;auto&#x27;, trigger search by changing input;if &#x27;manual&#x27;, trigger search by pressing enter key or search button</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span>    <span class="comment"># show top n results per article, show all results by setting to -1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">livemylife</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Gitter. 即时通讯聊天室系统</span></span><br><span class="line"><span class="comment">## Docs:https://gitter.im/?utm_source=left-menu-logo</span></span><br><span class="line"><span class="attr">gitter:</span></span><br><span class="line">  <span class="attr">room:</span> <span class="string">your-community/your-room</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment. 部署设置</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://token@github.com/Yang-Shiqin/Yang-Shiqin.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+<p>更详细的见 <a target="_blank" rel="noopener" href="https://v-vincen.life/cn/Hexo-Theme-LiveMyLife/">Hexo-Theme-LiveMyLife - JavaDev | 一如Java深似海 (v-vincen.life)</a></p>
+<h3 id="写作过程">写作过程</h3>
+<ol>
+<li>创建文章。<code>hexo new &lt;title&gt; --lang cn</code> 以生成新文章放入 <code>source/_posts/cn/title.md</code> 同时生成同名文件夹，存放附件</li>
+<li>填充front matter。</li>
+</ol>
+<p>似乎用 <code>&lt;!--more--&gt;</code> 更改不了short，在 <code>themes/livemylife/layout/index.ejs</code> 中：</p>
+<figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;post-content-preview&quot;</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">      &lt;%</span><span class="perl">- <span class="keyword">truncate</span>(strip_html(post.content), &#123;<span class="keyword">length</span>: <span class="number">100</span>, omission: <span class="string">&#x27;...&#x27;</span>&#125;) </span><span class="xml">%&gt;...</span></span><br><span class="line"></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>能控制显示100字的内容，应该改改能实现显示到 <code>&lt;!--more--&gt;</code> ?但我还不会改</p>
+<h2 id="附录">附录</h2>
+<h3 id="不错的主题">不错的主题</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/V-Vincen/hexo-theme-livemylife">V-Vincen/hexo-theme-livemylife: A succinct hexo theme… (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">yelog/hexo-theme-3-hexo: hexo主题：三段式设计、极简、方便 Hexo theme: three-stage design (github.com)</a>不太好看，但功能比较全</li>
+</ul>
+<h3 id="资料">资料</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">io+hexo</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9f71e260925d">io+Jekyll</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cea930923f3d">YML简介</a></li>
+</ol>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/cn/逻辑函数变换/" data-toggle="tooltip" data-placement="top" title="逻辑函数变换">&larr; Previous Post</a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/cn/ps简易教程/" data-toggle="tooltip" data-placement="top" title="ps简易教程">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=hexo+github.io搭建自己的博客&body=Hi,I found this website and thought you might like it http://yang-shiqin.github.io/cn/hexo-github-io搭建自己的博客/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+  <!-- gitalk start -->
+  <!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+  <div id="gitalk-container"></div>
+
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+    <script src="/js/comment/gitalk.js"></script>
+  
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '',
+      clientSecret: '',
+      repo: '',
+      owner: '',
+      admin: '',
+      id: 'Sun May 02 2021 17:49:28 GMT+0800', // Ensure uniqueness and length less than 50
+      distractionFreeMode: false, // Facebook-like distraction free mode
+      perPage: 10,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      language: 'en',
+      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    });
+    gitalk.render('gitalk-container');
+
+    var gtFolded = () => {
+      setTimeout(function () {
+        let markdownBody = document.getElementsByClassName("markdown-body");
+        let list = Array.from(markdownBody);
+        list.forEach(item => {
+          if (item.clientHeight > 250) {
+            item.classList.add('gt-comment-body-folded');
+            item.style.maxHeight = '250px';
+            item.title = 'Click to Expand';
+            item.onclick = function () {
+              item.classList.remove('gt-comment-body-folded');
+              item.style.maxHeight = '';
+              item.title = '';
+              item.onclick = null;
+            };
+          }
+        })
+      }, 800);
+    }
+  </script>
+
+  <!-- gitalk end -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">目录</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#QuickStart"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">QuickStart</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">前期准备</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">安装hexo</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Setup-your-blog"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">Setup your blog</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%BB%E9%A2%98%EF%BC%88%E4%BB%A5livemylife%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">使用主题（以livemylife为例）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#init"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">init</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#set-theme"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text">set theme</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Start-the-Server"><span class="toc-nav-number">1.4.3.</span> <span class="toc-nav-text">Start the Server</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-nav-number">1.4.4.</span> <span class="toc-nav-text">配置</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%83%A8%E7%BD%B2%E5%9C%A8github-io"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">部署在github.io</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87-2"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">前期准备</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%94%9F%E6%88%90personal-token"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">生成personal token</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">部署</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%83%A8%E7%BD%B2%E7%9B%AE%E5%BD%95%E5%92%8C%E5%86%99%E4%BD%9C%E7%9B%AE%E5%BD%95%E5%88%86%E5%BC%80%E5%AD%98%E5%82%A8"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">部署目录和写作目录分开存储</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#hexo%E4%BB%8B%E7%BB%8D"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">hexo介绍</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">hexo常用命令汇总</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#hexo%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">hexo目录结构</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#config-yml"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">_config.yml</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#scaffolds"><span class="toc-nav-number">3.2.2.</span> <span class="toc-nav-text">scaffolds</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#source-%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-nav-number">3.2.3.</span> <span class="toc-nav-text">source （重要）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#public"><span class="toc-nav-number">3.2.4.</span> <span class="toc-nav-text">public</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#deploy-git"><span class="toc-nav-number">3.2.5.</span> <span class="toc-nav-text">.deploy_git</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%B7%B1%E5%85%A5livemylife%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE-%E5%86%99%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">深入livemylife主题配置+写作过程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#livemylife%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">livemylife主题配置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%86%99%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">写作过程</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">附录</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%B8%8D%E9%94%99%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">不错的主题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%B5%84%E6%96%99"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">资料</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#hexo, web" title="hexo, web">hexo, web</a>
+            
+          </div>
+        </section>
+        
+
+        <!-- Friends Blog -->
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
+
+
+		<!-- Footer (contains ThemeColor、viewer) -->
+		<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+          
+
+          
+            <li>
+              <a target="_blank" href="https://github.com/Yang-Shiqin">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy;
+          ysq
+          2024
+          <br>
+          Theme by
+          <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
+          <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+          </span>
+          re-Ported by
+          <a target="_blank" rel="noopener" href="https://v-vincen.life/">Live My Life</a>
+          |
+          <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=V-Vincen&repo=V-Vincen.github.io&type=star&count=true"></iframe>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="rocket" href="#top" class=""></a>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
+  <!-- catalog -->
+  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
+  <!-- totop(rocket) -->
+  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+
+  
+    <!-- Busuanzi JavaScript -->
+    <script async="async" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <!-- Scroll start -->
+    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
+    <!-- Scroll end -->
+  
+
+  
+    <!-- LangSelect start -->
+    <script type="text/javascript" src="/js/langselect.js"></script>
+    <!-- LangSelect end -->
+  
+
+  
+    <!-- Mouseclick -->
+    <script type="text/javascript" src="/js/mouseclick.js" content='😃,😀,😄,😆,🙂,😉,😘,😙,😗,😚,😋,😛,😜' color=''></script>
+  
+
+  
+    <!-- ribbon -->
+    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
+  
+
+  
+
+
+
+
+
+
+  <!-- viewer start -->
+  <!-- viewer start (Picture preview) -->
+  
+    <script async="async" type="text/javascript" src="/js/viewer/viewer.min.js"></script>
+    <script async="async" type="text/javascript" src="/js/viewer/pic-viewer.js"></script>
+  
+
+  <!-- viewer end -->
+
+
+<script>
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function (e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  // fastClick.js
+  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+    var $nav = document.querySelector("nav");
+    if ($nav)
+      FastClick.attach($nav);
+    }
+  )
+</script>
+
+<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
+<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
+
+<!-- jquery.tagcloud.js -->
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("http://yang-shiqin.github.io/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
+
+
+		<!-- Search -->
+		
+		<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
+
+        <div class="local-search-header clearfix">
+
+          <div class="local-search-input-wrapper">
+            <span class="search-icon">
+              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
+            </span>
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
+          </div>
+        </div>
+        <div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    <script src="/js/ziploader.js"></script>
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // get search zip version
+    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson() {
+      initLoad(['/search.flv'], {
+        loadOptions: {
+          success: function (obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function (e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions: {
+          'json': 'application/json'
+        }
+      })
+    }
+    // search function;
+    var searchFunc = function (search_id, content_id) {
+      'use strict';
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      // console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function () {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function (data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title
+              ? data.title.trim()
+              : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content
+              ? data.content.trim().replace(/<[^>]+>/g, "")
+              : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+
+            var date = data.date;
+            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
+            var imgUrl = data.header_img;
+            
+
+
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function (keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0,
+                  position = [],
+                  index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+            // show search results
+            if (isMatch) {
+              // sort index by position of keyword
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+              // merge hits into slices
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+                  // move to next position of hit
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
+              }
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if (start < 0) {
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if (end > content.length) {
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+              // sort slices in content by search text's count and hits' count
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+              // select top N slices in content
+              var upperBound = parseInt('1');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+              // highlight title and content
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+              var resultItem = '';
+
+              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
+              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
+              // "...</p></a>"; }); resultItem += "</li>";
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              } else {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              }
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
+
+              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
+            }
+          })
+        };
+
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<div class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</div>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+      // remove loading animation
+      $('body').css('overflow', '');
+      proceedsearch();
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function (e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function (e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      var _con = document.querySelector(".local-search-content");
+      if (_con) {
+        if (!_con.contains(e.target)) {
+          onPopupClose();
+        }
+      }
+    });
+  </script>
+
+
+		
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
