@@ -123,6 +123,13 @@
 
   
   <url>
+    <loc>http://yang-shiqin.github.io/tags/py/</loc>
+    <lastmod>2024-03-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://yang-shiqin.github.io/tags/matlab/</loc>
     <lastmod>2024-03-14</lastmod>
     <changefreq>daily</changefreq>
@@ -145,13 +152,6 @@
   
   <url>
     <loc>http://yang-shiqin.github.io/tags/web/</loc>
-    <lastmod>2024-03-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yang-shiqin.github.io/tags/py/</loc>
     <lastmod>2024-03-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
