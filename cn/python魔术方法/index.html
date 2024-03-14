@@ -211,7 +211,7 @@
 <!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
 <script>
   ((window.gitter = {}).chat = {}).options = {
-    room: 'your-community/your-room'
+    room: 'https://matrix.to/#/!XboNnxkyMYwswkgWvW:gitter.im?via=gitter.im'
   };
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
@@ -244,23 +244,12 @@
 
           
           
-          <li>
-            <a href="/about/">
-              
-              关于
-              
-              
-            </a>
-          </li>
-          
-          
-          
           
           
           <li>
-            <a href="/tags/">
+            <a href="/archive/">
               
-              标签
+              归档
               
               
             </a>
@@ -280,9 +269,20 @@
           
           
           <li>
-            <a href="/archive/">
+            <a href="/tags/">
               
-              归档
+              标签
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
               
               
             </a>
@@ -753,6 +753,10 @@
         <!-- Pager -->
         <ul class="pager">
           
+          <li class="previous">
+            <a href="/cn/sed-awk/" data-toggle="tooltip" data-placement="top" title="sed&awk">&larr; Previous Post</a>
+          </li>
+          
           
           <li class="next">
             <a href="/cn/matlab直接运行在shell中/" data-toggle="tooltip" data-placement="top" title="matlab直接运行在shell中">Next Post &rarr;</a>
@@ -834,18 +838,18 @@
 
   <script>
     var gitalk = new Gitalk({
-      clientID: '',
-      clientSecret: '',
-      repo: '',
-      owner: '',
-      admin: '',
+      clientID: '72163253eeed1c817aca',
+      clientSecret: 'ba7e87ba7dd019fc181bfb4faf9cf1344a5616dd',
+      repo: 'comment',
+      owner: 'Yang-Shiqin',
+      admin: 'Yang-Shiqin',
       id: 'Thu Mar 14 2024 13:55:21 GMT+0800', // Ensure uniqueness and length less than 50
       distractionFreeMode: false, // Facebook-like distraction free mode
       perPage: 10,
       pagerDirection: 'last',
       createIssueManually: false,
       language: 'en',
-      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+      proxy: 'https://worker-wandering-rain-4317.2442494081.workers.dev/?https://github.com/login/oauth/access_token'
     });
     gitalk.render('gitalk-container');
 

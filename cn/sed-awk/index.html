@@ -139,10 +139,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yang-shiqin.github.io/archives/2022/11/">
+  <link rel="canonical" href="http://yang-shiqin.github.io/cn/sed-awk/">
   <title>
     
-      Stay passionate!
+      sed&amp;awk - Stay passionate!
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -239,7 +239,7 @@
       <div class="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="/">HOME</a>
+            <a href="/">首页</a>
           </li>
 
           
@@ -249,7 +249,7 @@
           <li>
             <a href="/archive/">
               
-              ARCHIVES
+              归档
               
               
             </a>
@@ -260,7 +260,7 @@
           <li>
             <a href="/categories/">
               
-              CATEGORIES
+              分类
               
               
             </a>
@@ -271,7 +271,7 @@
           <li>
             <a href="/tags/">
               
-              TAGS
+              标签
               
               
             </a>
@@ -282,7 +282,7 @@
           <li>
             <a href="/about/">
               
-              ABOUT
+              关于
               
               
             </a>
@@ -293,36 +293,14 @@
           
           <li>
             <a class="popup-trigger">
-              <span class="search-icon"></span>SEARCH</a>
+              <span class="search-icon"></span>搜索</a>
           </li>
           
 
           <!-- LangSelect -->
           
           
-          <!-- LangSelect start -->
-          <!-- LangSelect -->
-<li>
-  <a id="lang-select-label"><i class="fa fa-globe"></i>
-    <span>
-      English
-    </span>
-    <select id="lang-select" data-canonical="archives/2022/11/index.html">
-      
-      
-      <option value="en"  selected >
-        English
-      </option>
-      
-      <option value="cn" >
-        简体中文
-      </option>
-      
-    </select>
-  </a>
-</li>
-
-          <!-- LangSelect end -->
+          
           
           
         </ul>
@@ -384,9 +362,9 @@
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url(''); */
       
     }
 
@@ -408,10 +386,42 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>里里的数字乐园</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">hello, stranger!</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#linux" title="linux">linux</a>
+              
+            </div>
+            <h1>sed&amp;awk</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by ysq on
+              2024-03-14
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">6</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.7k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+            <!-- 不蒜子统计 start -->
+            <span class="meta" id="busuanzi_container_page_pv">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            
+
+
           </div>
           
         </div>
@@ -452,409 +462,472 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <p>要说相比vi，强大的地方在于sed一次能处理多个文件，awk能一下处理更复杂的命令？（因为我都不是很熟</p>
+<h1>sed</h1>
+<p>(感觉语法比awk复杂，暂时没整理)</p>
+<p>自动编辑一个或多个文件</p>
+<h3 id="语法">语法</h3>
+<ul>
+<li>行号从1开始</li>
+<li>$表最后一行</li>
+<li><code>-i</code> 直接操作文件</li>
+<li>s///g匹配里的g是全局的意思(不然只匹配每行第一个字段)</li>
+<li>\s空字符，\S非空字符</li>
+<li>同样动作双引号里面的一些特殊字符会生效(如$取变量)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [-hnV][-e&lt; script&gt;][-f&lt;script文件&gt;][文本文件]</span><br></pre></td></tr></table></figure>
+<h4 id="动作说明">动作说明</h4>
+<ul>
+<li>a ：新增， a 的后面可以接字串(目前的下一行)；</li>
+<li>i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</li>
+<li>c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行</li>
+<li>d ：删除</li>
+<li>p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行</li>
+<li>s ：取代，可以直接进行取代的工作 通常这个 s 的动作可以搭配正规表示法。例如 <code>1,20s/old/new/g</code></li>
+</ul>
+<h4 id="参数说明">参数说明</h4>
+<ul>
+<li>-e&lt; script&gt;或–expression=&lt; script&gt; 以选项中指定的script来处理输入的文本文件。 允许多台编辑</li>
+<li>-f&lt; script文件&gt;或–file=&lt; script文件&gt; 以选项中指定的script文件来处理输入的文本文件。</li>
+<li>-h或–help 显示帮助。</li>
+<li>-n或–quiet或–silent 仅显示script处理后的结果。</li>
+<li>-V或–version 显示版本信息。</li>
+</ul>
+<h4 id="其他">其他</h4>
+<ul>
+<li><code>^</code>开头
+<ul>
+<li><code>cat a|sed '/^ss/p'</code> # 找以ss开头的打印</li>
+</ul>
+</li>
+<li><code>$</code> 结尾</li>
+<li><code>.</code> 匹配1个非换行符(和正则不太一样吧)</li>
+<li><code>*</code> 任意个(有些奇怪 <code>'/f *f/p'</code> 结果sdf也匹配上了)</li>
+<li><code>[]</code> 指定范围(正则)</li>
+<li><code>[^]</code> 不在指定范围</li>
+<li><code>\(..\) </code>
+<ul>
+<li>保存匹配的字符，如<code>s/\(love\)able/\1rs</code>，loveable被替换成lovers。(连着的)</li>
+</ul>
+</li>
+<li>&lt; 单词的开始</li>
+<li><code>x\&#123;m\&#125;</code>
+<ul>
+<li>重复字符x，m次，如：<code>/0\&#123;5\&#125;/</code>匹配包含5个0的行。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>x\&#123;m,\&#125;</code></li>
+<li>至少m次</li>
+</ul>
+</li>
+<li><code>x\&#123;m,n\&#125;</code>
+<ul>
+<li>m到n次</li>
+</ul>
+</li>
+</ul>
+<h4 id="例子">例子</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sed -e 4a\xxxx file  # 在file第4行后加xxxx(源文件内容没变)(sed -e 4axxxx file)</span><br><span class="line">sed &#x27;3,5c&#x27;hhh a     # 把a里3-5行删了，加上hhh</span><br><span class="line">sed 1,5s/kj/tql/g a # 加不加&#x27;&#x27;都可(是吗  为啥有些又说sed后动作必须加&#x27;&#x27;)搜索并替换(与vim类似)</span><br><span class="line">cat a|sed &#x27;2,$d&#x27;    # 删除a第2行到最后一行($表示最后一行)</span><br><span class="line"></span><br><span class="line">cat a|sed &#x27;2ahello\     # 添加多行 反斜杠</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yes<span class="string">&#x27;              # 单引号的作用(结束)</span></span></span><br><span class="line"></span><br><span class="line">cat a|sed &#x27;2ahello\nyes&#x27;    # 加\n也可以添加多行</span><br><span class="line"></span><br><span class="line">sed -n &#x27;2,3p&#x27; a     # 不加-n的话就会a整个打出来然后原第二行下又一遍第二行内容，原第三行下又一遍</span><br><span class="line">sed -n &#x27;/xx/p&#x27; a    # 搜索有xx的行，把那些行显示出来(没有行号)</span><br><span class="line">sed &#x27;/kj/d&#x27; a       # 搜索并删除行</span><br><span class="line">nl /etc/passwd | sed -n &#x27;/root/&#123;s/bash/blueshell/;p;q&#125;&#x27; # 搜索并执行命令(q是退出)</span><br><span class="line">nl /etc/passwd | sed -e &#x27;3,$d&#x27; -e &#x27;s/bash/blueshell/&#x27;   # 多点编辑</span><br></pre></td></tr></table></figure>
+<p>直接修改文件内容(-i选项)</p>
+<ul>
+<li>不会显示出来</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/\!$/\./g&#x27; a   # 不知道为啥加$(应该是表以!结尾)</span><br><span class="line">sed -i &#x27;/kj/p&#x27; a        # 就直接写文件里了</span><br><span class="line">sed -i &quot;/sectorNum/s/[0-9]\+/$1/g&quot; # 找到有sectorNum的行，把有至少1个数字的字符串(数字串)替换成第一个参数(注意第一个/)(不知道+前/有啥用)</span><br></pre></td></tr></table></figure>
+<h1>awk</h1>
+<p>不仅是工具软件，还是编程语言（但只介绍命令行用法）</p>
+<p><strong>功能</strong>：处理结构数据并输出格式化结果</p>
+<ol>
+<li>Awk以记录和字段的方式来查看文本文件</li>
+<li>和其他编程语言一样，Awk 包含变量、条件和循环</li>
+<li>Awk能够进行运算和字符串操作</li>
+<li>Awk能够生成格式化的报表数据</li>
+</ol>
+<h2 id="基本用法">基本用法</h2>
+<p>结构：<code>awk 动作 文件名</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; awk <span class="string">&#x27;condition &#123;Actions1&#125;    </span></span><br><span class="line"><span class="string">     condition &#123;Actions2&#125;</span></span><br><span class="line"><span class="string">     ...&#x27;</span> file</span><br></pre></td></tr></table></figure>
+<p>在上述语法中：</p>
+<ol>
+<li>condition是条件</li>
+<li>Actions 是动作，指定输出的语法</li>
+<li>condition 和 Action 是<strong>可选</strong>的，但是必须提供其中一个</li>
+<li>在Awk 中可以存在<strong>多个</strong>条件和<strong>多个</strong>输出定义.但每个组合 ( 条件和对应的 Action) 必须用<strong>新行</strong>来分隔</li>
+<li>单引号的作用是包裹起来防止shell 截断</li>
+<li>Action 中的语句应该使用 <code>;</code> 分隔</li>
+</ol>
+<h2 id="awk工作方式">awk工作方式</h2>
+<p>下面C指condition，A指Action</p>
+<ol>
+<li>读取文件中的一行</li>
+<li>对该行，顺序匹配给定的<strong>C</strong>，匹配则执行对应的<strong>A</strong></li>
+<li>没有匹配上<strong>C</strong>则不执行任何动作</li>
+<li>直到执行完所有输入行</li>
+</ol>
+<ul>
+<li><strong>C</strong>未提供，则对所有的输入行执行<strong>A</strong></li>
+<li><strong>A</strong>未提供，则默认打印出<strong>该行</strong>的数据</li>
+<li><code>&#123;&#125;</code> 这种<strong>A</strong>不做任何事情</li>
+<li>每行的记录空格/制表符分隔分别存到<code>$1 $2</code> 里，<code>$0</code> 表整行(当前行)
+<ul>
+<li>空格/制表符是默认分隔符，其他分隔符可用参数 <code>-F</code> 指定</li>
+</ul>
+</li>
+<li>NF 也是一个内建的变量，代表该行中分割后的变量数。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">&quot;=&quot;</span> <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> file  <span class="comment"># 以=为分隔符打印第二个(即第二个第三个=间 或第二个到行尾)</span></span><br><span class="line">sed <span class="string">&#x27;s/.$/\x0a/g&#x27;</span> cmdline | od -t x1</span><br></pre></td></tr></table></figure>
+<h2 id="变量">变量</h2>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$0</code></td>
+<td>当前行</td>
+</tr>
+<tr>
+<td><code>$&lt;num&gt;</code></td>
+<td>第 <code>&lt;num</code> 个字段（1开始）</td>
+</tr>
+<tr>
+<td><code>NF</code></td>
+<td>当前行有多少个字段，<code>$NF</code> 就是最后一个字段，<code>$(NF-1)</code> 就是倒数第二个</td>
+</tr>
+<tr>
+<td><code>FILENAME</code></td>
+<td>当前文件名</td>
+</tr>
+<tr>
+<td><code>FS</code></td>
+<td>字段分隔符，默认是空格和制表符</td>
+</tr>
+<tr>
+<td><code>RS</code></td>
+<td>行分隔符，用于分割每一行，默认是换行符</td>
+</tr>
+<tr>
+<td><code>OFS</code></td>
+<td>输出字段的分隔符，用于打印时分隔字段，默认为空格</td>
+</tr>
+<tr>
+<td><code>ORS</code></td>
+<td>输出记录的分隔符，用于打印时分隔记录，默认为换行符</td>
+</tr>
+<tr>
+<td><code>OFMT</code></td>
+<td>数字输出的格式，默认为<code>％.6g</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="动作">动作</h2>
+<h3 id="condition">condition</h3>
+<ul>
+<li>search pattern: 正则表达式，<code>/search pattern/</code></li>
+<li>表达式: 如 <code>$1 == &quot;root&quot; &#123;action&#125;</code></li>
+<li>if语句: 如 <code>&#123;if ($1 &gt; &quot;m&quot;) action1; else action2&#125;</code></li>
+</ul>
+<h3 id="action">action</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>print &lt;sth&gt;</code></td>
+<td>打印，内容 <code>,</code> 分隔表输出用空格分隔;<code>&quot;&quot;</code> 表原样输出字符</td>
+<td><code>print $1, NR &quot;)&quot;</code></td>
+</tr>
+<tr>
+<td><code>toupper()</code></td>
+<td>字符转为大写</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tolower()</code></td>
+<td>字符转为小写</td>
+<td></td>
+</tr>
+<tr>
+<td><code>length()</code></td>
+<td>返回字符串长度</td>
+<td></td>
+</tr>
+<tr>
+<td><code>substr()</code></td>
+<td>返回子字符串</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sin()</code></td>
+<td>正弦</td>
+<td></td>
+</tr>
+<tr>
+<td><code>cos()</code></td>
+<td>余弦</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sqrt()</code></td>
+<td>平方根</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rand()</code></td>
+<td>随机数</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="附录">附录</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din">awk函数，Built-in (The GNU Awk User’s Guide)</a></li>
+<li>我在老外的博客上看到nr是number of records,不过还是number row好记，顺带一提NF是number of fields,FS是field separator,RS是record separator，这样下次要用的时候不用再查了</li>
+</ul>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+          <li class="next">
+            <a href="/cn/python魔术方法/" data-toggle="tooltip" data-placement="top" title="python魔术方法">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=sed&amp;awk&body=Hi,I found this website and thought you might like it http://yang-shiqin.github.io/cn/sed-awk/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+  <!-- gitalk start -->
+  <!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+  <div id="gitalk-container"></div>
+
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+    <script src="/js/comment/gitalk.js"></script>
+  
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '72163253eeed1c817aca',
+      clientSecret: 'ba7e87ba7dd019fc181bfb4faf9cf1344a5616dd',
+      repo: 'comment',
+      owner: 'Yang-Shiqin',
+      admin: 'Yang-Shiqin',
+      id: 'Thu Mar 14 2024 18:22:48 GMT+0800', // Ensure uniqueness and length less than 50
+      distractionFreeMode: false, // Facebook-like distraction free mode
+      perPage: 10,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      language: 'en',
+      proxy: 'https://worker-wandering-rain-4317.2442494081.workers.dev/?https://github.com/login/oauth/access_token'
+    });
+    gitalk.render('gitalk-container');
+
+    var gtFolded = () => {
+      setTimeout(function () {
+        let markdownBody = document.getElementsByClassName("markdown-body");
+        let list = Array.from(markdownBody);
+        list.forEach(item => {
+          if (item.clientHeight > 250) {
+            item.classList.add('gt-comment-body-folded');
+            item.style.maxHeight = '250px';
+            item.title = 'Click to Expand';
+            item.onclick = function () {
+              item.classList.remove('gt-comment-body-folded');
+              item.style.maxHeight = '';
+              item.title = '';
+              item.onclick = null;
+            };
+          }
+        })
+      }, 800);
+    }
+  </script>
+
+  <!-- gitalk end -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">目录</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">sed</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">语法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%8A%A8%E4%BD%9C%E8%AF%B4%E6%98%8E"><span class="toc-nav-number">1.0.1.1.</span> <span class="toc-nav-text">动作说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-nav-number">1.0.1.2.</span> <span class="toc-nav-text">参数说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-nav-number">1.0.1.3.</span> <span class="toc-nav-text">其他</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-nav-number">1.0.1.4.</span> <span class="toc-nav-text">例子</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">awk</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">基本用法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#awk%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">awk工作方式</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">变量</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8A%A8%E4%BD%9C"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">动作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#condition"><span class="toc-nav-number">2.4.1.</span> <span class="toc-nav-text">condition</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#action"><span class="toc-nav-number">2.4.2.</span> <span class="toc-nav-text">action</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">附录</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
     
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
+
+
+      <!-- Sidebar Container -->
+      <div class="
                 col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
-
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2024">
-          <span class="tag-text">2024</span>
-        </span>
-        <ul>
-          
-          <li>
-            03-14
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/sed-awk/" style="color: #0085a1">
-              <span>
-                sed&awk
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-14
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/python魔术方法/" style="color: #0085a1">
-              <span>
-                python魔术方法
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
-          
-          <li>
-            09-12
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/matlab直接运行在shell中/" style="color: #0085a1">
-              <span>
-                matlab直接运行在shell中
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-26
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/发布你的第一个python包/" style="color: #0085a1">
-              <span>
-                发布你的第一个python包
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            05-07
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/常用sh介绍/" style="color: #0085a1">
-              <span>
-                常用sh介绍
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2022">
-          <span class="tag-text">2022</span>
-        </span>
-        <ul>
-          
-          <li>
-            11-22
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/点阵字库编码/" style="color: #0085a1">
-              <span>
-                点阵字库编码
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2021">
-          <span class="tag-text">2021</span>
-        </span>
-        <ul>
-          
-          <li>
-            05-15
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/逻辑函数变换/" style="color: #0085a1">
-              <span>
-                逻辑函数变换
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            05-02
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/hexo-github-io搭建自己的博客/" style="color: #0085a1">
-              <span>
-                hexo+github.io搭建自己的博客
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            04-26
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/ps简易教程/" style="color: #0085a1">
-              <span>
-                ps简易教程
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-11
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/格雷码连续性证明/" style="color: #0085a1">
-              <span>
-                格雷码连续性证明
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-11
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/逻辑函数最大最小项/" style="color: #0085a1">
-              <span>
-                逻辑函数最大最小项
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Visitors -->
-<h5><a href="/">VISITORS</a></h5>
-
-<div class="widget">
-  <span>
-    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-  </span>
-  <br />
-  <span>
-    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-  </span>
-</div>
-
-
-        <hr>
-    
         <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#linux" title="linux">linux</a>
+            
+          </div>
+        </section>
+        
 
-<section>
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#matlab" title="matlab" rel="1">matlab</a>
-    
-    
-    
-    <a href="/tags/#shell" title="shell" rel="2">shell</a>
-    
-    
-    
-    <a href="/tags/#hexo" title="hexo" rel="1">hexo</a>
-    
-    
-    
-    <a href="/tags/#web" title="web" rel="1">web</a>
-    
-    
-    
-    <a href="/tags/#py" title="py" rel="3">py</a>
-    
-    
-    
-    <a href="/tags/#linux" title="linux" rel="1">linux</a>
-    
-    
-    
-    <a href="/tags/#数电" title="数电" rel="3">数电</a>
-    
-    
-    
-    <a href="/tags/#ps" title="ps" rel="1">ps</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/ysq.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>...</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/Yang-Shiqin">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../../../cn/sed-awk/">
-      <li>sed&amp;awk</li>
-    </a>
-    
-    <a href="../../../cn/python%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/">
-      <li>python魔术方法</li>
-    </a>
-    
-    <a href="../../../cn/matlab%E7%9B%B4%E6%8E%A5%E8%BF%90%E8%A1%8C%E5%9C%A8shell%E4%B8%AD/">
-      <li>matlab直接运行在shell中</li>
-    </a>
-    
-    <a href="../../../cn/%E5%8F%91%E5%B8%83%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AApython%E5%8C%85/">
-      <li>发布你的第一个python包</li>
-    </a>
-    
-    <a href="../../../cn/%E5%B8%B8%E7%94%A8sh%E4%BB%8B%E7%BB%8D/">
-      <li>常用sh介绍</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-
-        <hr>
-    
-        <!-- Archives -->
-
-<h5><a href="/archives/">archives</a></h5>
-<div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2024/03/">March 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="">November 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/05/">May 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/03/">March 2021</a><span class="archive-list-count">2</span></li></ul>
-</div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<h5><a href="/categories/">categories</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#tec">
-      <li>tec</li>
-    </a>
-    
-    <a href="/categories/#课程">
-      <li>课程</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-
-    
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->
@@ -1019,7 +1092,7 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
             <span class="search-icon">
               <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
             </span>
-            <input autocomplete="off" placeholder="SEARCH..." type="text" id="local-search-input">
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
           </div>
         </div>
         <div id="local-search-result"></div>
