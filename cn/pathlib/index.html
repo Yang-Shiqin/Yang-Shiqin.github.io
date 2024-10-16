@@ -139,10 +139,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yang-shiqin.github.io/cn/格雷码连续性证明/">
+  <link rel="canonical" href="http://yang-shiqin.github.io/cn/pathlib/">
   <title>
     
-      格雷码连续性证明 - Stay passionate!
+      pathlib - Stay passionate!
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -389,14 +389,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="/tags/#数电" title="数电">数电</a>
+              <a class="tag" href="/tags/#py/lib" title="py/lib">py/lib</a>
               
             </div>
-            <h1>格雷码连续性证明</h1>
+            <h1>pathlib</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by ysq on
-              2021-03-11
+              2023-09-14
             </span>
 
 
@@ -404,11 +404,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">3</span> Minutes
+              Estimated Reading Time <span class="post-count">1</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">778</span> In Total
+              Words <span class="post-count">253</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -470,326 +470,24 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>4位格雷码连续性</h1>
-<h2 id="前言">前言</h2>
-<p>上的第二节数电课讲了下4位格雷码，我对格雷码为什么连续很感兴趣，就试着写下这些东西。如有纰漏，烦请指正，不胜感激。</p>
-<h2 id="前置知识">前置知识</h2>
-<p>请先了解下列知识点:</p>
-<ol>
-<li>格雷码
-<ol>
-<li>格雷码是什么</li>
-<li>格雷码简单性质</li>
-<li>格雷码和二进制相互的转换</li>
-</ol>
-</li>
-<li>模2加法(异或)</li>
-<li>实际加法的位运算实现</li>
-<li>一些常用数学符号
-<ol>
-<li>异或: ^或$\oplus$</li>
-<li>非: ~$x$或$\overline{x}$</li>
-</ol>
-</li>
-</ol>
-<h2 id="正文">正文</h2>
-<h3 id="对应表">对应表</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">十进制</th>
-<th style="text-align:center">二进制</th>
-<th style="text-align:center">格雷码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0000</td>
-<td style="text-align:center">0000</td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0001</td>
-<td style="text-align:center">0001</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">0010</td>
-<td style="text-align:center">0011</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">0011</td>
-<td style="text-align:center">0010</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">0100</td>
-<td style="text-align:center">0110</td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td style="text-align:center">0101</td>
-<td style="text-align:center">0111</td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">0110</td>
-<td style="text-align:center">0101</td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td style="text-align:center">0111</td>
-<td style="text-align:center">0100</td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td style="text-align:center">1000</td>
-<td style="text-align:center">1100</td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td style="text-align:center">1001</td>
-<td style="text-align:center">1101</td>
-</tr>
-<tr>
-<td style="text-align:center">10</td>
-<td style="text-align:center">1010</td>
-<td style="text-align:center">1111</td>
-</tr>
-<tr>
-<td style="text-align:center">11</td>
-<td style="text-align:center">1011</td>
-<td style="text-align:center">1110</td>
-</tr>
-<tr>
-<td style="text-align:center">12</td>
-<td style="text-align:center">1100</td>
-<td style="text-align:center">1010</td>
-</tr>
-<tr>
-<td style="text-align:center">13</td>
-<td style="text-align:center">1101</td>
-<td style="text-align:center">1011</td>
-</tr>
-<tr>
-<td style="text-align:center">14</td>
-<td style="text-align:center">1110</td>
-<td style="text-align:center">1001</td>
-</tr>
-<tr>
-<td style="text-align:center">15</td>
-<td style="text-align:center">1111</td>
-<td style="text-align:center">1000</td>
-</tr>
-</tbody>
-</table>
-<h3 id="过程">过程</h3>
-<p>设二进制为$x$, 格雷码为$g(x)$。将x四位分开，从高到低为$x_1, x_2, x_3, x_4$，同样，将$g(x)$分为$g(x)_1, …, g(x)_4$，即:<br>
-$$x = x_1<em>2^3+x_2</em>2^2+x_3<em>2^1+x_4</em>2^0$$</p>
-<p>对连续性，我们考虑$x$和$x+1$及对应的格雷码，如下:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">第一位</th>
-<th style="text-align:center">第二位</th>
-<th style="text-align:center">第三位</th>
-<th style="text-align:center">第四位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$x$</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">$x_2$</td>
-<td style="text-align:center">$x_3$</td>
-<td style="text-align:center">$x_4$</td>
-</tr>
-<tr>
-<td style="text-align:center">$x+1$</td>
-<td style="text-align:center">$x_4&amp;x_3&amp;x_2\oplus x_1$</td>
-<td style="text-align:center">$x_4&amp;x_3\oplus x_2$</td>
-<td style="text-align:center">$x_4\oplus x_3$</td>
-<td style="text-align:center">$\overline{x_4}$</td>
-</tr>
-<tr>
-<td style="text-align:center">$g(x)$</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">$x_1\oplus x_2$</td>
-<td style="text-align:center">$x_2\oplus x_3$</td>
-<td style="text-align:center">$x_3\oplus x_4$</td>
-</tr>
-<tr>
-<td style="text-align:center">$g(x+1)$</td>
-<td style="text-align:center">$x_4&amp;x_3&amp;x_2\oplus x_1$</td>
-<td style="text-align:center">$(x_4&amp;x_3&amp;x_2\oplus x_1)\oplus (x_4&amp;x_3\oplus x_2)$</td>
-<td style="text-align:center">$(x_4&amp;x_3\oplus x_2)\oplus (x_4\oplus x_3)$</td>
-<td style="text-align:center">$\overline{x_3}$</td>
-</tr>
-</tbody>
-</table>
-<p>一些运算技巧(只针对1bit)</p>
+        <p>os的文件操作和pathlib的区别：</p>
 <ul>
-<li>&amp;和^有优先级之分，即a&amp;b^c != a^c&amp;b，且&amp;优先级高于^</li>
-<li>&amp;和^都满足交换律</li>
-<li>a^1 = ~a</li>
-<li>a^0 = a</li>
-<li>a^a = 0</li>
+<li>pathlib引入了Path类，更简单，可读性更强</li>
+<li>os更底层，接口更低级，调用更复杂</li>
 </ul>
-<h4 id="假设法">假设法</h4>
-<p>连续两数只有1位不同，4位格雷码只需设4遍各位不同，证剩下的相同</p>
-<h5 id="1-设第一位不同">1. 设第一位不同</h5>
-<p>有:</p>
-<blockquote>
-<p>$$\overline{x_1} = x_4&amp;x_3&amp;x_2\oplus x_1$$<br>
-$\therefore x_4&amp;x_3&amp;x_2=1$<br>
-$\therefore x_4=x_3=x_2=1$</p>
-</blockquote>
-<p>得:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">第二位</th>
-<th style="text-align:center">第三位</th>
-<th style="text-align:center">第四位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">g(x)</td>
-<td style="text-align:center">$\overline{x_1}$</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">g(x+1)</td>
-<td style="text-align:center">$\overline{x_1}$</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-</tr>
-</tbody>
-</table>
-<h5 id="2-设第二位不同">2. 设第二位不同</h5>
-<p>有:</p>
-<blockquote>
-<p>$$\overline{x_1\oplus x_2} = (x_4&amp;x_3&amp;x_2\oplus x_1)\oplus (x_4&amp;x_3\oplus x_2)$$<br>
-$\therefore \overline{x_1\oplus x_2} = (x_4&amp;x_3&amp;x_2)\oplus (x_4&amp;x_3)\oplus (x_1\oplus x_2)$<br>
-$\therefore (x_4&amp;x_3&amp;x_2)\oplus (x_4&amp;x_3)=1$<br>
-$\therefore x_4&amp;x_3&amp;x_2=\overline{x_4&amp;x_3}$<br>
-$\therefore x_2=0, x_4&amp;x_3=1$<br>
-$\therefore x_2=0, x_4=x_3=1$</p>
-</blockquote>
-<p>得:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">第一位</th>
-<th style="text-align:center">第三位</th>
-<th style="text-align:center">第四位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">g(x)</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">g(x+1)</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-</tr>
-</tbody>
-</table>
-<h5 id="3-设第三位不同">3. 设第三位不同</h5>
-<p>有:</p>
-<blockquote>
-<p>$$\overline{x_3&amp;x_2} = (x_4&amp;x_3\oplus x_2)\oplus (x_4\oplus x_3)$$<br>
-$\therefore \overline{x_2\oplus x_3} = (x_4&amp;x_3\oplus x_4)\oplus (x_2\oplus x_3)$<br>
-$\therefore x_4&amp;x_3\oplus x_4=1$<br>
-若$x_3=1$, 有$x_4\oplus x_4=1$, 显然不可能<br>
-$\therefore x_3=0, x_4=1$</p>
-</blockquote>
-<p>得:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">第一位</th>
-<th style="text-align:center">第二位</th>
-<th style="text-align:center">第四位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">g(x)</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">$x_1\oplus x_2$</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">g(x+1)</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">$x_1\oplus x_2$</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-<h5 id="4-设第四位不同">4. 设第四位不同</h5>
-<p>有:</p>
-<blockquote>
-<p>$$x_3\oplus x_4 = x_3$$<br>
-$\therefore x_4=0$</p>
-</blockquote>
-<p>得:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">第一位</th>
-<th style="text-align:center">第二位</th>
-<th style="text-align:center">第三位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">g(x)</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">$x_1\oplus x_2$</td>
-<td style="text-align:center">$x_2\oplus x_3$</td>
-</tr>
-<tr>
-<td style="text-align:center">g(x+1)</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">$x_1\oplus x_2$</td>
-<td style="text-align:center">$x_2\oplus x_3$</td>
-</tr>
-</tbody>
-</table>
-<h2 id="后记">后记</h2>
-<ol>
-<li>鉴于本人愚钝，暂时未想出容易理解、容易推广的证明方法。而且只是证明连续性，还是不知道连续的原因</li>
-<li>markdown数学公式中^符号是怎么打出来的，虚心求教</li>
-</ol>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设当前位置在 /mnt/d/00/tmp</span></span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    cur_path = Path(<span class="string">&#x27;.&#x27;</span>)  <span class="comment"># 路径就是参数接收的字符串，不一定存在</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;cur_path: &quot;</span>, cur_path)  <span class="comment"># .</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Absolute Path</span></span><br><span class="line">    cur_path_abs = cur_path.absolute()  <span class="comment"># cur_path的绝对路径</span></span><br><span class="line">    cur_path_realabs = cur_path.resolve()   <span class="comment"># 解析符号链接后的cur_path的绝对路径</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Absolute Path: &quot;</span>, cur_path_abs)  <span class="comment"># /mnt/d/00/tmp</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># cd Subdir</span></span><br><span class="line">    next_path = cur_path_abs / <span class="string">&#x27;nextdir&#x27;</span> </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> next_path.exists():</span><br><span class="line">        next_path.mkdir()  <span class="comment"># 创建 /mnt/d/00/tmp/nextdir</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># cd ..</span></span><br><span class="line">    parent_path = cur_path_abs.parent</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;parent_path: &quot;</span>, parent_path)  <span class="comment"># /mnt/d/00</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Print files&#x27; path in pattern &quot;go*&quot;</span></span><br><span class="line">    files = <span class="built_in">list</span>(cur_path_abs.glob(<span class="string">&quot;go*&quot;</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Print files in pattern &#x27;go*&#x27;: &quot;</span>, files) <span class="comment"># [PosixPath(/mnt/d/00/tmp/go1), PosixPath(/mnt/d/00/tmp/go2)]</span></span><br><span class="line"></span><br><span class="line">    files = <span class="built_in">list</span>(cur_path_abs.iterdir())  <span class="comment"># 所有文件的path</span></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:                    <span class="comment"># 判断path是文件还是文件夹还是其他</span></span><br><span class="line">        Prefix = <span class="string">&#x27;OTHER&#x27;</span> </span><br><span class="line">        Prefix = <span class="string">&#x27;FILE&#x27;</span> <span class="keyword">if</span> file.is_file() <span class="keyword">else</span> Prefix</span><br><span class="line">        Prefix = <span class="string">&#x27;DIR&#x27;</span> <span class="keyword">if</span> file.is_dir() <span class="keyword">else</span> Prefix</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;Prefix&#125;</span>: <span class="subst">&#123;<span class="built_in">str</span>(file)&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
           <li class="previous">
-            <a href="/cn/ps简易教程/" data-toggle="tooltip" data-placement="top" title="ps简易教程">&larr; Previous Post</a>
+            <a href="/cn/python魔术方法/" data-toggle="tooltip" data-placement="top" title="python魔术方法">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/cn/逻辑函数最大最小项/" data-toggle="tooltip" data-placement="top" title="逻辑函数最大最小项">Next Post &rarr;</a>
+            <a href="/cn/matlab直接运行在shell中/" data-toggle="tooltip" data-placement="top" title="matlab直接运行在shell中">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -838,7 +536,7 @@ $\therefore x_4=0$</p>
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=格雷码连续性证明&body=Hi,I found this website and thought you might like it http://yang-shiqin.github.io/cn/格雷码连续性证明/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=pathlib&body=Hi,I found this website and thought you might like it http://yang-shiqin.github.io/cn/pathlib/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -873,7 +571,7 @@ $\therefore x_4=0$</p>
       repo: 'comment',
       owner: 'Yang-Shiqin',
       admin: 'Yang-Shiqin',
-      id: 'Thu Mar 11 2021 15:28:21 GMT+0800', // Ensure uniqueness and length less than 50
+      id: 'Thu Sep 14 2023 09:30:31 GMT+0800', // Ensure uniqueness and length less than 50
       distractionFreeMode: false, // Facebook-like distraction free mode
       perPage: 10,
       pagerDirection: 'last',
@@ -926,7 +624,7 @@ $\therefore x_4=0$</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">4位格雷码连续性</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">前言</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">前置知识</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">正文</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AF%B9%E5%BA%94%E8%A1%A8"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">对应表</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">过程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%81%87%E8%AE%BE%E6%B3%95"><span class="toc-nav-number">1.3.2.1.</span> <span class="toc-nav-text">假设法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#1-%E8%AE%BE%E7%AC%AC%E4%B8%80%E4%BD%8D%E4%B8%8D%E5%90%8C"><span class="toc-nav-number">1.3.2.1.1.</span> <span class="toc-nav-text">1. 设第一位不同</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-%E8%AE%BE%E7%AC%AC%E4%BA%8C%E4%BD%8D%E4%B8%8D%E5%90%8C"><span class="toc-nav-number">1.3.2.1.2.</span> <span class="toc-nav-text">2. 设第二位不同</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#3-%E8%AE%BE%E7%AC%AC%E4%B8%89%E4%BD%8D%E4%B8%8D%E5%90%8C"><span class="toc-nav-number">1.3.2.1.3.</span> <span class="toc-nav-text">3. 设第三位不同</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#4-%E8%AE%BE%E7%AC%AC%E5%9B%9B%E4%BD%8D%E4%B8%8D%E5%90%8C"><span class="toc-nav-number">1.3.2.1.4.</span> <span class="toc-nav-text">4. 设第四位不同</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">后记</span></a></li></ol></li></ol>
+          <ol class="nav">none</ol>
         
         </div>
       </aside>
@@ -949,7 +647,7 @@ $\therefore x_4=0$</p>
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#数电" title="数电">数电</a>
+            <a class="tag" href="/tags/#py/lib" title="py/lib">py/lib</a>
             
           </div>
         </section>
