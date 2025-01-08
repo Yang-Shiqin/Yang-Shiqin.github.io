@@ -244,12 +244,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/archive/">
+            <a href="/tags/">
               
-              归档
+              标签
               
               
             </a>
@@ -269,6 +267,17 @@
           
           
           <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
             <a href="/about/">
               
               关于
@@ -278,15 +287,6 @@
           </li>
           
           
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
           
           
 
@@ -408,7 +408,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">463</span> In Total
+              Words <span class="post-count">467</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -470,34 +470,29 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h2 id="bash">bash</h2>
-<blockquote>
+        <h2 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h2><blockquote>
 <p>[!info]</p>
-</blockquote>
 <p>最常用的Linux shell，像所有shell一样可以create aliases, make functions, export variables, run commands。配置在 <code>~/.bashrc</code></p>
-<h2 id="zsh">zsh</h2>
-<blockquote>
-<p>[!info]</p>
 </blockquote>
+<h2 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h2><blockquote>
+<p>[!info]</p>
 <p>比bash更快，更具可定制性，更美观（主题、颜色等），拼写校正。兼容zsh。配置在 <code>~/.zshrc</code></p>
+</blockquote>
 <p>一般还会安装架构oh-my-zsh，开箱即用，但会慢很多</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置 函数</span></span><br><span class="line"><span class="function"><span class="title">mi</span></span>()&#123;/usr/bin/mkdir -p <span class="variable">$1</span> &amp;&amp; <span class="built_in">cd</span> <span class="variable">$_</span>&#125; <span class="comment"># mkdir and get into，$1是第一个参数，-p是递归地创建（a/a/a），$_是在此之前执行的命令或者脚本的最后一个参数</span></span><br></pre></td></tr></table></figure>
-<h3 id="zsh优势">zsh优势</h3>
-<ul>
-<li><code>d</code> 打印路径栈（下面写的不一定是zsh的实现，而是bash/fish能怎么实现
-<ul>
-<li><code>d</code> 是 <code>dirs -v</code> 的别名（但fish的 <code>dirs</code> 没有 <code>-v</code> 的选项，需要 <code>| awk '&#123;print $1&#125;'</code> 打印第1个路径</li>
+<h3 id="zsh优势"><a href="#zsh优势" class="headerlink" title="zsh优势"></a>zsh优势</h3><ul>
+<li><code>d</code> 打印路径栈（下面写的不一定是zsh的实现，而是bash/fish能怎么实现<ul>
+<li><code>d</code> 是 <code>dirs -v</code> 的别名（但fish的 <code>dirs</code> 没有 <code>-v</code> 的选项，需要 <code>| awk &#39;&#123;print $1&#125;&#39;</code> 打印第1个路径</li>
 <li>bash需要手动 <code>pushd</code> 和 <code>popd</code> 来改变路径栈（<code>cd</code> 只会改变0号，并且 <code>pushd</code> 也会执行 <code>cd</code>）</li>
-<li>最大栈长，通过函数实现（fish可以用 <code>| awk '&#123;print NF&#125;'</code> 统计当前路径数(内置命令count也行)（fish应该实现不了了，因为没法移除最早添加的路径，而且fish的dirs没有切换路径的选项</li>
+<li>最大栈长，通过函数实现（fish可以用 <code>| awk &#39;&#123;print NF&#125;&#39;</code> 统计当前路径数(内置命令count也行)（fish应该实现不了了，因为没法移除最早添加的路径，而且fish的dirs没有切换路径的选项</li>
 </ul>
 </li>
 <li><code>num</code> 到路径栈中num号路径</li>
 </ul>
-<h2 id="fish">fish</h2>
-<blockquote>
+<h2 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h2><blockquote>
 <p>[!info]</p>
-</blockquote>
 <p>Friendly Interactive Shell，开箱即用，没有oh-my-zsh臃肿，自带命令提示和补齐、语法检查。配置在 <code>~/.config/fish/config.fish</code></p>
+</blockquote>
 <p>也有oh-my-fish，但没必要装</p>
 <p><strong>缺点</strong></p>
 <ul>
@@ -505,16 +500,14 @@
 <li>不会继承环境变量</li>
 <li>有些命令不兼容</li>
 <li>有些报错信息和bash不同，Google的时候可能浪费时间</li>
-<li>语法与bash不同
-<ul>
+<li>语法与bash不同<ul>
 <li>没有 <code>$1</code> 等特殊参数，而是使用 <code>$argv</code></li>
 <li>没有 <code>dirs -v</code></li>
 </ul>
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function mi</span><br><span class="line">    &#x2F;usr&#x2F;bin&#x2F;mkdir -p $argv[1] &amp;&amp; cd $argv[1]</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h2 id="附录">附录</h2>
-<ul>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26157081">使用 fish 的一些注意点 - 知乎 (zhihu.com)</a></li>
 </ul>
 
@@ -787,7 +780,7 @@
         <p class="copyright text-muted">
           Copyright &copy;
           ysq
-          2024
+          2025
           <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
@@ -1226,20 +1219,5 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+	</body>
 </html>

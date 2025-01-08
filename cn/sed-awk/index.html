@@ -244,12 +244,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/archive/">
+            <a href="/tags/">
               
-              归档
+              标签
               
               
             </a>
@@ -269,6 +267,17 @@
           
           
           <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
             <a href="/about/">
               
               关于
@@ -278,15 +287,6 @@
           </li>
           
           
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
           
           
 
@@ -471,11 +471,9 @@
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
         <p>要说相比vi，强大的地方在于sed一次能处理多个文件，awk能一下处理更复杂的命令？（因为我都不是很熟</p>
-<h1>sed</h1>
-<p>(感觉语法比awk复杂，暂时没整理)</p>
+<h1 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h1><p>(感觉语法比awk复杂，暂时没整理)</p>
 <p>自动编辑一个或多个文件</p>
-<h3 id="语法">语法</h3>
-<ul>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ul>
 <li>行号从1开始</li>
 <li>$表最后一行</li>
 <li><code>-i</code> 直接操作文件</li>
@@ -484,67 +482,57 @@
 <li>同样动作双引号里面的一些特殊字符会生效(如$取变量)</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [-hnV][-e&lt; script&gt;][-f&lt;script文件&gt;][文本文件]</span><br></pre></td></tr></table></figure>
-<h4 id="动作说明">动作说明</h4>
-<ul>
+<h4 id="动作说明"><a href="#动作说明" class="headerlink" title="动作说明"></a>动作说明</h4><ul>
 <li>a ：新增， a 的后面可以接字串(目前的下一行)；</li>
 <li>i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</li>
 <li>c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行</li>
 <li>d ：删除</li>
 <li>p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行</li>
-<li>s ：取代，可以直接进行取代的工作 通常这个 s 的动作可以搭配正规表示法。例如 <code>1,20s/old/new/g</code></li>
+<li>s ：取代，可以直接进行取代的工作 通常这个 s 的动作可以搭配正规表示法。例如 <code>1,20s/old/new/g</code> </li>
 </ul>
-<h4 id="参数说明">参数说明</h4>
-<ul>
-<li>-e&lt; script&gt;或–expression=&lt; script&gt; 以选项中指定的script来处理输入的文本文件。 允许多台编辑</li>
-<li>-f&lt; script文件&gt;或–file=&lt; script文件&gt; 以选项中指定的script文件来处理输入的文本文件。</li>
-<li>-h或–help 显示帮助。</li>
-<li>-n或–quiet或–silent 仅显示script处理后的结果。</li>
-<li>-V或–version 显示版本信息。</li>
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><ul>
+<li>-e&lt; script&gt;或—expression=&lt; script&gt; 以选项中指定的script来处理输入的文本文件。 允许多台编辑</li>
+<li>-f&lt; script文件&gt;或—file=&lt; script文件&gt; 以选项中指定的script文件来处理输入的文本文件。</li>
+<li>-h或—help 显示帮助。</li>
+<li>-n或—quiet或—silent 仅显示script处理后的结果。</li>
+<li>-V或—version 显示版本信息。</li>
 </ul>
-<h4 id="其他">其他</h4>
-<ul>
-<li><code>^</code>开头
-<ul>
-<li><code>cat a|sed '/^ss/p'</code> # 找以ss开头的打印</li>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li><code>^</code>开头<ul>
+<li><code>cat a|sed &#39;/^ss/p&#39;</code> # 找以ss开头的打印</li>
 </ul>
 </li>
 <li><code>$</code> 结尾</li>
 <li><code>.</code> 匹配1个非换行符(和正则不太一样吧)</li>
-<li><code>*</code> 任意个(有些奇怪 <code>'/f *f/p'</code> 结果sdf也匹配上了)</li>
-<li><code>[]</code> 指定范围(正则)</li>
+<li><code>*</code> 任意个(有些奇怪 <code>&#39;/f *f/p&#39;</code> 结果sdf也匹配上了)</li>
+<li><code>[]</code> 指定范围(正则) </li>
 <li><code>[^]</code> 不在指定范围</li>
-<li><code>\(..\) </code>
-<ul>
+<li><code>\(..\)</code><ul>
 <li>保存匹配的字符，如<code>s/\(love\)able/\1rs</code>，loveable被替换成lovers。(连着的)</li>
 </ul>
 </li>
-<li>&lt; 单词的开始</li>
-<li><code>x\&#123;m\&#125;</code>
-<ul>
+<li>\&lt; 单词的开始</li>
+<li><code>x\&#123;m\&#125;</code><ul>
 <li>重复字符x，m次，如：<code>/0\&#123;5\&#125;/</code>匹配包含5个0的行。</li>
 </ul>
 </li>
-<li>
-<ul>
+<li><ul>
 <li><code>x\&#123;m,\&#125;</code></li>
 <li>至少m次</li>
 </ul>
 </li>
-<li><code>x\&#123;m,n\&#125;</code>
-<ul>
+<li><code>x\&#123;m,n\&#125;</code> <ul>
 <li>m到n次</li>
 </ul>
 </li>
 </ul>
-<h4 id="例子">例子</h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sed -e 4a\xxxx file  # 在file第4行后加xxxx(源文件内容没变)(sed -e 4axxxx file)</span><br><span class="line">sed &#x27;3,5c&#x27;hhh a     # 把a里3-5行删了，加上hhh</span><br><span class="line">sed 1,5s/kj/tql/g a # 加不加&#x27;&#x27;都可(是吗  为啥有些又说sed后动作必须加&#x27;&#x27;)搜索并替换(与vim类似)</span><br><span class="line">cat a|sed &#x27;2,$d&#x27;    # 删除a第2行到最后一行($表示最后一行)</span><br><span class="line"></span><br><span class="line">cat a|sed &#x27;2ahello\     # 添加多行 反斜杠</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yes<span class="string">&#x27;              # 单引号的作用(结束)</span></span></span><br><span class="line"></span><br><span class="line">cat a|sed &#x27;2ahello\nyes&#x27;    # 加\n也可以添加多行</span><br><span class="line"></span><br><span class="line">sed -n &#x27;2,3p&#x27; a     # 不加-n的话就会a整个打出来然后原第二行下又一遍第二行内容，原第三行下又一遍</span><br><span class="line">sed -n &#x27;/xx/p&#x27; a    # 搜索有xx的行，把那些行显示出来(没有行号)</span><br><span class="line">sed &#x27;/kj/d&#x27; a       # 搜索并删除行</span><br><span class="line">nl /etc/passwd | sed -n &#x27;/root/&#123;s/bash/blueshell/;p;q&#125;&#x27; # 搜索并执行命令(q是退出)</span><br><span class="line">nl /etc/passwd | sed -e &#x27;3,$d&#x27; -e &#x27;s/bash/blueshell/&#x27;   # 多点编辑</span><br></pre></td></tr></table></figure>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sed -e 4a\xxxx file  # 在file第4行后加xxxx(源文件内容没变)(sed -e 4axxxx file)</span><br><span class="line">sed &#x27;3,5c&#x27;hhh a     # 把a里3-5行删了，加上hhh</span><br><span class="line">sed 1,5s/kj/tql/g a # 加不加&#x27;&#x27;都可(是吗  为啥有些又说sed后动作必须加&#x27;&#x27;)搜索并替换(与vim类似)</span><br><span class="line">cat a|sed &#x27;2,$d&#x27;    # 删除a第2行到最后一行($表示最后一行)</span><br><span class="line"></span><br><span class="line">cat a|sed &#x27;2ahello\     # 添加多行 反斜杠</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yes<span class="string">&#x27;              # 单引号的作用(结束)</span></span></span><br><span class="line"></span><br><span class="line">cat a|sed &#x27;2ahello\nyes&#x27;    # 加\n也可以添加多行</span><br><span class="line"></span><br><span class="line">sed -n &#x27;2,3p&#x27; a     # 不加-n的话就会a整个打出来然后原第二行下又一遍第二行内容，原第三行下又一遍</span><br><span class="line">sed -n &#x27;/xx/p&#x27; a    # 搜索有xx的行，把那些行显示出来(没有行号)</span><br><span class="line">sed &#x27;/kj/d&#x27; a       # 搜索并删除行</span><br><span class="line">nl /etc/passwd | sed -n &#x27;/root/&#123;s/bash/blueshell/;p;q&#125;&#x27; # 搜索并执行命令(q是退出)</span><br><span class="line">nl /etc/passwd | sed -e &#x27;3,$d&#x27; -e &#x27;s/bash/blueshell/&#x27;   # 多点编辑</span><br></pre></td></tr></table></figure>
 <p>直接修改文件内容(-i选项)</p>
 <ul>
-<li>不会显示出来</li>
+<li>不会显示出来<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/\!$/\./g&#x27; a   # 不知道为啥加$(应该是表以!结尾)</span><br><span class="line">sed -i &#x27;/kj/p&#x27; a        # 就直接写文件里了</span><br><span class="line">sed -i &quot;/sectorNum/s/[0-9]\+/$1/g&quot; # 找到有sectorNum的行，把有至少1个数字的字符串(数字串)替换成第一个参数(注意第一个/)(不知道+前/有啥用)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/\!$/\./g&#x27; a   # 不知道为啥加$(应该是表以!结尾)</span><br><span class="line">sed -i &#x27;/kj/p&#x27; a        # 就直接写文件里了</span><br><span class="line">sed -i &quot;/sectorNum/s/[0-9]\+/$1/g&quot; # 找到有sectorNum的行，把有至少1个数字的字符串(数字串)替换成第一个参数(注意第一个/)(不知道+前/有啥用)</span><br></pre></td></tr></table></figure>
-<h1>awk</h1>
-<p>不仅是工具软件，还是编程语言（但只介绍命令行用法）</p>
+<h1 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h1><p>不仅是工具软件，还是编程语言（但只介绍命令行用法）</p>
 <p><strong>功能</strong>：处理结构数据并输出格式化结果</p>
 <ol>
 <li>Awk以记录和字段的方式来查看文本文件</li>
@@ -552,8 +540,7 @@
 <li>Awk能够进行运算和字符串操作</li>
 <li>Awk能够生成格式化的报表数据</li>
 </ol>
-<h2 id="基本用法">基本用法</h2>
-<p>结构：<code>awk 动作 文件名</code></p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>结构：<code>awk 动作 文件名</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; awk <span class="string">&#x27;condition &#123;Actions1&#125;    </span></span><br><span class="line"><span class="string">     condition &#123;Actions2&#125;</span></span><br><span class="line"><span class="string">     ...&#x27;</span> file</span><br></pre></td></tr></table></figure>
 <p>在上述语法中：</p>
 <ol>
@@ -564,8 +551,7 @@
 <li>单引号的作用是包裹起来防止shell 截断</li>
 <li>Action 中的语句应该使用 <code>;</code> 分隔</li>
 </ol>
-<h2 id="awk工作方式">awk工作方式</h2>
-<p>下面C指condition，A指Action</p>
+<h2 id="awk工作方式"><a href="#awk工作方式" class="headerlink" title="awk工作方式"></a>awk工作方式</h2><p>下面C指condition，A指Action</p>
 <ol>
 <li>读取文件中的一行</li>
 <li>对该行，顺序匹配给定的<strong>C</strong>，匹配则执行对应的<strong>A</strong></li>
@@ -576,15 +562,14 @@
 <li><strong>C</strong>未提供，则对所有的输入行执行<strong>A</strong></li>
 <li><strong>A</strong>未提供，则默认打印出<strong>该行</strong>的数据</li>
 <li><code>&#123;&#125;</code> 这种<strong>A</strong>不做任何事情</li>
-<li>每行的记录空格/制表符分隔分别存到<code>$1 $2</code> 里，<code>$0</code> 表整行(当前行)
-<ul>
+<li>每行的记录空格/制表符分隔分别存到<code>$1 $2</code> 里，<code>$0</code> 表整行(当前行)<ul>
 <li>空格/制表符是默认分隔符，其他分隔符可用参数 <code>-F</code> 指定</li>
 </ul>
 </li>
 <li>NF 也是一个内建的变量，代表该行中分割后的变量数。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">&quot;=&quot;</span> <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> file  <span class="comment"># 以=为分隔符打印第二个(即第二个第三个=间 或第二个到行尾)</span></span><br><span class="line">sed <span class="string">&#x27;s/.$/\x0a/g&#x27;</span> cmdline | od -t x1</span><br></pre></td></tr></table></figure>
-<h2 id="变量">变量</h2>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -631,14 +616,13 @@
 </tr>
 </tbody>
 </table>
-<h2 id="动作">动作</h2>
-<h3 id="condition">condition</h3>
-<ul>
+</div>
+<h2 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h2><h3 id="condition"><a href="#condition" class="headerlink" title="condition"></a>condition</h3><ul>
 <li>search pattern: 正则表达式，<code>/search pattern/</code></li>
 <li>表达式: 如 <code>$1 == &quot;root&quot; &#123;action&#125;</code></li>
-<li>if语句: 如 <code>&#123;if ($1 &gt; &quot;m&quot;) action1; else action2&#125;</code></li>
+<li>if语句: 如 <code>&#123;if ($1 &gt; &quot;m&quot;) action1; else action2&#125;</code><h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3></li>
 </ul>
-<h3 id="action">action</h3>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -691,12 +675,11 @@
 <tr>
 <td><code>rand()</code></td>
 <td>随机数</td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="附录">附录</h2>
-<ul>
+</div>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din">awk函数，Built-in (The GNU Awk User’s Guide)</a></li>
 <li>我在老外的博客上看到nr是number of records,不过还是number row好记，顺带一提NF是number of fields,FS是field separator,RS是record separator，这样下次要用的时候不用再查了</li>
 </ul>
@@ -849,7 +832,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">sed</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">语法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%8A%A8%E4%BD%9C%E8%AF%B4%E6%98%8E"><span class="toc-nav-number">1.0.1.1.</span> <span class="toc-nav-text">动作说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-nav-number">1.0.1.2.</span> <span class="toc-nav-text">参数说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-nav-number">1.0.1.3.</span> <span class="toc-nav-text">其他</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-nav-number">1.0.1.4.</span> <span class="toc-nav-text">例子</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">awk</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">基本用法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#awk%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">awk工作方式</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">变量</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8A%A8%E4%BD%9C"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">动作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#condition"><span class="toc-nav-number">2.4.1.</span> <span class="toc-nav-text">condition</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#action"><span class="toc-nav-number">2.4.2.</span> <span class="toc-nav-text">action</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">附录</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#sed"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">sed</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">语法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%8A%A8%E4%BD%9C%E8%AF%B4%E6%98%8E"><span class="toc-nav-number">1.0.1.1.</span> <span class="toc-nav-text">动作说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-nav-number">1.0.1.2.</span> <span class="toc-nav-text">参数说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-nav-number">1.0.1.3.</span> <span class="toc-nav-text">其他</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-nav-number">1.0.1.4.</span> <span class="toc-nav-text">例子</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#awk"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">awk</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">基本用法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#awk%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">awk工作方式</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">变量</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8A%A8%E4%BD%9C"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">动作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#condition"><span class="toc-nav-number">2.4.1.</span> <span class="toc-nav-text">condition</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#action"><span class="toc-nav-number">2.4.2.</span> <span class="toc-nav-text">action</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">附录</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -970,7 +953,7 @@
         <p class="copyright text-muted">
           Copyright &copy;
           ysq
-          2024
+          2025
           <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
@@ -1409,20 +1392,5 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+	</body>
 </html>

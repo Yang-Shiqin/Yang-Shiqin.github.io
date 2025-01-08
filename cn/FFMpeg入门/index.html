@@ -244,12 +244,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/archive/">
+            <a href="/tags/">
               
-              归档
+              标签
               
               
             </a>
@@ -269,6 +267,17 @@
           
           
           <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
             <a href="/about/">
               
               关于
@@ -278,15 +287,6 @@
           </li>
           
           
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
           
           
 
@@ -471,16 +471,14 @@
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
         <p>FFMpeg就是个框架，具体的muxer/demuxer、encoder/decoder由具体的这些器实现</p>
-<h2 id="环境">环境</h2>
-<p>vmware虚拟机，Ubuntu 22.04.2 LTS，<strong>Ubuntu on xorg</strong>（log out后登录右下角设置选择，如果选Ubuntu录制会黑屏）</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>vmware虚拟机，Ubuntu 22.04.2 LTS，<strong>Ubuntu on xorg</strong>（log out后登录右下角设置选择，如果选Ubuntu录制会黑屏）</p>
 <ul>
 <li>Linux桌面显示协议分两种x11（旧的）以及Wayland（新的）</li>
 <li>ubuntu22.04以后默认都是Wayland协议</li>
 <li>x11协议就是对应xorg桌面</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ffmpeg   <span class="comment"># 命令行工具，但是我们的ubuntu都自带了</span></span><br><span class="line">sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavfilter-dev libavdevice-dev           <span class="comment"># 开发库</span></span><br></pre></td></tr></table></figure>
-<h3 id="源码">源码</h3>
-<p>调用c API需要（不太推荐这种做法，需要自己配环境，建议直接apt安装：<code>sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavfilter-dev libavdevice-dev</code>）</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>调用c API需要（不太推荐这种做法，需要自己配环境，建议直接apt安装：<code>sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavfilter-dev libavdevice-dev</code>）</p>
 <ul>
 <li>从<a target="_blank" rel="noopener" href="https://launchpad.net/ubuntu/+source/ffmpeg">官网</a>下载并解压，进入目录</li>
 <li>编译  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看帮助，可以设置什么参数等</span></span><br><span class="line">./configure --<span class="built_in">help</span></span><br><span class="line"><span class="comment"># 配置参数(apt的预编译包含大部分功能，自己编译的话要安装依赖)</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/ffmpeg ... --enable-shared</span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line"><span class="comment"># 查看生成的东西</span></span><br><span class="line">tree -L 2 /usr/<span class="built_in">local</span>/ffmpeg</span><br><span class="line"><span class="comment"># 加入环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/ffmpeg/bin  <span class="comment"># fish中不要这样</span></span><br></pre></td></tr></table></figure>
@@ -490,55 +488,41 @@
 </ul>
 </li>
 </ul>
-<p>编译后得到的目录结构：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/ffmpeg/</span><br><span class="line">├── bin               <span class="comment"># 可执行文件，命令行运行</span></span><br><span class="line">│   ├── ffmpeg            <span class="comment"># 通用媒体转换器</span></span><br><span class="line">│   ├── ffplay            <span class="comment"># 便携的媒体播放器</span></span><br><span class="line">│   └── ffprobe           <span class="comment"># 从多媒体流中收集信息，并以人类和机器可读的方式打印出来</span></span><br><span class="line">├── include           <span class="comment"># 头文件，程序调用</span></span><br><span class="line">│   ├── libavcodec</span><br><span class="line">│   ├── libavdevice</span><br><span class="line">│   ├── libavfilter</span><br><span class="line">│   ├── libavformat</span><br><span class="line">│   ├── libavutil</span><br><span class="line">│   ├── libswresample</span><br><span class="line">│   └── libswscale</span><br><span class="line">├── lib               <span class="comment"># 动态库</span></span><br><span class="line">│   ├── libavcodec.a</span><br><span class="line">│   ├── libavcodec.so -&gt; libavcodec.so.61.3.100</span><br><span class="line">│   ├── libavcodec.so.61.3.100</span><br><span class="line">│   ├── ...</span><br><span class="line">│   ├── libswscale.so.8.1.100</span><br><span class="line">│   └── pkgconfig</span><br><span class="line">└── share            <span class="comment"># 文档相关</span></span><br><span class="line">    ├── ffmpeg</span><br><span class="line">    └── man</span><br></pre></td></tr></table></figure>
-<p>示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;libavutil/log.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译（如果apt安装就直接安装在标准路径了，就不用指定-I -L之类的了，export也不用</span></span><br><span class="line">gcc a.c -o a -I /usr/<span class="built_in">local</span>/ffmpeg/include -L /usr/<span class="built_in">local</span>/ffmpeg/lib -lavutil</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/ffmpeg/lib:<span class="variable">$LD_LIBRARY_PATH</span>   <span class="comment"># 因为动态库运行时也需要，但不在默认库路径中</span></span><br><span class="line">./a.out</span><br></pre></td></tr></table></figure>
-<p>安装库开发或者配好环境后可以直接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc a.c -lavutil</span><br><span class="line">./a.out</span><br></pre></td></tr></table></figure>
-<h2 id="基础知识">基础知识</h2>
-<p>FFMpeg处理音视频 ==流程== ：<br>
-![[Pasted image 20240927141544.png|500]]</p>
+<p>编译后得到的目录结构：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/ffmpeg/</span><br><span class="line">├── bin               <span class="comment"># 可执行文件，命令行运行</span></span><br><span class="line">│   ├── ffmpeg            <span class="comment"># 通用媒体转换器</span></span><br><span class="line">│   ├── ffplay            <span class="comment"># 便携的媒体播放器</span></span><br><span class="line">│   └── ffprobe           <span class="comment"># 从多媒体流中收集信息，并以人类和机器可读的方式打印出来</span></span><br><span class="line">├── include           <span class="comment"># 头文件，程序调用</span></span><br><span class="line">│   ├── libavcodec</span><br><span class="line">│   ├── libavdevice</span><br><span class="line">│   ├── libavfilter</span><br><span class="line">│   ├── libavformat</span><br><span class="line">│   ├── libavutil</span><br><span class="line">│   ├── libswresample</span><br><span class="line">│   └── libswscale</span><br><span class="line">├── lib               <span class="comment"># 动态库</span></span><br><span class="line">│   ├── libavcodec.a</span><br><span class="line">│   ├── libavcodec.so -&gt; libavcodec.so.61.3.100</span><br><span class="line">│   ├── libavcodec.so.61.3.100</span><br><span class="line">│   ├── ...</span><br><span class="line">│   ├── libswscale.so.8.1.100</span><br><span class="line">│   └── pkgconfig</span><br><span class="line">└── share            <span class="comment"># 文档相关</span></span><br><span class="line">    ├── ffmpeg</span><br><span class="line">    └── man</span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;libavutil/log.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译（如果apt安装就直接安装在标准路径了，就不用指定-I -L之类的了，export也不用</span></span><br><span class="line">gcc a.c -o a -I /usr/<span class="built_in">local</span>/ffmpeg/include -L /usr/<span class="built_in">local</span>/ffmpeg/lib -lavutil</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/ffmpeg/lib:<span class="variable">$LD_LIBRARY_PATH</span>   <span class="comment"># 因为动态库运行时也需要，但不在默认库路径中</span></span><br><span class="line">./a.out</span><br></pre></td></tr></table></figure></p>
+<p>安装库开发或者配好环境后可以直接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc a.c -lavutil</span><br><span class="line">./a.out</span><br></pre></td></tr></table></figure></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>FFMpeg处理音视频 ==流程== ：<br>![[Pasted image 20240927141544.png|500]]</p>
 <ul>
-<li>输入/输出文件：具有<em>封装格式</em>的文件。如 <strong>.mp4、.flv、.avi、.ts</strong> 的（视频、音频、字幕）一块的文件或流
-<ul>
+<li>输入/输出文件：具有<em>封装格式</em>的文件。如 <strong>.mp4、.flv、.avi、.ts</strong> 的（视频、音频、字幕）一块的文件或流<ul>
 <li>格式只和muxer有关</li>
 </ul>
 </li>
-<li>编码数据包：单独的编码后（如压缩）的视频（<em>视频编码数据</em>，如 <strong>.h264、.mpeg2、VC-1</strong>）、音频（<em>音频编码数据</em>，如 <strong>.aac、.mp3、AC-3</strong>）、字幕数据
-<ul>
+<li>编码数据包：单独的编码后（如压缩）的视频（<em>视频编码数据</em>，如 <strong>.h264、.mpeg2、VC-1</strong>）、音频（<em>音频编码数据</em>，如 <strong>.aac、.mp3、AC-3</strong>）、字幕数据<ul>
 <li>格式只和encoder有关</li>
 </ul>
 </li>
-<li>解码后数据帧：原始数据。<em>视频像素数据</em>，如 <strong>.yuv、RGB</strong>；<em>音频采样数据</em>，如 <strong>.pcm</strong>
-<ul>
-<li>原始数据和编码数据的差别主要在于体积</li>
+<li>解码后数据帧：原始数据。<em>视频像素数据</em>，如 <strong>.yuv、RGB</strong>；<em>音频采样数据</em>，如 <strong>.pcm</strong><ul>
+<li>原始数据和编码数据的差别主要在于体积<h2 id="FFMpeg命令行工具"><a href="#FFMpeg命令行工具" class="headerlink" title="FFMpeg命令行工具"></a>FFMpeg命令行工具</h2>即 <code>/usr/local/ffmpeg/bin</code> 下的工具</li>
 </ul>
 </li>
 </ul>
-<h2 id="FFMpeg命令行工具">FFMpeg命令行工具</h2>
-<p>即 <code>/usr/local/ffmpeg/bin</code> 下的工具</p>
 <p>为了好记将 ==命令== 分成了七大类，每类以一条命令为例讲解（完整命令可查 <code>ffmpeg -h</code> 等）：</p>
 <ul>
 <li><strong>基本信息查询命令</strong>：info 或 header</li>
 <li><strong>录制命令</strong></li>
-<li><strong>复用/解复用命令</strong>：格式转换
-<ul>
+<li><strong>复用/解复用命令</strong>：格式转换<ul>
 <li>复用：将多个信号或数据流合在一起传输</li>
 </ul>
 </li>
 <li><strong>滤镜命令</strong>：图片方向上的</li>
 <li><strong>裁剪与拼接命令</strong>：时间方向上的</li>
 <li><strong>图片/视频互转命令</strong></li>
-<li><strong>直播相关命令</strong>：推拉流</li>
+<li><strong>直播相关命令</strong>：推拉流<h3 id="基本说明和常用参数"><a href="#基本说明和常用参数" class="headerlink" title="基本说明和常用参数"></a>基本说明和常用参数</h3>使用 <strong>ffmpeg 命令</strong> 的==基本形式==是:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg [全局参数] &#123;[输入文件参数] -i 输入文件地址&#125; ... &#123;[输出文件参数] 输出文件地址&#125; ...</span><br><span class="line"># 文件参数=[文件主参数] [视频参数|音频参数|字幕参数]</span><br></pre></td></tr></table></figure>
+要注意的是，所有的参数仅仅对仅接下来的文件有效（下一个文件得把参数再写一遍）。</li>
 </ul>
-<h3 id="基本说明和常用参数">基本说明和常用参数</h3>
-<p>使用 <strong>ffmpeg 命令</strong> 的==基本形式==是:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg [全局参数] &#123;[输入文件参数] -i 输入文件地址&#125; ... &#123;[输出文件参数] 输出文件地址&#125; ...</span><br><span class="line"># 文件参数=[文件主参数] [视频参数|音频参数|字幕参数]</span><br></pre></td></tr></table></figure>
-<p>要注意的是，所有的参数仅仅对仅接下来的文件有效（下一个文件得把参数再写一遍）。</p>
-<p>所有没有使用 <strong>-i</strong> 指定的文件都被认为是输出文件。 <strong>Ffmpeg</strong> 可以接受多个输入文件并输出到您指定的位置。你也可以将输入输出都指定为同一个文件名，不过这个时候要在输出文件前使用用 <strong>-y</strong> 标记。</p>
+<p>所有没有使用 <strong>-i</strong> 指定的文件都被认为是输出文件。 <strong>Ffmpeg</strong> 可以接受多个输入文件并输出到您指定的位置。你也可以将输入输出都指定为同一个文件名，不过这个时候要在输出文件前使用用 <strong>-y</strong> 标记。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -588,7 +572,7 @@
 <tr>
 <td><code>-c:v</code>/<code>-vcodec</code></td>
 <td>指定视频编解码器，<code>copy</code> 表示不改变编码方式</td>
-<td><code>-c:v </code></td>
+<td><code>-c:v</code></td>
 <td>视频参数</td>
 </tr>
 <tr>
@@ -625,13 +609,12 @@
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="基本信息查询命令">基本信息查询命令</h3>
-<p>示例（更多参数见下表，或 <code>ffmpeg -h</code>）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -version</span><br></pre></td></tr></table></figure>
+</div>
+<h3 id="基本信息查询命令"><a href="#基本信息查询命令" class="headerlink" title="基本信息查询命令"></a>基本信息查询命令</h3><p>示例（更多参数见下表，或 <code>ffmpeg -h</code>）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -version</span><br></pre></td></tr></table></figure></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -688,84 +671,63 @@
 <td><code>-bsfs</code></td>
 <td>显示比特流filter</td>
 <td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="录制命令">录制命令</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 录制</span></span><br><span class="line"><span class="comment"># 从本地x11屏幕录制（视频）</span></span><br><span class="line">ffmpeg -f x11grab -i :0 -r 30 output.mp4</span><br><span class="line"><span class="comment"># 从本地文件录制</span></span><br><span class="line">ffmpeg -i out.mp4 out2.mp4</span><br><span class="line"><span class="comment"># 从网络流录制</span></span><br><span class="line">ffmpeg -i http://vjs.zencdn.net/v/oceans.mp4 out.mp4</span><br><span class="line"><span class="comment"># （从多个源）同时录制视频和音频</span></span><br><span class="line">ffmpeg -f x11grab -i :0.0    -f pulse -i 1    -r 30 output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 播放</span></span><br><span class="line"><span class="comment"># 具有封装格式的文件</span></span><br><span class="line">ffplay output.mp4</span><br><span class="line"><span class="comment"># 原始文件（原始数据没有包装信息，因此需要给出信息用于ffplay渲染）</span></span><br><span class="line">ffplay -video_size 256x256 output.yuv  <span class="comment"># -video_size指定大小（可在生成后打印信息中查看）(-s后续不能用)</span></span><br></pre></td></tr></table></figure>
+</div>
+<h3 id="录制命令"><a href="#录制命令" class="headerlink" title="录制命令"></a>录制命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 录制</span></span><br><span class="line"><span class="comment"># 从本地x11屏幕录制（视频）</span></span><br><span class="line">ffmpeg -f x11grab -i :0 -r 30 output.mp4</span><br><span class="line"><span class="comment"># 从本地文件录制</span></span><br><span class="line">ffmpeg -i out.mp4 out2.mp4</span><br><span class="line"><span class="comment"># 从网络流录制</span></span><br><span class="line">ffmpeg -i http://vjs.zencdn.net/v/oceans.mp4 out.mp4</span><br><span class="line"><span class="comment"># （从多个源）同时录制视频和音频</span></span><br><span class="line">ffmpeg -f x11grab -i :0.0    -f pulse -i 1    -r 30 output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 播放</span></span><br><span class="line"><span class="comment"># 具有封装格式的文件</span></span><br><span class="line">ffplay output.mp4</span><br><span class="line"><span class="comment"># 原始文件（原始数据没有包装信息，因此需要给出信息用于ffplay渲染）</span></span><br><span class="line">ffplay -video_size 256x256 output.yuv  <span class="comment"># -video_size指定大小（可在生成后打印信息中查看）(-s后续不能用)</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>停止录制</strong>：录制过程中按 <code>q</code></li>
-<li><strong>ffplay快捷键</strong>：
-<ul>
+<li><strong>ffplay快捷键</strong>：<ul>
 <li><code>q</code> / <code>esc</code>：退出</li>
 <li><code>f</code>：全屏</li>
 <li><code>p</code> / <code>space</code>：全屏</li>
 </ul>
 </li>
-<li><strong>参数说明</strong>：
-<ul>
+<li><strong>参数说明</strong>：<ul>
 <li><code>-f x11grab</code>：（用什么采集）输入设备使用 X11 图形服务器进行屏幕抓取</li>
 <li><code>-i :0</code>：（从哪采集）捕捉第一个 X11 显示屏（<code>echo $DISPLAY</code> 可以查看设备）</li>
 </ul>
 </li>
-<li><strong>设备devices</strong> <code>-f</code>（不同设备的设备编号不同，即 <code>-i</code> 不同）：
-<ul>
+<li><strong>设备devices</strong> <code>-f</code>（不同设备的设备编号不同，即 <code>-i</code> 不同）：<ul>
 <li><code>x11grab</code>：用于捕获 X11 窗口系统中的屏幕内容。可以录制桌面或窗口区域</li>
 <li><code>alsa</code>：用于捕获音频，基于 ALSA (Advanced Linux Sound Architecture) 音频系统，设备编号如 <code>hw:0</code></li>
 <li><code>v4l2</code> (Video4Linux2)：用于捕获视频，通常是从摄像头设备获取视频流，设备编号如 <code>/dev/video0</code></li>
 </ul>
 </li>
-<li>查看<strong>设备编号</strong> <code>-i</code>：
-<ul>
-<li><code>ffmpeg -f 某种设备 -list_devices true -i &quot;&quot;</code>
-<ul>
+<li>查看<strong>设备编号</strong> <code>-i</code>：<ul>
+<li><code>ffmpeg -f 某种设备 -list_devices true -i &quot;&quot;</code><ul>
 <li><code>x11grab</code> 不支持 <code>-list_devices</code>，因为是直接从x11抓取</li>
 <li>macOS 上的 <code>avfoundation</code> 和 Windows 上的 <code>dshow</code> 都支持</li>
 </ul>
 </li>
-<li><code>arecord -l</code>：列出所有可用的 ALSA 音频设备，列出 <code>card x ... device y</code>，则设备编号为 <code>hw:x,y</code>
-<ul>
+<li><code>arecord -l</code>：列出所有可用的 ALSA 音频设备，列出 <code>card x ... device y</code>，则设备编号为 <code>hw:x,y</code><ul>
 <li>ALSA是底层的音频驱动，直接与硬件交互</li>
 </ul>
 </li>
-<li><code>pactl list short sources</code>：列出 PulseAudio 中可用的音频源，包括麦克风、音频输入设备、虚拟设备等
-<ul>
+<li><code>pactl list short sources</code>：列出 PulseAudio 中可用的音频源，包括麦克风、音频输入设备、虚拟设备等<ul>
 <li>PulseAudio 是高层的音频服务器，是ALSA的封装，可以显示虚拟设备、监控设备等</li>
-<li>输出说明：
-<ul>
+<li>输出说明：<ul>
 <li>第一列为设备编号</li>
 <li><code>s16le</code>：<code>s</code> 是signed，表示有符号；<code>16</code> 是16位；<code>le</code> 是little-endian，小端</li>
 <li><code>2ch</code>：2 channel，双声道</li>
 <li><code>48000Hz</code>：采样频率</li>
 <li><code>SUSPENDED</code>：挂起，表示没有音频活动，它们会在有音频数据传输时自动恢复活跃状态</li>
-<li>1的 <code>output</code> 是监控输出设备采集，2的 <code>input</code> 是输入设备采集</li>
-</ul>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1       alsa_output.pci-0000_02_02.0.analog-stereo.monitor      module-alsa-card.c      s16le 2ch 48000Hz       SUSPENDED</span><br><span class="line">2       alsa_input.pci-0000_02_02.0.analog-stereo       module-alsa-card.c      s16le 2ch 48000Hz       SUSPENDED</span><br></pre></td></tr></table></figure>
-</li>
+<li>1的 <code>output</code> 是监控输出设备采集，2的 <code>input</code> 是输入设备采集<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1       alsa_output.pci-0000_02_02.0.analog-stereo.monitor      module-alsa-card.c      s16le 2ch 48000Hz       SUSPENDED</span><br><span class="line">2       alsa_input.pci-0000_02_02.0.analog-stereo       module-alsa-card.c      s16le 2ch 48000Hz       SUSPENDED</span><br></pre></td></tr></table></figure>
+<h3 id="复用-解复用命令"><a href="#复用-解复用命令" class="headerlink" title="复用/解复用命令"></a>复用/解复用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 有封装格式的文件</span></span><br><span class="line"><span class="comment"># 格式转换：mp4-&gt;flv</span></span><br><span class="line">ffmpeg -i out.mp4 -vcodec copy -acodec copy out.flv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解复用后的文件（不复用）</span></span><br><span class="line"><span class="comment"># 去掉音频</span></span><br><span class="line">ffmpeg -i out.mp4 -vcodec copy -an out.h264</span><br><span class="line"><span class="comment"># 去掉视频</span></span><br><span class="line">ffmpeg -i out.mp4 -acodec copy -vn out.aac</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原始文件（不编码复用）</span></span><br><span class="line"><span class="comment"># 提取yuv视频数据</span></span><br><span class="line">ffmpeg -i out.mp4 -an -c:v rawvideo -pix_fmt yuv420p out.yuv</span><br><span class="line"><span class="comment"># 提取pcm音频数据</span></span><br><span class="line">ffmpeg -i out.mp4 -vn -ar 44100 -ac 2 -f s16le out.pcm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 播放</span></span><br><span class="line">ffplay -ar 44100 -ac 2 -f s16le out.pcm</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="复用-解复用命令">复用/解复用命令</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 有封装格式的文件</span></span><br><span class="line"><span class="comment"># 格式转换：mp4-&gt;flv</span></span><br><span class="line">ffmpeg -i out.mp4 -vcodec copy -acodec copy out.flv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解复用后的文件（不复用）</span></span><br><span class="line"><span class="comment"># 去掉音频</span></span><br><span class="line">ffmpeg -i out.mp4 -vcodec copy -an out.h264</span><br><span class="line"><span class="comment"># 去掉视频</span></span><br><span class="line">ffmpeg -i out.mp4 -acodec copy -vn out.aac</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原始文件（不编码复用）</span></span><br><span class="line"><span class="comment"># 提取yuv视频数据</span></span><br><span class="line">ffmpeg -i out.mp4 -an -c:v rawvideo -pix_fmt yuv420p out.yuv</span><br><span class="line"><span class="comment"># 提取pcm音频数据</span></span><br><span class="line">ffmpeg -i out.mp4 -vn -ar 44100 -ac 2 -f s16le out.pcm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 播放</span></span><br><span class="line">ffplay -ar 44100 -ac 2 -f s16le out.pcm</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>copy</code> 就不会走解码编码的过程，否则用原来的编解码器解码，用新指定的编解码器编码
-<ul>
+</li>
+<li><code>copy</code> 就不会走解码编码的过程，否则用原来的编解码器解码，用新指定的编解码器编码<ul>
 <li>不需重新编解码的话 <code>-c copy</code> 更快，直接复制，不指定的话默认用合适的编解码器编解码</li>
 </ul>
 </li>
-<li>原始</li>
-</ul>
-<h3 id="滤镜命令">滤镜命令</h3>
-<p><strong>简单滤镜（滤镜链）</strong> 命令格式，即 <code>-vf</code> 的值：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[input_link_lable1]... <span class="string">&quot;filter1=para11:para12,filter2=pk2=pv2,...&quot;</span> [output_link_lable1]...</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>[input_link_lable*]</code> 是该滤镜链的输入连接符号(link label)，可以有多个，表示滤镜的输入
-<ul>
-<li>格式为 <code>[&lt;number|name&gt;[:a|v][?]]</code>
-<ul>
+<li>原始<h3 id="滤镜命令"><a href="#滤镜命令" class="headerlink" title="滤镜命令"></a>滤镜命令</h3><strong>简单滤镜（滤镜链）</strong> 命令格式，即 <code>-vf</code> 的值：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[input_link_lable1]... <span class="string">&quot;filter1=para11:para12,filter2=pk2=pv2,...&quot;</span> [output_link_lable1]...</span><br></pre></td></tr></table></figure></li>
+<li><code>[input_link_lable*]</code> 是该滤镜链的输入连接符号(link label)，可以有多个，表示滤镜的输入<ul>
+<li>格式为 <code>[&lt;number|name&gt;[:a|v][?]]</code><ul>
 <li>如 <code>[0:v]</code> 表示第1个输入的视频流，<code>[0]</code> 表示第1个输入，<code>[outv]</code> 表outv</li>
 <li><code>?</code> 表示该流是可选的，如 <code>[0:v][0:a?]</code> 表示第1个输入的音频可选</li>
 </ul>
@@ -773,20 +735,16 @@
 </ul>
 </li>
 <li><code>[output_link_lable*]</code> 是该滤镜链的输出连接符号，可以有多个，表示滤镜的输出</li>
-<li><code>filter1=para11:para12,filter2=para2,...</code> 是滤镜链，由多个滤镜组成，用 <code>,</code> 分隔，顺序执行
-<ul>
+<li><code>filter1=para11:para12,filter2=para2,...</code> 是滤镜链，由多个滤镜组成，用 <code>,</code> 分隔，顺序执行<ul>
 <li><code>filter*</code> 是滤镜名称，如 <code>crop</code>、<code>rotate</code>，具体取值可以 <code>ffmpeg -filters</code> 查看</li>
 <li><code>para*</code> 是滤镜输入参数，<code>=</code> 指定关键字参数，<code>:</code> 分隔，具体可用参数名通过 <code>ffmpeg -h full | less</code>,<code>/&lt;filter&gt;\sAV</code> 或 <code>ffmpeg -h filter=&lt;filter&gt;</code> 查看</li>
-<li>示例：
-<ul>
-<li><code>crop=in_w-120:120:60:60</code>
-<ul>
+<li>示例：<ul>
+<li><code>crop=in_w-120:120:60:60</code><ul>
 <li>参数顺序：w，h，x，y</li>
 <li><code>in_w</code> 是输入（上个滤镜输出）图片的宽度，<code>in_w-200</code> 是相对其减少200</li>
 </ul>
 </li>
-<li><code>crop=w=120:h=120:x=60:y=60,rotate=PI/2</code>
-<ul>
+<li><code>crop=w=120:h=120:x=60:y=60,rotate=PI/2</code><ul>
 <li>显式赋值，可以不用管参数顺序</li>
 <li>裁剪后顺时针旋转90度</li>
 </ul>
@@ -800,19 +758,16 @@
 <ul>
 <li><code>-c:v libx264</code>：使用 H.264 编码视频</li>
 </ul>
-<p><strong>复杂滤镜（滤镜图）</strong> 命令格式，即 <code>-filter_complex</code> 的值： #todo</p>
-<h3 id="裁剪与拼接命令">裁剪与拼接命令</h3>
-<p>通常有两种拼接方式：</p>
+<p><strong>复杂滤镜（滤镜图）</strong> 命令格式，即 <code>-filter_complex</code> 的值： #todo </p>
+<h3 id="裁剪与拼接命令"><a href="#裁剪与拼接命令" class="headerlink" title="裁剪与拼接命令"></a>裁剪与拼接命令</h3><p>通常有两种拼接方式：</p>
 <ul>
-<li>逐序拼接：将多个音视频文件顺序合并成一个文件。两种方式实现：
-<ul>
+<li>逐序拼接：将多个音视频文件顺序合并成一个文件。两种方式实现：<ul>
 <li><code>concat</code> 参数</li>
 <li><code>concat</code> 滤镜</li>
 </ul>
 </li>
-<li>轨道拼接：将音频和视频轨道合并成一个文件，例如将单独的音频和视频轨道合成一个视频文件
-<ul>
-<li>#todo</li>
+<li>轨道拼接：将音频和视频轨道合并成一个文件，例如将单独的音频和视频轨道合成一个视频文件<ul>
+<li><h1 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h1></li>
 </ul>
 </li>
 </ul>
@@ -820,29 +775,18 @@
 <ul>
 <li><code>input.txt</code>：每行是 <code>file filename</code> 的格式，代表待拼接的视频，按顺序拼接。内容示例如下：  <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file 1.mp4</span><br><span class="line">file 2.mp4</span><br></pre></td></tr></table></figure>
 <ul>
-<li>多个文件的封装格式、编解码器要相同</li>
+<li>多个文件的封装格式、编解码器要相同<h3 id="图片-视频互转命令"><a href="#图片-视频互转命令" class="headerlink" title="图片/视频互转命令"></a>图片/视频互转命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 视频 -&gt; 图片s</span></span><br><span class="line">ffmpeg -i in.mp4 -r 1 -f image2 image-%3d.jpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片s -&gt; 视频</span></span><br><span class="line">ffmpeg -i image-%3d.jpg out.mp4</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-</ul>
-<h3 id="图片-视频互转命令">图片/视频互转命令</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 视频 -&gt; 图片s</span></span><br><span class="line">ffmpeg -i in.mp4 -r 1 -f image2 image-%3d.jpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片s -&gt; 视频</span></span><br><span class="line">ffmpeg -i image-%3d.jpg out.mp4</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>参数说明</strong>：
-<ul>
+<li><strong>参数说明</strong>：<ul>
 <li><code>-r 1</code>：以每秒1帧的速率采样</li>
 <li><code>-f image2</code>：输出为图像文件</li>
 <li><code>image-%3d.jpg</code>：将这些帧保存为 <code>image-001.jpg</code>, <code>image-002.jpg</code> 等文件</li>
 </ul>
 </li>
-<li>图片转视频不设置 <code>-r</code> 会很快播完，因为静态图片默认是25帧/秒而我们采样是1帧/秒，在 <code>-i</code> 前设置 <code>-r 1</code> 则原速播放</li>
-</ul>
-<h3 id="直播相关命令">直播相关命令</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推流</span></span><br><span class="line"><span class="comment"># rtmp</span></span><br><span class="line">ffmpeg -re -i out.mp4 -c copy -f flv rtmp://yourserver/live/streamkey</span><br><span class="line">ffmpeg -re -i out.mp4 -c copy -f flv rtmp://3qz4648360.zicp.fun:8554/live/stream0</span><br><span class="line"><span class="comment"># srt</span></span><br><span class="line">ffmpeg -re -i out.mp4 -c:v libx264 -c:a aac -f mpegts <span class="string">&quot;srt://yourserver:port?streamid=yourstreamid&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉流</span></span><br><span class="line"><span class="comment"># rtmp</span></span><br><span class="line">ffmpeg -i rtmp://yourserver/live/streamkey -c copy output.mp4</span><br><span class="line"><span class="comment"># hls</span></span><br><span class="line">ffmpeg -i http://example.com/live/stream.m3u8 -c copy output.mp4</span><br><span class="line">ffmpeg -i http://example.com/live/stream.m3u8 -c copy output.m3u8 <span class="comment"># m3u8会存一个个ts</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ffplay直接播放(rtmp为例)</span></span><br><span class="line">ffplay rtmp://yourserver/live/streamkey</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>推拉流介绍</strong>：
-<ul>
-<li><strong>推流</strong>：本地音视频推送到远程服务器，常用的协议有 <strong>RTMP</strong> 和 <strong>SRT</strong>
-<ul>
+<li>图片转视频不设置 <code>-r</code> 会很快播完，因为静态图片默认是25帧/秒而我们采样是1帧/秒，在 <code>-i</code> 前设置 <code>-r 1</code> 则原速播放<h3 id="直播相关命令"><a href="#直播相关命令" class="headerlink" title="直播相关命令"></a>直播相关命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推流</span></span><br><span class="line"><span class="comment"># rtmp</span></span><br><span class="line">ffmpeg -re -i out.mp4 -c copy -f flv rtmp://yourserver/live/streamkey</span><br><span class="line">ffmpeg -re -i out.mp4 -c copy -f flv rtmp://3qz4648360.zicp.fun:8554/live/stream0</span><br><span class="line"><span class="comment"># srt</span></span><br><span class="line">ffmpeg -re -i out.mp4 -c:v libx264 -c:a aac -f mpegts <span class="string">&quot;srt://yourserver:port?streamid=yourstreamid&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉流</span></span><br><span class="line"><span class="comment"># rtmp</span></span><br><span class="line">ffmpeg -i rtmp://yourserver/live/streamkey -c copy output.mp4</span><br><span class="line"><span class="comment"># hls</span></span><br><span class="line">ffmpeg -i http://example.com/live/stream.m3u8 -c copy output.mp4</span><br><span class="line">ffmpeg -i http://example.com/live/stream.m3u8 -c copy output.m3u8 <span class="comment"># m3u8会存一个个ts</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ffplay直接播放(rtmp为例)</span></span><br><span class="line">ffplay rtmp://yourserver/live/streamkey</span><br></pre></td></tr></table></figure></li>
+<li><strong>推拉流介绍</strong>：<ul>
+<li><strong>推流</strong>：本地音视频推送到远程服务器，常用的协议有 <strong>RTMP</strong> 和 <strong>SRT</strong><ul>
 <li>RTMP 需要 FLV 封装格式</li>
 <li>SRT 通常使用 MPEG-TS 封装格式</li>
 </ul>
@@ -850,11 +794,9 @@
 <li><strong>拉流</strong>：从远程服务器拉取流并播放或保存，常用的协议有 <strong>RTMP</strong> 和 <strong>HTTP类</strong>（HTTP-FLV、HLS等）</li>
 </ul>
 </li>
-<li><strong>参数说明</strong>：
-<ul>
+<li><strong>参数说明</strong>：<ul>
 <li><code>-re</code>：按照原始帧速率读取文件，使流看起来是实时的</li>
-<li><code>rtmp://yourserver/live/streamkey</code>：RTMP 推流地址，<code>streamkey</code> 通常是你在服务器上创建的流密钥
-<ul>
+<li><code>rtmp://yourserver/live/streamkey</code>：RTMP 推流地址，<code>streamkey</code> 通常是你在服务器上创建的流密钥<ul>
 <li><code>yourserver</code>：服务器ip，本地是 <code>localhost</code></li>
 <li><code>live</code>：根据rtmp配置，如 <code>/usr/local/nginx/conf/nginx.conf</code> 设置，<code>application live</code> 则为 <code>live</code></li>
 <li><code>streamkey</code>：推流视频的代号，随便设置，拉流是要根据推流设置的定</li>
@@ -864,39 +806,31 @@
 <li><code>-c:v libx264 -c:a aac</code>：H.264和aac兼容性最强，且速度较快</li>
 </ul>
 </li>
-<li><strong>推流测试</strong>：
-<ul>
-<li>方法1：设置一个 RTMP 流媒体服务器
-<ul>
+<li><strong>推流测试</strong>：<ul>
+<li>方法1：设置一个 RTMP 流媒体服务器<ul>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ni666/p/17953882">Windows上搭建nginx-rtsp流媒体服务器，实现FFmpeg推流、录像转rtsp推流 - WayWayWayne - 博客园 (cnblogs.com)</a>（我不行）</li>
 <li>linux，见下</li>
 </ul>
 </li>
-<li>方法2：使用已有的流媒体服务。b站注册成主播，开个房间
-<ul>
+<li>方法2：使用已有的流媒体服务。b站注册成主播，开个房间<ul>
 <li><a target="_blank" rel="noopener" href="https://member.bilibili.com/platform/allowance/incomeCenter/pc/white?type=14">创作中心 - 哔哩哔哩弹幕视频网 - ( ゜- ゜)つロ 乾杯~ (bilibili.com)</a></li>
-<li><a target="_blank" rel="noopener" href="https://live.bilibili.com/p/html/web-hime/index.html">哔哩哔哩直播姬 (bilibili.com)</a></li>
-</ul>
+<li><a target="_blank" rel="noopener" href="https://live.bilibili.com/p/html/web-hime/index.html">哔哩哔哩直播姬 (bilibili.com)</a><h4 id="linux设置-RTMP-流媒体服务器"><a href="#linux设置-RTMP-流媒体服务器" class="headerlink" title="linux设置 RTMP 流媒体服务器"></a>linux设置 RTMP 流媒体服务器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 依赖项</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 NGINX 源代码</span></span><br><span class="line">mkdir ~/nginx-source</span><br><span class="line"><span class="built_in">cd</span> ~/nginx-source</span><br><span class="line">wget http://nginx.org/download/nginx-1.24.0.tar.gz</span><br><span class="line">tar -zxvf nginx-1.24.0.tar.gz  <span class="comment"># 解压但还不能安装，因为安装就不能安装 nginx-rtmp-module 了</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 nginx-rtmp-module 源码</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/arut/nginx-rtmp-module.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 NGINX 编译选项，包含 nginx-rtmp-module 模块</span></span><br><span class="line"><span class="built_in">cd</span> nginx-1.24.0</span><br><span class="line">./configure --add-module=../nginx-rtmp-module --with-http_ssl_module</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译并安装 NGINX</span></span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置nginx-rtmp，增加下框内容</span></span><br><span class="line">sudo vim /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动nginx</span></span><br><span class="line">sudo /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查nginx是否正常运行</span></span><br><span class="line">ps aux | grep nginx</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="linux设置-RTMP-流媒体服务器">linux设置 RTMP 流媒体服务器</h4>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 依赖项</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 NGINX 源代码</span></span><br><span class="line">mkdir ~/nginx-source</span><br><span class="line"><span class="built_in">cd</span> ~/nginx-source</span><br><span class="line">wget http://nginx.org/download/nginx-1.24.0.tar.gz</span><br><span class="line">tar -zxvf nginx-1.24.0.tar.gz  <span class="comment"># 解压但还不能安装，因为安装就不能安装 nginx-rtmp-module 了</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 nginx-rtmp-module 源码</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/arut/nginx-rtmp-module.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 NGINX 编译选项，包含 nginx-rtmp-module 模块</span></span><br><span class="line"><span class="built_in">cd</span> nginx-1.24.0</span><br><span class="line">./configure --add-module=../nginx-rtmp-module --with-http_ssl_module</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译并安装 NGINX</span></span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置nginx-rtmp，增加下框内容</span></span><br><span class="line">sudo vim /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动nginx</span></span><br><span class="line">sudo /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查nginx是否正常运行</span></span><br><span class="line">ps aux | grep nginx</span><br></pre></td></tr></table></figure>
-<p>配置nginx-rtmp:</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rtmp &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 1935;  # RTMP 默认端口</span><br><span class="line"></span><br><span class="line">        application live &#123;</span><br><span class="line">            live on;          # 开启直播</span><br><span class="line">            record off;       # 禁止录制流</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>配置nginx-rtmp:<br><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rtmp &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 1935;  # RTMP 默认端口</span><br><span class="line"></span><br><span class="line">        application live &#123;</span><br><span class="line">            live on;          # 开启直播</span><br><span class="line">            record off;       # 禁止录制流</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>测试推拉流</strong>：</p>
 <ul>
 <li>客户端（可以是服务器本地）推流：<code>ffmpeg -re -i input.mp4 -c copy -f flv rtmp://localhost/live/stream</code></li>
-<li>拉流测试：
-<ul>
+<li>拉流测试：<ul>
 <li>ffplay：<code>ffplay rtmp://localhost/live/stream</code></li>
-<li>ffmpeg：<code>ffmpeg -i rtmp://localhost/live/stream -c copy output.mp4</code></li>
+<li>ffmpeg：<code>ffmpeg -i rtmp://localhost/live/stream -c copy output.mp4</code><h2 id="ffmpeg开发-cAPI"><a href="#ffmpeg开发-cAPI" class="headerlink" title="ffmpeg开发(cAPI)"></a>ffmpeg开发(cAPI)</h2>版本：ffmpeg-7.0.2</li>
 </ul>
 </li>
 </ul>
-<h2 id="ffmpeg开发-cAPI">ffmpeg开发(cAPI)</h2>
-<p>版本：ffmpeg-7.0.2</p>
 <p>ffmpeg是c写的，一共包含8个库（<code>libxxx</code>）：</p>
 <ul>
 <li><strong>avcodec</strong>：编解码器（最重要的库）</li>
@@ -911,27 +845,19 @@
 <p>可能迭代更新，后面不会具体介绍各函数的用法，只介绍抽象功能，具体用法参考以下资料：</p>
 <ul>
 <li>官网API：<a target="_blank" rel="noopener" href="https://www.ffmpeg.org/doxygen/7.0/index.html"><strong>FFmpeg: Main Page</strong></a></li>
-<li>应用代码：<code>github/codeBase/01-study/av/basic_ffmepg</code></li>
-</ul>
-<h3 id="数据结构">数据结构</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AVFormatContext  <span class="comment">// format I/O context, 媒体文件/流的整体信息(格式、流、元数据等)</span></span><br><span class="line">AVInputFormat    <span class="comment">// 输入文件封装格式信息，每种封装格式（例如FLV, MKV, MP4, AVI）对应一个该结构体</span></span><br><span class="line">AVOutputFormat   <span class="comment">// 输出文件封装格式信息</span></span><br><span class="line"></span><br><span class="line">AVStream         <span class="comment">// 视频文件中每个视频（音频）流对应一个该结构体</span></span><br><span class="line">AVPacket         <span class="comment">// 包信息(解码前一帧数据)</span></span><br><span class="line"></span><br><span class="line">AVCodecContext   <span class="comment">// 编码器上下文结构体，保存了视频（音频）编解码相关信息</span></span><br><span class="line">AVCodec          <span class="comment">// 每种视频（音频）编解码器(例如H.264解码器)对应一个该结构体</span></span><br><span class="line">AVFrame          <span class="comment">// 帧信息(解码后一帧数据)</span></span><br></pre></td></tr></table></figure>
-<p>#todo</p>
-<ul>
+<li>应用代码：<code>github/codeBase/01-study/av/basic_ffmepg</code><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AVFormatContext  <span class="comment">// format I/O context, 媒体文件/流的整体信息(格式、流、元数据等)</span></span><br><span class="line">AVInputFormat    <span class="comment">// 输入文件封装格式信息，每种封装格式（例如FLV, MKV, MP4, AVI）对应一个该结构体</span></span><br><span class="line">AVOutputFormat   <span class="comment">// 输出文件封装格式信息</span></span><br><span class="line"></span><br><span class="line">AVStream         <span class="comment">// 视频文件中每个视频（音频）流对应一个该结构体</span></span><br><span class="line">AVPacket         <span class="comment">// 包信息(解码前一帧数据)</span></span><br><span class="line"></span><br><span class="line">AVCodecContext   <span class="comment">// 编码器上下文结构体，保存了视频（音频）编解码相关信息</span></span><br><span class="line">AVCodec          <span class="comment">// 每种视频（音频）编解码器(例如H.264解码器)对应一个该结构体</span></span><br><span class="line">AVFrame          <span class="comment">// 帧信息(解码后一帧数据)</span></span><br></pre></td></tr></table></figure>
+<h1 id="todo-1"><a href="#todo-1" class="headerlink" title="todo"></a>todo</h1></li>
 <li><code>AVFormatContext</code> 和 <code>AVInputFormat</code> 和 <code>AVOutputFormat</code> 有什么关系</li>
-<li>为啥又有 <code>AVCodecContext</code> 又有 <code>AVCodec</code></li>
+<li>为啥又有 <code>AVCodecContext</code> 又有 <code>AVCodec</code><h3 id="流操作"><a href="#流操作" class="headerlink" title="流操作"></a>流操作</h3>一个<strong>封装格式的文件（format）</strong>（mp4等）有很多<strong>流/轨（stream）</strong>（如多个音频、多个视频，是平行而不相交的），一个流有很多<strong>包（packet）</strong>，一个包由一个或多个<strong>帧（frame）</strong> 组成（包是压缩的，帧是解码后的）</li>
 </ul>
-<h3 id="流操作">流操作</h3>
-<p>一个<strong>封装格式的文件（format）</strong>（mp4等）有很多<strong>流/轨（stream）</strong>（如多个音频、多个视频，是平行而不相交的），一个流有很多<strong>包（packet）</strong>，一个包由一个或多个<strong>帧（frame）</strong> 组成（包是压缩的，帧是解码后的）</p>
 <p>从 FFmpeg 4.0 开始，<code>av_register_all</code> 逐步被淘汰。新的 FFmpeg API 不再需要显式调用该函数，因为 FFmpeg 会自动在内部初始化（注册 FFmpeg 支持的所有编解码器和复用器等）。</p>
-<h4 id="解复用-format-packet">解复用(format-&gt;packet)</h4>
-<p>封装格式数据mp4等-&gt;aac等</p>
+<h4 id="解复用-format-gt-packet"><a href="#解复用-format-gt-packet" class="headerlink" title="解复用(format-&gt;packet)"></a>解复用(format-&gt;packet)</h4><p>封装格式数据mp4等-&gt;aac等</p>
 <p><strong>工作流程</strong>：</p>
 <ol>
 <li>打开输入文件（具有封装格式的），获取其context信息：<code>avformat_open_input</code></li>
 <li>获取所需流（如音频/视频）的index，可用 <code>av_find_best_stream</code></li>
 <li>初始化包结构以存放读入的packet：<code>av_packet_alloc</code></li>
-<li>从输入文件读取index流中的packet，并处理
-<ol>
+<li>从输入文件读取index流中的packet，并处理<ol>
 <li>读packet：<code>av_read_frame</code></li>
 <li>判断packet所属流的index，是则 <em>处理</em></li>
 <li>释放packet：<code>av_packet_unref</code></li>
@@ -942,21 +868,18 @@
 </ol>
 <p><em>处理</em> 所做的事因封装格式而异（需要了解[[音视频基础]]和各种协议），如：</p>
 <ul>
-<li>音频
-<ul>
+<li>音频<ul>
 <li><strong>MP4 -&gt; AAC</strong>：AAC采用ADTS封装格式则需要在每个写入的 <code>pkt-&gt;data</code> 前写入<strong>ADTS头</strong></li>
 </ul>
 </li>
-<li>视频
-<ul>
+<li>视频<ul>
 <li><strong>AVI/MPEG-TS -&gt; H264</strong>：直接把 <code>pkt-&gt;data</code> 写入文件即可</li>
 <li><strong>MP4 -&gt; H264</strong>：AVVC-&gt;Annex-B。需要对所有帧<strong>去掉长度前缀，加上start code；对每个IDR帧，帧前加入SPS、PPS帧</strong></li>
 </ul>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 打开输入流并读取标头 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avformat_open_input</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	AVFormatContext **ps,       <span class="comment">// 出参，存储输入流的meta信息</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> <span class="keyword">char</span> *url,            <span class="comment">// 输入流地址</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> AVInputFormat *fmt,   <span class="comment">// NULL则按url检测格式(如后缀是mp4即mp4格式)，否则输入流视为指定格式</span></span></span></span><br><span class="line"><span class="function"><span class="params">	AVDictionary **options)</span></span>;    <span class="comment">// 一般为NULL</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放打开的输入流和所有内容 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">avformat_close_input</span> <span class="params">(AVFormatContext **s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 在文件中找到最佳流的索引，返回流的index */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_find_best_stream</span> <span class="params">(AVFormatContext *ic, </span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">enum</span> AVMediaType type,      <span class="comment">// 流类型，如视频、音频、字幕等</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> wanted_stream_nb,       <span class="comment">// 请求的流编号，-1则自动选择</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> related_stream,         <span class="comment">// 相关流的索引号，没有则为-1</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> struct AVCodec **decoder_ret,    <span class="comment">// 非NULL则返回所选流的解码器</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> flags)</span></span>;                 <span class="comment">// 目前没定义，填0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 申请并初始化AVPacket */</span></span><br><span class="line"><span class="function">AVPacket* <span class="title">av_packet_alloc</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 解引用计数(释放data部分) */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">av_packet_unref</span> <span class="params">(AVPacket * pkt)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放AVPacket */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">av_packet_free</span><span class="params">(AVPacket ** pkt)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 读取下一个包到pkt，pkt会加引用计数，返回值=0则ok否则是出错 */</span></span><br><span class="line"><span class="comment">// 按时间戳顺序读取所有流的包，所以要判断是不是自己要取的流索引对应的包</span></span><br><span class="line"><span class="comment">// 关于是帧还是包，原本是av_read_packet，但有时会读半帧，新版本改成帧的整数倍，所以取名av_read_frame</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_read_frame</span> <span class="params">(AVFormatContext *s, AVPacket *pkt)</span></span>; <span class="comment">// 用完需要av_packet_unref解引用</span></span><br></pre></td></tr></table></figure>
-<h4 id="解码-format-frame">解码(format-&gt;frame)</h4>
-<p>封装格式数据mp4等-&gt;yuv等</p>
+<h4 id="解码-format-gt-frame"><a href="#解码-format-gt-frame" class="headerlink" title="解码(format-&gt;frame)"></a>解码(format-&gt;frame)</h4><p>封装格式数据mp4等-&gt;yuv等</p>
 <p><strong>工作流程</strong>（增加了解码、裁剪等）：</p>
 <ol>
 <li>打开输入文件（具有封装格式的），获取其context信息(不完整)：<code>avformat_open_input</code></li>
@@ -965,18 +888,15 @@
 <li><u>根据流信息查找编码器并分配上下文</u>：<code>avcodec_find_decoder</code>、<code>avcodec_alloc_context3</code></li>
 <li><u>设置解码器参数并打开解码器</u>：<code>avcodec_parameters_to_context</code>、<code>avcodec_open2</code></li>
 <li>初始化包结构以存放读入的packet：<code>av_packet_alloc</code></li>
-<li><u>初始化帧结构以存放读入的frame</u>：
-<ol>
+<li><u>初始化帧结构以存放读入的frame</u>：<ol>
 <li>存放packet解码后的帧：<code>av_frame_alloc</code></li>
 <li>存放裁剪后的帧：<code>av_frame_alloc</code>，初始化值，分配缓冲区 <code>av_frame_get_buffer</code></li>
 </ol>
 </li>
 <li><u>初始化缩放上下文</u>：<code>sws_getContext</code></li>
-<li>从输入文件读取index流中的packet，并处理
-<ol>
+<li>从输入文件读取index流中的packet，并处理<ol>
 <li>读packet：<code>av_read_frame</code></li>
-<li>判断packet所属流的index，是则 <em>处理</em> 并<u>解码</u>
-<ol>
+<li>判断packet所属流的index，是则 <em>处理</em> 并<u>解码</u><ol>
 <li><u>发送包到解码器</u>：<code>avcodec_send_packet</code></li>
 <li><u>从解码器接收解码完成的帧（重复这步直到读不出来）</u>：<code>avcodec_receive_frame</code></li>
 <li><u>裁剪</u>（由于内存对齐，读的数据右边有黑边）：<code>sws_scale</code></li>
@@ -990,14 +910,12 @@
 <li><u>释放资源</u>：<code>av_frame_alloc</code>，<code>av_packet_free</code>，<code>avcodec_free_context</code>，<code>avformat_close_input</code></li>
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/********************** 结构体的申请和释放 **************************/</span></span><br><span class="line"><span class="comment">/* 申请并初始化AVFrame */</span></span><br><span class="line"><span class="function">AVFrame* <span class="title">av_frame_alloc</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放AVFrame和所有内容 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">av_frame_free</span><span class="params">(AVFrame ** frame)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 为frame分配新的缓冲区，会填充data、buf，必要时填充extended_data等 */</span></span><br><span class="line"><span class="comment">// 调用此函数前必须设置以下内容：format, width(video), height(v), nb_samples(a), ch_layout(a)</span></span><br><span class="line"><span class="comment">// 比av_image_alloc更方便</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_frame_get_buffer</span><span class="params">(AVFrame * frame, <span class="keyword">int</span> align)</span></span>;  <span class="comment">// 字节对齐，一般取32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 申请并初始化AVCodecContext */</span></span><br><span class="line"><span class="function">AVCodecContext* <span class="title">avcodec_alloc_context3</span><span class="params">(  <span class="comment">// 3是版本</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> AVCodec * codec)</span></span>;  <span class="comment">// 非NULL则初始化给定编解码器的默认值; NULL则不会初始化编解码器特定默认值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放AVCodecContext和所有内容 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">avcodec_free_context</span><span class="params">(AVCodecContext ** avctx)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 申请SwsContext（用于scale操作） */</span></span><br><span class="line"><span class="function">struct SwsContext* <span class="title">sws_getContext</span><span class="params">(<span class="keyword">int</span> srcW, <span class="keyword">int</span> srcH, <span class="keyword">enum</span> AVPixelFormat srcFormat,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> dstW, <span class="keyword">int</span> dstH, <span class="keyword">enum</span> AVPixelFormat dstFormat, <span class="keyword">int</span> flags,</span></span></span><br><span class="line"><span class="function"><span class="params">	SwsFilter * srcFilter, SwsFilter * dstFilter, <span class="keyword">const</span> <span class="keyword">double</span> * param)</span></span>;  <span class="comment">// 一般都为NULL</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放SwsContext */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sws_freeContext</span><span class="params">(struct SwsContext * swsContext)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/********************** 功能函数 **************************/</span></span><br><span class="line"><span class="comment">/* 获取输入的流的详细信息并填入context结构体 */</span></span><br><span class="line"><span class="comment">// 可以通过av_dump_format看出来更详细了</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avformat_find_stream_info</span><span class="params">(AVFormatContext * ic, AVDictionary ** options)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 查找编码器：根据id查找已注册的解码器(自动注册的)，没找到则返回NULL */</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> AVCodec* <span class="title">avcodec_find_decoder</span><span class="params">(<span class="keyword">enum</span> AVCodecID id)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将编解码器参数复制到解码器上下文中 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_parameters_to_context</span><span class="params">(AVCodecContext *codec,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">const</span> struct AVCodecParameters *par)</span></span>;  <span class="comment">// 一般是fmt_ctx-&gt;streams[video_index]-&gt;codecpar</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 打开编解码器，绑定指定的编解码器到AVCodecContext使其具备编解码能力。 */</span></span><br><span class="line"><span class="comment">// 必须先调用avcodec_alloc_context3，并且其codec和avcodec_open2的codec必须相同</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_open2</span><span class="params">(AVCodecContext *avctx, <span class="keyword">const</span> AVCodec * codec, AVDictionary ** options)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*** 解码: 把pkt发送给解码器处理 ***/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_send_packet</span><span class="params">(AVCodecContext *avctx, <span class="keyword">const</span> AVPacket *avpkt)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*** 解码: 从解码器中接受已经解码的帧 ***/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_receive_frame</span><span class="params">(AVCodecContext *avctx,</span></span></span><br><span class="line"><span class="function"><span class="params">	AVFrame *frame)</span></span>;  <span class="comment">// 出参，接收解码后的数据帧，如果传入的frame有东西会被unref掉</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 缩放图像切片 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sws_scale</span><span class="params">(struct SwsContext * c,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> <span class="keyword">uint8_t</span> *<span class="keyword">const</span> srcSlice[], <span class="keyword">const</span> <span class="keyword">int</span> srcStride[],</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> srcSliceY, <span class="keyword">int</span> srcSliceH,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">uint8_t</span> *<span class="keyword">const</span> dst[], <span class="keyword">const</span> <span class="keyword">int</span> dstStride[])</span></span>;</span><br></pre></td></tr></table></figure>
-<h4 id="格式转换-解复用-复用-mp4-flv等">格式转换/解复用+复用(mp4-&gt;flv等)</h4>
-<p><strong>工作流程</strong>（创建格式上下文用于复用，复制所有流信息和流内容，转换时基）：</p>
+<h4 id="格式转换-解复用-复用-mp4-gt-flv等"><a href="#格式转换-解复用-复用-mp4-gt-flv等" class="headerlink" title="格式转换/解复用+复用(mp4-&gt;flv等)"></a>格式转换/解复用+复用(mp4-&gt;flv等)</h4><p><strong>工作流程</strong>（创建格式上下文用于复用，复制所有流信息和流内容，转换时基）：</p>
 <ol>
 <li>打开输入文件（具有封装格式的），获取其context信息(不完整)：<code>avformat_open_input</code></li>
 <li>获取输入文件<strong>详细</strong>信息并填入context结构体：<code>avformat_find_stream_info</code></li>
 <li><u>初始化输出上下文结构体</u>：<code>avformat_alloc_output_context2</code></li>
-<li><u>复制输入流信息到输出上下文</u>：
-<ol>
+<li><u>复制输入流信息到输出上下文</u>：<ol>
 <li>遍历输入流（只处理视频、音频、字幕）：<code>ifmt_ctx-&gt;nb_streams</code>, <code>in_stream-&gt;codecpar-&gt;codec_type</code></li>
 <li>初始化输出上下文的流结构体：<code>avformat_new_stream</code></li>
 <li>从输入流拷贝流的编解码信息到输出流：<code>avcodec_parameters_copy</code></li>
@@ -1006,11 +924,9 @@
 <li>若输出是文件，则打开输出文件到输出上下文结构体：<code>avio_open</code></li>
 <li><u>将流头写到输出</u>：<code>avformat_write_header</code></li>
 <li>初始化包结构以存放读入的packet：<code>av_packet_alloc</code></li>
-<li>从输入文件读取流中的packet，并处理
-<ol>
+<li>从输入文件读取流中的packet，并处理<ol>
 <li>读packet：<code>av_read_frame</code></li>
-<li>判断packet所属流是否为我们要拷贝的（视频、音频和字幕），是则
-<ol>
+<li>判断packet所属流是否为我们要拷贝的（视频、音频和字幕），是则<ol>
 <li><u>对时间戳等进行时基转换</u>：<code>av_rescale_q_rnd</code></li>
 <li><u>将数据包按顺序写入输出</u>：<code>av_interleaved_write_frame</code></li>
 </ol>
@@ -1020,29 +936,21 @@
 </ol>
 </li>
 <li><u>将流尾写入输出</u>：<code>av_write_trailer</code></li>
-<li>释放资源：<code>avio_closep</code>，<code>av_packet_free</code>，<code>avformat_free_context</code>，<code>avformat_close_input</code></li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 创建一个新的输出上下文，以便于写入文件 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avformat_alloc_output_context2</span><span class="params">(AVFormatContext ** ctx,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> AVOutputFormat * oformat, <span class="keyword">const</span> <span class="keyword">char</span> * format_name, <span class="keyword">const</span> <span class="keyword">char</span> * filename)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放AVFormatContext和它的流 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">avformat_free_context</span><span class="params">(AVFormatContext * s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 向媒体文件添加新流 */</span></span><br><span class="line"><span class="comment">// 复用时，用户应在avformat_write_header（）之前调用。avformat_free_context时清理</span></span><br><span class="line"><span class="function">AVStream* <span class="title">avformat_new_stream</span><span class="params">(AVFormatContext * s, <span class="keyword">const</span> struct AVCodec * c)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 把编解码参数信息src的内容复制到dst（应该是深拷贝？） */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_parameters_copy</span><span class="params">(AVCodecParameters * dst, <span class="keyword">const</span> AVCodecParameters * src)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建并初始化一个AVIOContext，用于打开一个用于输入/输出的媒体文件或者流url */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avio_open</span><span class="params">(AVIOContext ** s, <span class="keyword">const</span> <span class="keyword">char</span> * url, <span class="keyword">int</span> flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放AVIOContext */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avio_closep</span><span class="params">(AVIOContext ** s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将流头写入输出媒体文件 */</span></span><br><span class="line"><span class="function">av_warn_unused_result <span class="keyword">int</span> <span class="title">avformat_write_header</span><span class="params">(AVFormatContext * s, AVDictionary ** options)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将数据包写入输出媒体文件，确保正确交织（通常按dts递增的顺序排列） */</span></span><br><span class="line"><span class="comment">// 此函数会自己缓存数据包以保证交织顺序</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_interleaved_write_frame</span><span class="params">(AVFormatContext * s, AVPacket * pkt)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将流尾写入输出媒体文件 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_write_trailer</span><span class="params">(AVFormatContext * s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* a*bq/cq, a是待转换的值，通常是一个时间戳，bq是源时基，cq是目标时基; rnd是舍入行为 */</span></span><br><span class="line"><span class="function"><span class="keyword">int64_t</span> <span class="title">av_rescale_q_rnd</span><span class="params">(<span class="keyword">int64_t</span> a, AVRational bq, AVRational cq, <span class="keyword">enum</span> AVRounding rnd)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* a*bq/cq, 和上面的区别就是舍入行为，这个默认是四舍五入，等效AV_ROUND_NEAR_INF */</span></span><br><span class="line"><span class="function"><span class="keyword">int64_t</span> <span class="title">av_rescale_q</span><span class="params">(<span class="keyword">int64_t</span> a, AVRational bq, AVRational cq)</span></span>;</span><br></pre></td></tr></table></figure>
-<h4 id="裁剪">裁剪</h4>
-<p><strong>工作流程</strong>：</p>
-<ol>
+<li>释放资源：<code>avio_closep</code>，<code>av_packet_free</code>，<code>avformat_free_context</code>，<code>avformat_close_input</code><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 创建一个新的输出上下文，以便于写入文件 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avformat_alloc_output_context2</span><span class="params">(AVFormatContext ** ctx,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> AVOutputFormat * oformat, <span class="keyword">const</span> <span class="keyword">char</span> * format_name, <span class="keyword">const</span> <span class="keyword">char</span> * filename)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放AVFormatContext和它的流 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">avformat_free_context</span><span class="params">(AVFormatContext * s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 向媒体文件添加新流 */</span></span><br><span class="line"><span class="comment">// 复用时，用户应在avformat_write_header（）之前调用。avformat_free_context时清理</span></span><br><span class="line"><span class="function">AVStream* <span class="title">avformat_new_stream</span><span class="params">(AVFormatContext * s, <span class="keyword">const</span> struct AVCodec * c)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 把编解码参数信息src的内容复制到dst（应该是深拷贝？） */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_parameters_copy</span><span class="params">(AVCodecParameters * dst, <span class="keyword">const</span> AVCodecParameters * src)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建并初始化一个AVIOContext，用于打开一个用于输入/输出的媒体文件或者流url */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avio_open</span><span class="params">(AVIOContext ** s, <span class="keyword">const</span> <span class="keyword">char</span> * url, <span class="keyword">int</span> flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 释放AVIOContext */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avio_closep</span><span class="params">(AVIOContext ** s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将流头写入输出媒体文件 */</span></span><br><span class="line"><span class="function">av_warn_unused_result <span class="keyword">int</span> <span class="title">avformat_write_header</span><span class="params">(AVFormatContext * s, AVDictionary ** options)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将数据包写入输出媒体文件，确保正确交织（通常按dts递增的顺序排列） */</span></span><br><span class="line"><span class="comment">// 此函数会自己缓存数据包以保证交织顺序</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_interleaved_write_frame</span><span class="params">(AVFormatContext * s, AVPacket * pkt)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将流尾写入输出媒体文件 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_write_trailer</span><span class="params">(AVFormatContext * s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* a*bq/cq, a是待转换的值，通常是一个时间戳，bq是源时基，cq是目标时基; rnd是舍入行为 */</span></span><br><span class="line"><span class="function"><span class="keyword">int64_t</span> <span class="title">av_rescale_q_rnd</span><span class="params">(<span class="keyword">int64_t</span> a, AVRational bq, AVRational cq, <span class="keyword">enum</span> AVRounding rnd)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* a*bq/cq, 和上面的区别就是舍入行为，这个默认是四舍五入，等效AV_ROUND_NEAR_INF */</span></span><br><span class="line"><span class="function"><span class="keyword">int64_t</span> <span class="title">av_rescale_q</span><span class="params">(<span class="keyword">int64_t</span> a, AVRational bq, AVRational cq)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h4><strong>工作流程</strong>：</li>
 <li>解复用和复用的基础上</li>
 <li>查找开始时间对应的帧：<code>av_seek_frame</code></li>
-<li>保存每个流的开始pts和dts，转换时间戳的时候还要减去其
-<ul>
+<li>保存每个流的开始pts和dts，转换时间戳的时候还要减去其<ul>
 <li>pts：Presentation Time Stamp，展示时间戳（单位为时基）</li>
 <li>dts：Decoding Time Stamp，解码时间戳</li>
 </ul>
 </li>
-<li>如果时间戳超过结束时间对应的时间戳则丢弃</li>
+<li>如果时间戳超过结束时间对应的时间戳则丢弃<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 找时间戳对应的帧，从该位置开始解码和播放 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_seek_frame</span><span class="params">(AVFormatContext * s,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> stream_index,  <span class="comment">// 设置为-1则在默认流(一般是视频)查找(其他流会跳到最接近的时间戳)</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int64_t</span> timestamp, <span class="comment">// 指定流则以时基为单位，否则以AV_TIME_BASE为单位</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> flags)</span></span>;        <span class="comment">// 指定定位方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 把AVRational转换成double */</span></span><br><span class="line"><span class="comment">// av_q2d(时基)*时间戳=秒</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">double</span> <span class="title">av_q2d</span><span class="params">(AVRational a)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="编码-frame-gt-packet"><a href="#编码-frame-gt-packet" class="headerlink" title="编码(frame-&gt;packet)"></a>编码(frame-&gt;packet)</h4>原始数据，如相机采集的数据-&gt;编码数据</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 找时间戳对应的帧，从该位置开始解码和播放 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_seek_frame</span><span class="params">(AVFormatContext * s,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> stream_index,  <span class="comment">// 设置为-1则在默认流(一般是视频)查找(其他流会跳到最接近的时间戳)</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int64_t</span> timestamp, <span class="comment">// 指定流则以时基为单位，否则以AV_TIME_BASE为单位</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> flags)</span></span>;        <span class="comment">// 指定定位方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 把AVRational转换成double */</span></span><br><span class="line"><span class="comment">// av_q2d(时基)*时间戳=秒</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">double</span> <span class="title">av_q2d</span><span class="params">(AVRational a)</span></span>;</span><br></pre></td></tr></table></figure>
-<h4 id="编码-frame-packet">编码(frame-&gt;packet)</h4>
-<p>原始数据，如相机采集的数据-&gt;编码数据</p>
 <p><strong>工作流程</strong>：</p>
 <ol>
-<li><u>打开编码器</u>
-<ol>
+<li><u>打开编码器</u><ol>
 <li>找到编码器：<code>avcodec_find_encoder_by_name</code></li>
 <li>分配上下文：<code>avcodec_alloc_context3</code></li>
 <li><u>设置编码参数</u>（手动），比特率、宽高、帧率等</li>
@@ -1050,15 +958,13 @@
 </ol>
 </li>
 <li>创建packet结构体以存放编码后的数据</li>
-<li>创建frame结构体存放原始数据
-<ol>
+<li>创建frame结构体存放原始数据<ol>
 <li>初始化frame结构体：<code>av_frame_alloc</code></li>
 <li>设置frame参数</li>
 <li>申请frame缓存：<code>av_frame_get_buffer</code></li>
 </ol>
 </li>
-<li><u>编码</u>
-<ol>
+<li><u>编码</u><ol>
 <li>接收frame数据（从相机采集）：<code>avcodec_send_frame</code></li>
 <li>编码到packet并输出：<code>avcodec_receive_packet</code></li>
 </ol>
@@ -1067,44 +973,23 @@
 <li>添加结束码：mpeg或h264结束码是 <code>0, 0, 1, 0xb7</code></li>
 <li>释放资源</li>
 </ol>
-<p>用的别的库，ffmpeg只是做了一层封装，如h264编码，用到了libh264</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 查找编码器：根据name查找已注册的解码器(自动注册的)，没找到则返回NULL */</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> AVCodec* <span class="title">avcodec_find_encoder_by_name</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * name)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过字符串设置对象的参数*/</span></span><br><span class="line"><span class="comment">// 更灵活和可扩展，通常用于动态配置(运行时才知道参数名, 如void* AVCodecContext::priv_data) </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_opt_set</span><span class="params">(<span class="keyword">void</span> * obj, <span class="keyword">const</span> <span class="keyword">char</span> * name, <span class="keyword">const</span> <span class="keyword">char</span> * val, <span class="keyword">int</span> search_flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* (写入数据前调用)确保数据是可写的 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_frame_make_writable</span><span class="params">(AVFrame * frame)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*** 编码: 把frame发送给编码器处理。若frame为NULL，则编码器将缓存数据都吐出来(最后一个pkt) ***/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_send_frame</span><span class="params">(AVCodecContext * avctx, <span class="keyword">const</span> AVFrame * frame)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*** 编码: 从编码器中接受已经编码的pkt ***/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_receive_packet</span><span class="params">(AVCodecContext * avctx, AVPacket * avpkt)</span></span>;</span><br></pre></td></tr></table></figure>
-<h3 id="工具">工具</h3>
-<p><strong>日志系统</strong>：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;libavutil/log.h&gt;</span></span></span><br><span class="line"><span class="comment">/* 设置log等级 */</span></span><br><span class="line">av_log_set_level(AV_LOG_INFO);</span><br><span class="line"><span class="comment">/* 打log */</span></span><br><span class="line">av_log(<span class="literal">NULL</span>, AV_LOG_INFO, <span class="string">&quot;Hello, World!&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>打印流信息</strong>：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 打印流的详细信息(如持续时间、比特率、流、容器、元数据、辅助数据、编解码器) */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">av_dump_format</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	AVFormatContext *ic,  <span class="comment">// 待分析的context</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> index,            <span class="comment">// 流的index</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> <span class="keyword">char</span> *url,      <span class="comment">// 流地址</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> is_output)</span></span>;       <span class="comment">// 输入流则为0，输出流则为0</span></span><br></pre></td></tr></table></figure>
-<p>#todo</p>
-<h2 id="附录">附录</h2>
-<ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1a1421k7Eo?p=1&amp;vd_source=935014e83637257acab9d4933e8e518c">1-2 课程导学_哔哩哔哩_bilibili</a></p>
+<p>用的别的库，ffmpeg只是做了一层封装，如h264编码，用到了libh264<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 查找编码器：根据name查找已注册的解码器(自动注册的)，没找到则返回NULL */</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> AVCodec* <span class="title">avcodec_find_encoder_by_name</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * name)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过字符串设置对象的参数*/</span></span><br><span class="line"><span class="comment">// 更灵活和可扩展，通常用于动态配置(运行时才知道参数名, 如void* AVCodecContext::priv_data) </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_opt_set</span><span class="params">(<span class="keyword">void</span> * obj, <span class="keyword">const</span> <span class="keyword">char</span> * name, <span class="keyword">const</span> <span class="keyword">char</span> * val, <span class="keyword">int</span> search_flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* (写入数据前调用)确保数据是可写的 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_frame_make_writable</span><span class="params">(AVFrame * frame)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*** 编码: 把frame发送给编码器处理。若frame为NULL，则编码器将缓存数据都吐出来(最后一个pkt) ***/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_send_frame</span><span class="params">(AVCodecContext * avctx, <span class="keyword">const</span> AVFrame * frame)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*** 编码: 从编码器中接受已经编码的pkt ***/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_receive_packet</span><span class="params">(AVCodecContext * avctx, AVPacket * avpkt)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p><strong>日志系统</strong>：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;libavutil/log.h&gt;</span></span></span><br><span class="line"><span class="comment">/* 设置log等级 */</span></span><br><span class="line">av_log_set_level(AV_LOG_INFO);</span><br><span class="line"><span class="comment">/* 打log */</span></span><br><span class="line">av_log(<span class="literal">NULL</span>, AV_LOG_INFO, <span class="string">&quot;Hello, World!&quot;</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>打印流信息</strong>：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 打印流的详细信息(如持续时间、比特率、流、容器、元数据、辅助数据、编解码器) */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">av_dump_format</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	AVFormatContext *ic,  <span class="comment">// 待分析的context</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> index,            <span class="comment">// 流的index</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> <span class="keyword">char</span> *url,      <span class="comment">// 流地址</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> is_output)</span></span>;       <span class="comment">// 输入流则为0，输出流则为0</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="todo-2"><a href="#todo-2" class="headerlink" title="todo"></a>todo</h1><h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1a1421k7Eo?p=1&amp;vd_source=935014e83637257acab9d4933e8e518c">1-2 课程导学_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/leandromoreira/ffmpeg-libav-tutorial">leandromoreira/ffmpeg-libav-tutorial: FFmpeg libav tutorial - learn how media works from basic to transmuxing, transcoding and more. Translations: 🇺🇸 🇨🇳 🇰🇷 🇪🇸 🇻🇳 🇧🇷 (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/0voice/ffmpeg_develop_doc/blob/main/Linux%E4%B8%8A%E7%9A%84ffmpeg%E5%AE%8C%E5%85%A8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md">ffmpeg_develop_doc/Linux上的ffmpeg完全使用指南.md at main · 0voice/ffmpeg_develop_doc (github.com)</a></li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012822903/article/details/54572807">Linux图形界面知识（介绍X、X11、GNOME、Xorg、KDE等之间的关系）_gnome on xorg-CSDN博客</a></p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://github.com/leandromoreira/ffmpeg-libav-tutorial">leandromoreira/ffmpeg-libav-tutorial: FFmpeg libav tutorial - learn how media works from basic to transmuxing, transcoding and more. Translations: 🇺🇸 🇨🇳 🇰🇷 🇪🇸 🇻🇳 🇧🇷 (github.com)</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://github.com/0voice/ffmpeg_develop_doc/blob/main/Linux%E4%B8%8A%E7%9A%84ffmpeg%E5%AE%8C%E5%85%A8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md">ffmpeg_develop_doc/Linux上的ffmpeg完全使用指南.md at main · 0voice/ffmpeg_develop_doc (github.com)</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012822903/article/details/54572807">Linux图形界面知识（介绍X、X11、GNOME、Xorg、KDE等之间的关系）_gnome on xorg-CSDN博客</a></p>
-</li>
-<li>
-<p>cAPI库：<a target="_blank" rel="noopener" href="https://launchpad.net/ubuntu/+source/ffmpeg/7:7.0.2-3ubuntu1">7:7.0.2-3ubuntu1 : ffmpeg package : Ubuntu (launchpad.net)</a>，<a target="_blank" rel="noopener" href="https://www.ffmpeg.org/doxygen/7.0/index.html"><strong>FFmpeg: Main Page</strong></a></p>
+<li><p>cAPI库：<a target="_blank" rel="noopener" href="https://launchpad.net/ubuntu/+source/ffmpeg/7:7.0.2-3ubuntu1">7:7.0.2-3ubuntu1 : ffmpeg package : Ubuntu (launchpad.net)</a>，<a target="_blank" rel="noopener" href="https://www.ffmpeg.org/doxygen/7.0/index.html"><strong>FFmpeg: Main Page</strong></a></p>
 <ul>
 <li>官网<a target="_blank" rel="noopener" href="https://www.ffmpeg.org/">FFmpeg</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.ffmpeg.org/documentation.html">Documentation (ffmpeg.org)</a></li>
 </ul>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14x411D7FD?p=4&amp;vd_source=935014e83637257acab9d4933e8e518c">基于FFmpeg+SDL的视频播放器的制作-第3节-2_哔哩哔哩_bilibili</a></p>
-</li>
-<li>
-<p>练习代码：vmware上github的codebase</p>
-</li>
-</ul>
-<h3 id="测试视频-直播">测试视频/直播</h3>
-<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14x411D7FD?p=4&amp;vd_source=935014e83637257acab9d4933e8e518c">基于FFmpeg+SDL的视频播放器的制作-第3节-2_哔哩哔哩_bilibili</a></li>
+<li>练习代码：vmware上github的codebase<h3 id="测试视频-直播"><a href="#测试视频-直播" class="headerlink" title="测试视频/直播"></a>测试视频/直播</h3></li>
 <li><a target="_blank" rel="noopener" href="http://vjs.zencdn.net/v/oceans.mp4">46s，有画面有声音</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.qiushaocloud.top/2024/03/26/zhi-bo-ge-zhong-zai-xian-ce-shi-de-zhi">各种直播和点播的拉流测试地址-邱少羽梦 (qiushaocloud.top)</a></li>
 </ul>
@@ -1253,7 +1138,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">源码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">基础知识</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#FFMpeg%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">FFMpeg命令行工具</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%B4%E6%98%8E%E5%92%8C%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">基本说明和常用参数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">基本信息查询命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%BD%95%E5%88%B6%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">录制命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%A4%8D%E7%94%A8-%E8%A7%A3%E5%A4%8D%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">复用&#x2F;解复用命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%BB%A4%E9%95%9C%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">滤镜命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%A3%81%E5%89%AA%E4%B8%8E%E6%8B%BC%E6%8E%A5%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">裁剪与拼接命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9B%BE%E7%89%87-%E8%A7%86%E9%A2%91%E4%BA%92%E8%BD%AC%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.7.</span> <span class="toc-nav-text">图片&#x2F;视频互转命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%9B%B4%E6%92%AD%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.8.</span> <span class="toc-nav-text">直播相关命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#linux%E8%AE%BE%E7%BD%AE-RTMP-%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-nav-number">3.8.1.</span> <span class="toc-nav-text">linux设置 RTMP 流媒体服务器</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ffmpeg%E5%BC%80%E5%8F%91-cAPI"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">ffmpeg开发(cAPI)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">数据结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%B5%81%E6%93%8D%E4%BD%9C"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">流操作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%A7%A3%E5%A4%8D%E7%94%A8-format-packet"><span class="toc-nav-number">4.2.1.</span> <span class="toc-nav-text">解复用(format-&gt;packet)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%A7%A3%E7%A0%81-format-frame"><span class="toc-nav-number">4.2.2.</span> <span class="toc-nav-text">解码(format-&gt;frame)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2-%E8%A7%A3%E5%A4%8D%E7%94%A8-%E5%A4%8D%E7%94%A8-mp4-flv%E7%AD%89"><span class="toc-nav-number">4.2.3.</span> <span class="toc-nav-text">格式转换&#x2F;解复用+复用(mp4-&gt;flv等)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%A3%81%E5%89%AA"><span class="toc-nav-number">4.2.4.</span> <span class="toc-nav-text">裁剪</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%BC%96%E7%A0%81-frame-packet"><span class="toc-nav-number">4.2.5.</span> <span class="toc-nav-text">编码(frame-&gt;packet)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">工具</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">附录</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91-%E7%9B%B4%E6%92%AD"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">测试视频&#x2F;直播</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">源码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">基础知识</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#FFMpeg%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">FFMpeg命令行工具</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%B4%E6%98%8E%E5%92%8C%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">基本说明和常用参数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">基本信息查询命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%BD%95%E5%88%B6%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">录制命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%A4%8D%E7%94%A8-%E8%A7%A3%E5%A4%8D%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">复用&#x2F;解复用命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%BB%A4%E9%95%9C%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">滤镜命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%A3%81%E5%89%AA%E4%B8%8E%E6%8B%BC%E6%8E%A5%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">裁剪与拼接命令</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#todo"><span class="toc-nav-number"></span> <span class="toc-nav-text">todo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9B%BE%E7%89%87-%E8%A7%86%E9%A2%91%E4%BA%92%E8%BD%AC%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">0.1.</span> <span class="toc-nav-text">图片&#x2F;视频互转命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%9B%B4%E6%92%AD%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">0.2.</span> <span class="toc-nav-text">直播相关命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#linux%E8%AE%BE%E7%BD%AE-RTMP-%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-nav-number">0.2.1.</span> <span class="toc-nav-text">linux设置 RTMP 流媒体服务器</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ffmpeg%E5%BC%80%E5%8F%91-cAPI"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">ffmpeg开发(cAPI)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">数据结构</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#todo-1"><span class="toc-nav-number"></span> <span class="toc-nav-text">todo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%B5%81%E6%93%8D%E4%BD%9C"><span class="toc-nav-number">0.1.</span> <span class="toc-nav-text">流操作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%A7%A3%E5%A4%8D%E7%94%A8-format-gt-packet"><span class="toc-nav-number">0.1.1.</span> <span class="toc-nav-text">解复用(format-&gt;packet)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%A7%A3%E7%A0%81-format-gt-frame"><span class="toc-nav-number">0.1.2.</span> <span class="toc-nav-text">解码(format-&gt;frame)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2-%E8%A7%A3%E5%A4%8D%E7%94%A8-%E5%A4%8D%E7%94%A8-mp4-gt-flv%E7%AD%89"><span class="toc-nav-number">0.1.3.</span> <span class="toc-nav-text">格式转换&#x2F;解复用+复用(mp4-&gt;flv等)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%A3%81%E5%89%AA"><span class="toc-nav-number">0.1.4.</span> <span class="toc-nav-text">裁剪</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%BC%96%E7%A0%81-frame-gt-packet"><span class="toc-nav-number">0.1.5.</span> <span class="toc-nav-text">编码(frame-&gt;packet)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-nav-number">0.2.</span> <span class="toc-nav-text">工具</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#todo-2"><span class="toc-nav-number"></span> <span class="toc-nav-text">todo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">附录</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91-%E7%9B%B4%E6%92%AD"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">测试视频&#x2F;直播</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -1374,7 +1259,7 @@
         <p class="copyright text-muted">
           Copyright &copy;
           ysq
-          2024
+          2025
           <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
@@ -1813,20 +1698,5 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+	</body>
 </html>

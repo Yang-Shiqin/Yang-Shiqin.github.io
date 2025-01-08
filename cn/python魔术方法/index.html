@@ -244,12 +244,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/archive/">
+            <a href="/tags/">
               
-              归档
+              标签
               
               
             </a>
@@ -269,6 +267,17 @@
           
           
           <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
             <a href="/about/">
               
               关于
@@ -278,15 +287,6 @@
           </li>
           
           
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
           
           
 
@@ -470,8 +470,7 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h2 id="基础篇">基础篇</h2>
-<blockquote>
+        <h2 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h2><blockquote>
 <p>[!summary]</p>
 <ul>
 <li><code>__new__</code></li>
@@ -491,14 +490,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__new__</span>(<span class="params">cls, x</span>):</span></span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">super</span>().__new__(cls)  <span class="comment"># 返回obj</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, x</span>):</span></span><br><span class="line">		self.x = x</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__del__</span>(<span class="params">self</span>):</span></span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&#x27;sth&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><code>__init__</code> 用的更多，初始化对象的时候用到。<strong>那什么时候会用到 <code>__new__</code> 呢（在建立obj前要do sth的时候）</strong></p>
 <ul>
-<li>singleton class：在建立obj前，判断是否有其他obj被建立了
-<ul>
+<li>singleton class：在建立obj前，判断是否有其他obj被建立了<ul>
 <li>可能多次调用 <code>__init__</code></li>
 </ul>
 </li>
 <li>与metaclass有关的内容</li>
 </ul>
-<p><code>__del__</code> :</p>
+<p><code>__del__</code> : </p>
 <ul>
 <li>类似析构函数，但不一样。</li>
 <li>当对象被释放时调用。</li>
@@ -516,12 +514,10 @@
 <p><code>__format__</code> : 使用频率更低，当要以某种格式打印obj时使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__format__</span>(<span class="params">self, spec</span>):</span></span><br><span class="line">		<span class="keyword">if</span> spec == <span class="string">&#x27;x&#x27;</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&#x27;0xA&#x27;</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;&lt;A&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;A()&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;A():x&#125;</span>&quot;</span>)</span><br><span class="line"><span class="comment"># format例子</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;<span class="number">15</span>&#125;</span>&quot;</span>)    <span class="comment"># 15</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;<span class="number">15</span>:x&#125;</span>&quot;</span>)  <span class="comment"># f</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;<span class="number">15</span>:b&#125;</span>&quot;</span>)  <span class="comment"># 1111</span></span><br></pre></td></tr></table></figure>
 <p><code>__bytes__</code> : <code>bytes(obj)</code> 调用</p>
-<h2 id="比较篇">比较篇</h2>
-<p>rich comparison。</p>
+<h2 id="比较篇"><a href="#比较篇" class="headerlink" title="比较篇"></a>比较篇</h2><p>rich comparison。</p>
 <ul>
 <li>同类的obj比较是从前往后的顺序，如 <code>x comp y</code> 就是 <code>x.__comp__(y)</code></li>
-<li>非同类不满足上面的规则
-<ul>
+<li>非同类不满足上面的规则<ul>
 <li>若y是x的衍生类（继承x），优先使用y的rich comp，如 <code>x &lt; y</code> 就是 <code>y.__gt__(x)</code>；否则优先x</li>
 </ul>
 </li>
@@ -530,12 +526,12 @@
 <blockquote>
 <p>[!summary]</p>
 <ul>
-<li><code>__eq__</code> : ==</li>
+<li><code>__eq__</code> : \=\=</li>
 <li><code>__ne__</code> : !=</li>
-<li><code>__gt__</code> : &gt;</li>
-<li><code>__lt__</code> : &lt;</li>
-<li><code>__ge__</code> : &gt;=</li>
-<li><code>__le__</code> : &lt;=</li>
+<li><code>__gt__</code> : ></li>
+<li><code>__lt__</code> : \&lt;</li>
+<li><code>__ge__</code> : >=</li>
+<li><code>__le__</code> : \&lt;=</li>
 <li><code>__hash__</code></li>
 <li><code>__bool__</code> : if obj</li>
 </ul>
@@ -554,14 +550,12 @@
 <p>哈希 <code>__hash__</code>：</p>
 <ul>
 <li>自定义数据结构有默认的hash算法 <code>hash(x)</code></li>
-<li>但若用户定义了数据结构的 <code>__eq__</code> 方法，则会把默认的 hash给删除。想用就得自定义
-<ul>
+<li>但若用户定义了数据结构的 <code>__eq__</code> 方法，则会把默认的 hash给删除。想用就得自定义<ul>
 <li>因为hash：两个东西相等，则其hash必须相等</li>
 <li>改变默认 <code>__eq__</code> 函数，则hash就不对了</li>
 </ul>
 </li>
-<li><code>__hash__</code> 要求
-<ul>
+<li><code>__hash__</code> 要求<ul>
 <li>必须返回一个整数</li>
 <li>对相等的对象，hash值必须相等</li>
 <li>官方建议用python提供的hash built-in func，可以把核心属性组成tuple传入</li>
@@ -571,8 +565,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">f&quot;<span class="subst">&#123;self.year&#125;</span>/<span class="subst">&#123;self.month&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">x = Date(<span class="number">2023</span>, <span class="number">8</span>)</span><br><span class="line">y = Date(<span class="number">2023</span>, <span class="number">8</span>)</span><br><span class="line">income = &#123;&#125;</span><br><span class="line">income[x] = <span class="number">1000</span>   <span class="comment"># ps: 若obj是mutable的，不应该作为key出现在dict里</span></span><br><span class="line">income[y] = <span class="number">2000</span></span><br><span class="line"><span class="built_in">print</span>(income)  <span class="comment"># &#123;2023/8: 1000, 2023/8: 2000&#125; 因为key是x和y是不一样的(hash不一样)，但打印出来是repr(x)所以看起来一样</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__hash__</span>(<span class="params">self</span>):</span></span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">hash</span>((self.year, self.month))</span><br></pre></td></tr></table></figure>
 <hr>
 <p>bool <code>__bool__</code>：自定义对象默认为真。定义 <code>__bool__</code> 返回True/False</p>
-<h2 id="属性篇">属性篇</h2>
-<blockquote>
+<h2 id="属性篇"><a href="#属性篇" class="headerlink" title="属性篇"></a>属性篇</h2><blockquote>
 <p>[!summary]</p>
 <ul>
 <li><code>__getattr__</code></li>
@@ -608,17 +601,15 @@
 </ul>
 <hr>
 <p>descriptor方法：<code>__set__</code>、<code>__get__</code>、<code>__delete__</code></p>
-<p>一个对象在访问描述器时，如果该属性是一个描述器，则默认属性回调规则会被<code>__set__</code>, <code>__get___</code>, <code>__delete__</code> 方法所覆盖</p>
+<p>一个对象在访问描述器时，如果该属性是一个描述器，则默认属性回调规则会被<code>__set__</code>, <code>__get___</code>, <code>__delete__</code> 方法所覆盖</p>
 <p>Python内部自带的<strong>staticmethod, classmethod, property，super</strong>等都是描述器，在很多Python库中也都有描述器的身影（例如<a href="https://link.zhihu.com/?target=http%3A//docs.sqlalchemy.org/en/latest/orm/tutorial.html%23declare-a-mapping">SQLAlchemy</a>），使用描述器能让你有更高的概率写出优美的代码、更简洁的API，并会加深对Python理解</p>
 <hr>
 <p><code>__slots__</code> : 不是方法，是特殊变量名。规定class的obj中可以有哪些自定义的attribute（<code>__init__</code> 中定义的也是自定义的）</p>
-<p>#todo</p>
-<ul>
+<h1 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h1><ul>
 <li>[ ] descriptor</li>
 <li>[ ] slots</li>
 </ul>
-<h2 id="类构建篇">类构建篇</h2>
-<blockquote>
+<h2 id="类构建篇"><a href="#类构建篇" class="headerlink" title="类构建篇"></a>类构建篇</h2><blockquote>
 <p>[!summary]</p>
 <ul>
 <li><code>__init_subclass__</code></li>
@@ -638,8 +629,7 @@
 <hr>
 <p>强化typing的时候被引入的 : <code>__class_getitem__</code> 和 <code>__mro_entries__</code></p>
 <ul>
-<li><code>__class_getitem__</code> : <code>cls[item]</code> 会调用
-<ul>
+<li><code>__class_getitem__</code> : <code>cls[item]</code> 会调用<ul>
 <li><code>__getitem__</code> : <code>obj[item]</code> 会调用</li>
 <li>如 <code>list[int]</code> 就是用 <code>__class_getitem__</code> 实现的</li>
 <li><code>__mro_entries__</code> : 帮忙找基类，返回tuple（obj告诉你哪些是你的基类  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__mro_entries__</span>(<span class="params">self, bases</span>):</span></span><br><span class="line">    <span class="keyword">return</span> (A, )</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>(<span class="params">A(<span class="params"></span>)</span>):</span>   <span class="comment"># 继承的是对象</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">issubclass</span>(B, A))   <span class="comment"># True</span></span><br></pre></td></tr></table></figure>
@@ -653,12 +643,10 @@
 <li><code>__instancecheck__</code> : 对应 <code>isinstance()</code></li>
 <li><code>__subclasscheck__</code> : 对应 <code>issubclass()</code></li>
 </ul>
-<p>#todo</p>
-<ul>
+<h1 id="todo-1"><a href="#todo-1" class="headerlink" title="todo"></a>todo</h1><ul>
 <li>[ ] metaclass</li>
 </ul>
-<h2 id="运算篇">运算篇</h2>
-<blockquote>
+<h2 id="运算篇"><a href="#运算篇" class="headerlink" title="运算篇"></a>运算篇</h2><blockquote>
 <p>[!summary]</p>
 <ul>
 <li><code>__add__</code></li>
@@ -697,8 +685,7 @@
 <li>当遇到 <code>other 运算符 self</code> 且other不知道这个操作时，调用self的 <code>__r运算符__</code></li>
 </ul>
 <hr>
-<h2 id="模拟篇">模拟篇</h2>
-<blockquote>
+<h2 id="模拟篇"><a href="#模拟篇" class="headerlink" title="模拟篇"></a>模拟篇</h2><blockquote>
 <p>[!summary]</p>
 <ul>
 <li><code>__call__</code></li>
@@ -718,8 +705,7 @@
 <ul>
 <li><code>__len__</code> : 返回长度 <code>len(obj)</code>。若没定义 <code>__bool__</code> 则 <code>if obj:</code> 会找 <code>__len__</code>，为0则False</li>
 <li><code>__length_hint__</code> : 返回估计的长度，<code>operator.length_hint(obj)</code>，很少用</li>
-<li><code>__getitem__</code> : <code>[]</code> 取值  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.data[<span class="built_in">int</span>(key)]</span><br><span class="line">x = A([<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(x[<span class="string">&#x27;0&#x27;</span>])  <span class="comment"># 调用__getitem__，index为str也不会报错</span></span><br></pre></td></tr></table></figure>
-</li>
+<li><code>__getitem__</code> : <code>[]</code> 取值  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.data[<span class="built_in">int</span>(key)]</span><br><span class="line">x = A([<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(x[<span class="string">&#x27;0&#x27;</span>])  <span class="comment"># 调用__getitem__，index为str也不会报错</span></span><br></pre></td></tr></table></figure></li>
 <li><code>__setitem__</code> : <code>[]</code> 赋值</li>
 <li><code>__delitem__</code> : <code>del x[0]</code></li>
 </ul>
@@ -729,10 +715,8 @@
 <p>context type : <code>with xx</code>，with后的就是context。定义一个context要定义其 <code>__enter__</code> 和 <code>__exit__</code></p>
 <ul>
 <li><code>__enter__</code> : 进context干啥</li>
-<li><code>__exit__</code> : 出context干啥
-<ul>
-<li>参数 <code>exc_type, exc_value, traceback</code> 是在出现exception时使用
-<ul>
+<li><code>__exit__</code> : 出context干啥<ul>
+<li>参数 <code>exc_type, exc_value, traceback</code> 是在出现exception时使用<ul>
 <li><code>exc_type</code>, 异常class</li>
 <li><code>exc_value</code>, 异常值</li>
 <li><code>traceback</code>, obj</li>
@@ -743,8 +727,7 @@
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Timer</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__enter__</span>(<span class="params">self</span>):</span></span><br><span class="line">		self.start = time.time()</span><br><span class="line">		<span class="comment"># return self    # 若有返回值, 则可用with Timer() as t, t就是返回值</span></span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span></span><br><span class="line">		<span class="built_in">print</span>(<span class="string">f&#x27;T: <span class="subst">&#123;time.time()-self.start&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> Timer():</span><br><span class="line">	_ = <span class="number">1000</span>*<span class="number">100</span></span><br></pre></td></tr></table></figure>
-<h2 id="附录">附录</h2>
-<ul>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/52708890">Python 黑魔法：描述器（descriptor） - 知乎 (zhihu.com)</a></li>
 </ul>
 
@@ -896,7 +879,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">基础篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%AF%94%E8%BE%83%E7%AF%87"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">比较篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%B1%9E%E6%80%A7%E7%AF%87"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">属性篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%B1%BB%E6%9E%84%E5%BB%BA%E7%AF%87"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">类构建篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%BF%90%E7%AE%97%E7%AF%87"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">运算篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%A8%A1%E6%8B%9F%E7%AF%87"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">模拟篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">附录</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">基础篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%AF%94%E8%BE%83%E7%AF%87"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">比较篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%B1%9E%E6%80%A7%E7%AF%87"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">属性篇</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#todo"><span class="toc-nav-number"></span> <span class="toc-nav-text">todo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%B1%BB%E6%9E%84%E5%BB%BA%E7%AF%87"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">类构建篇</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#todo-1"><span class="toc-nav-number"></span> <span class="toc-nav-text">todo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%BF%90%E7%AE%97%E7%AF%87"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">运算篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%A8%A1%E6%8B%9F%E7%AF%87"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">模拟篇</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">附录</span></a></li></ol>
         
         </div>
       </aside>
@@ -1017,7 +1000,7 @@
         <p class="copyright text-muted">
           Copyright &copy;
           ysq
-          2024
+          2025
           <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
@@ -1456,20 +1439,5 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+	</body>
 </html>

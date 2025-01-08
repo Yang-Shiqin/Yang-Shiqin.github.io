@@ -244,12 +244,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/archive/">
+            <a href="/tags/">
               
-              归档
+              标签
               
               
             </a>
@@ -269,6 +267,17 @@
           
           
           <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
             <a href="/about/">
               
               关于
@@ -278,15 +287,6 @@
           </li>
           
           
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
           
           
 
@@ -408,7 +408,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">709</span> In Total
+              Words <span class="post-count">714</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -470,38 +470,25 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h2 id="利用setuptools和pypi">利用setuptools和pypi</h2>
-<p>目录结构：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line">├── package           <span class="comment"># 可以有多个package</span></span><br><span class="line">│	├── __init__.py</span><br><span class="line">│	└── main.py</span><br><span class="line">├── README.md <span class="comment"># 非必须</span></span><br><span class="line">├── setup.cfg <span class="comment"># 也能用这个来配置，相较setup.py更利于阅读和管理但不灵活(非必须)</span></span><br><span class="line">└── setup.py  <span class="comment"># 打包配置文件, setuptools需要的</span></span><br></pre></td></tr></table></figure>
-<p>执行如下构建，会将包的内容构建到 <code>build</code> 文件夹下。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py build   <span class="comment"># 这里的build是cmd，不是output name</span></span><br></pre></td></tr></table></figure>
-<p>执行如下安装，会将包直接安装到当前解释器的 <code>site-packages</code> 下，安装完成后即可以使用 <code>pip list</code> 命令查看到。（名字为setup.py中定义的）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
-<p>（卸载）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall &lt;pkt-name&gt;</span><br></pre></td></tr></table></figure>
-<p>打包成 tar 包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py sdist</span><br></pre></td></tr></table></figure>
-<p>打包 whl（需要先下wheel-<code>pip install wheel</code>）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py bdist_wheel</span><br></pre></td></tr></table></figure>
-<p>打包完后的包可以直接通过 pip 安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install &lt;path-to-package&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="利用setuptools和pypi"><a href="#利用setuptools和pypi" class="headerlink" title="利用setuptools和pypi"></a>利用setuptools和pypi</h2><p>目录结构：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line">├── package           <span class="comment"># 可以有多个package</span></span><br><span class="line">│	├── __init__.py</span><br><span class="line">│	└── main.py</span><br><span class="line">├── README.md <span class="comment"># 非必须</span></span><br><span class="line">├── setup.cfg <span class="comment"># 也能用这个来配置，相较setup.py更利于阅读和管理但不灵活(非必须)</span></span><br><span class="line">└── setup.py  <span class="comment"># 打包配置文件, setuptools需要的</span></span><br></pre></td></tr></table></figure></p>
+<p>执行如下构建，会将包的内容构建到 <code>build</code> 文件夹下。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py build   <span class="comment"># 这里的build是cmd，不是output name</span></span><br></pre></td></tr></table></figure></p>
+<p>执行如下安装，会将包直接安装到当前解释器的 <code>site-packages</code> 下，安装完成后即可以使用 <code>pip list</code> 命令查看到。（名字为setup.py中定义的）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py install</span><br></pre></td></tr></table></figure></p>
+<p>（卸载）<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall &lt;pkt-name&gt;</span><br></pre></td></tr></table></figure></p>
+<p>打包成 tar 包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py sdist</span><br></pre></td></tr></table></figure></p>
+<p>打包 whl（需要先下wheel-<code>pip install wheel</code>）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py bdist_wheel</span><br></pre></td></tr></table></figure></p>
+<p>打包完后的包可以直接通过 pip 安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install &lt;path-to-package&gt;</span><br></pre></td></tr></table></figure></p>
 <p><strong>上传到pypi网站则所有人可安装</strong></p>
-<p>上传 tar 包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py sdist upload</span><br></pre></td></tr></table></figure>
-<p>上传 whl 包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py bdist_wheel upload</span><br></pre></td></tr></table></figure>
-<h3 id="setup-py"><a target="_blank" rel="noopener" href="http://setup.py">setup.py</a></h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> setup</span><br><span class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> find_packages</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">VERSION = <span class="string">&#x27;0.1.0&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;README.md&#x27;</span>) <span class="keyword">as</span> f:   <span class="comment"># 项目详细描述</span></span><br><span class="line">    LONG_DESCRIPTION = f.read()</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name=<span class="string">&#x27;Flask-Board&#x27;</span>,  <span class="comment"># package name</span></span><br><span class="line">    version=VERSION,  <span class="comment"># package version</span></span><br><span class="line">    description=<span class="string">&#x27;my package&#x27;</span>,  <span class="comment"># package description</span></span><br><span class="line">	long_description=LONG_DESCRIPTION,</span><br><span class="line">    long_description_content_type=<span class="string">&#x27;text/markdown&#x27;</span>,</span><br><span class="line">    packages=find_packages(),   <span class="comment"># 让 setuptools 自动搜索包文件</span></span><br><span class="line">    zip_safe=<span class="literal">False</span>,</span><br><span class="line">	python_requires=<span class="string">&quot;&gt;=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*&quot;</span>,</span><br><span class="line">    install_requires=[</span><br><span class="line">        <span class="string">&quot;Werkzeug&gt;=0.15&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Jinja2&gt;=2.10.1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;itsdangerous&gt;=0.24&quot;</span>,</span><br><span class="line">        <span class="string">&quot;click&gt;=5.1&quot;</span>,</span><br><span class="line">		<span class="string">&quot;enum34;python_version&lt;&#x27;3.4&#x27;&quot;</span>,  <span class="comment"># 只有某些python版本才需要的依赖</span></span><br><span class="line">		<span class="string">&quot;pywin32 &gt;= 1.0;platform_system==&#x27;Windows&#x27;&quot;</span>  <span class="comment"># 只有某些os才需要的依赖</span></span><br><span class="line">    ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>上传 tar 包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py sdist upload</span><br></pre></td></tr></table></figure></p>
+<p>上传 whl 包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py bdist_wheel upload</span><br></pre></td></tr></table></figure></p>
+<h3 id="setup-py"><a href="#setup-py" class="headerlink" title="setup.py"></a>setup.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> setup</span><br><span class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> find_packages</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">VERSION = <span class="string">&#x27;0.1.0&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;README.md&#x27;</span>) <span class="keyword">as</span> f:   <span class="comment"># 项目详细描述</span></span><br><span class="line">    LONG_DESCRIPTION = f.read()</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name=<span class="string">&#x27;Flask-Board&#x27;</span>,  <span class="comment"># package name</span></span><br><span class="line">    version=VERSION,  <span class="comment"># package version</span></span><br><span class="line">    description=<span class="string">&#x27;my package&#x27;</span>,  <span class="comment"># package description</span></span><br><span class="line">	long_description=LONG_DESCRIPTION,</span><br><span class="line">    long_description_content_type=<span class="string">&#x27;text/markdown&#x27;</span>,</span><br><span class="line">    packages=find_packages(),   <span class="comment"># 让 setuptools 自动搜索包文件</span></span><br><span class="line">    zip_safe=<span class="literal">False</span>,</span><br><span class="line">	python_requires=<span class="string">&quot;&gt;=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*&quot;</span>,</span><br><span class="line">    install_requires=[</span><br><span class="line">        <span class="string">&quot;Werkzeug&gt;=0.15&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Jinja2&gt;=2.10.1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;itsdangerous&gt;=0.24&quot;</span>,</span><br><span class="line">        <span class="string">&quot;click&gt;=5.1&quot;</span>,</span><br><span class="line">		<span class="string">&quot;enum34;python_version&lt;&#x27;3.4&#x27;&quot;</span>,  <span class="comment"># 只有某些python版本才需要的依赖</span></span><br><span class="line">		<span class="string">&quot;pywin32 &gt;= 1.0;platform_system==&#x27;Windows&#x27;&quot;</span>  <span class="comment"># 只有某些os才需要的依赖</span></span><br><span class="line">    ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>基本信息</p>
 <ul>
 <li>name：包名称</li>
 <li>version：包版本</li>
-<li>url：主页地址
-<ul>
-<li>项目前期比较简单，只有 github 地址，一般只配置 <code>url</code>，对应页面只显示 Homepage。</li>
-<li>项目完善后，可能有独立的主页，Github 代码页，文档页等。<code>url</code> 可以配置项目的主页，<code>project_urls</code> 配置其他页面。</li>
+<li>url：主页地址<ul>
+<li>项目前期比较简单，只有 github 地址，一般只配置 <code>url</code>，对应页面只显示 Homepage。</li>
+<li>项目完善后，可能有独立的主页，Github 代码页，文档页等。<code>url</code> 可以配置项目的主页，<code>project_urls</code> 配置其他页面。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">project_urls=&#123;</span><br><span class="line">    <span class="string">&quot;Documentation&quot;</span>: <span class="string">&quot;https://flask.palletsprojects.com/&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Code&quot;</span>: <span class="string">&quot;https://github.com/pallets/flask&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Issue tracker&quot;</span>: <span class="string">&quot;https://github.com/pallets/flask/issues&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">project_urls=&#123;</span><br><span class="line">    <span class="string">&quot;Documentation&quot;</span>: <span class="string">&quot;https://flask.palletsprojects.com/&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Code&quot;</span>: <span class="string">&quot;https://github.com/pallets/flask&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Issue tracker&quot;</span>: <span class="string">&quot;https://github.com/pallets/flask/issues&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>project_urls：包相关网页地址，字典格式，对应关系见下图</li>
 <li>author：作者名字</li>
@@ -512,11 +499,10 @@
 <li>license：使用的开源许可</li>
 <li>description：简短描述</li>
 <li>long_description：详细描述</li>
-<li>long_description_content_type：详细描述的渲染格式，支持值有：
-<ul>
-<li><code>'text/plain'</code></li>
-<li><code>'text/x-rst'</code></li>
-<li><code>'text/markdown'</code></li>
+<li>long_description_content_type：详细描述的渲染格式，支持值有：<ul>
+<li><code>&#39;text/plain&#39;</code></li>
+<li><code>&#39;text/x-rst&#39;</code></li>
+<li><code>&#39;text/markdown&#39;</code></li>
 </ul>
 </li>
 <li>keywords：关键词</li>
@@ -527,8 +513,7 @@
 <li>python_requires：Python 版本依赖</li>
 <li>use_2to3：布尔值，True 则自动将 Python2 的代码转换为 Python3</li>
 </ul>
-<h2 id="附录">附录</h2>
-<ul>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115302375">Python包发布指南 - 知乎 (zhihu.com)</a></li>
 <li><a target="_blank" rel="noopener" href="https://pypi.org/classifiers/">Classifiers · PyPI</a></li>
 </ul>
@@ -802,7 +787,7 @@
         <p class="copyright text-muted">
           Copyright &copy;
           ysq
-          2024
+          2025
           <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
@@ -1241,20 +1226,5 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+	</body>
 </html>

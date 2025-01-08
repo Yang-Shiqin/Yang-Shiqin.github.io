@@ -244,12 +244,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/archive/">
+            <a href="/tags/">
               
-              归档
+              标签
               
               
             </a>
@@ -269,6 +267,17 @@
           
           
           <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
             <a href="/about/">
               
               关于
@@ -278,15 +287,6 @@
           </li>
           
           
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
           
           
 
@@ -470,8 +470,7 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>支持向量机SVM</h1>
-<blockquote>
+        <h1 id="支持向量机SVM"><a href="#支持向量机SVM" class="headerlink" title="支持向量机SVM"></a>支持向量机SVM</h1><blockquote>
 <p>最初用来解决<strong>二分类问题</strong>。分割类的超平面离两边的最近的点最远, <strong>判别模型</strong>(与概率无关)</p>
 <p>三宝: 间隔, 对偶, 核技巧</p>
 <p>模型：$f(x)=sign(w^Tx+b)$</p>
@@ -482,94 +481,79 @@
 <li>kernel SVM</li>
 <li>SVR(SVM做回归)</li>
 </ol>
-</br>
+<p>&lt;/br&gt;</p>
 <ol>
 <li>几何-&gt;数学描述</li>
 <li>求解</li>
 </ol>
-<h2 id="hard-margin-SVM">hard-margin SVM</h2>
-<blockquote>
-<p>最大间隔分类器。只能解决样本可分情况，分割类的超平面离两边的最近的点最远<br>
-![[支持向量机SVM 2022-12-28 08.01.53.excalidraw|200]]</p>
+<h2 id="hard-margin-SVM"><a href="#hard-margin-SVM" class="headerlink" title="hard-margin SVM"></a>hard-margin SVM</h2><blockquote>
+<p>最大间隔分类器。只能解决样本可分情况，分割类的超平面离两边的最近的点最远<br>![[支持向量机SVM 2022-12-28 08.01.53.excalidraw|200]]</p>
 </blockquote>
 <p>即求解下式(二次目标函数，N个约束的凸优化问题)：</p>
 <ol>
-<li>原问题：$$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw\\s.t.y_i(w^Tx_i+b)\ge1\ ,\forall i=1,…,N\end{cases}$$</li>
-<li>对偶问题：$$\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i\lambda_jy_iy_jx_i^Tx_j-\sum_{i=1}^N\lambda_i\\s.t.\lambda_i\ge0\ ,\forall i=1,…,N\\\sum_{i=1}^N\lambda_iy_i=0\end{cases}$$
-<ul>
+<li>原问题：<script type="math/tex">\begin{cases}\min_{w, b}\frac{1}{2}w^Tw\\\\s.t.y_i(w^Tx_i+b)\ge1\ ,\forall i=1,..,N\end{cases}</script></li>
+<li>对偶问题：<script type="math/tex">\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i\lambda_jy_iy_jx_i^Tx_j-\sum_{i=1}^N\lambda_i\\\\s.t.\lambda_i\ge0\ ,\forall i=1,..,N\\\\\sum_{i=1}^N\lambda_iy_i=0\end{cases}</script><ul>
 <li>$w^*=\sum_{i=1}^N\lambda_iy_ix_i$</li>
-<li>$b^*=y_k-\sum_{i=1}^N\lambda_iy_ix_i^Tx_k$，k为支持向量</li>
+<li>$b^*=y<em>k-\sum</em>{i=1}^N\lambda_iy_ix_i^Tx_k$，k为支持向量</li>
 </ul>
 </li>
 </ol>
 <p><strong>求解</strong>：</p>
 <ol>
 <li>原问题直接QP求解</li>
-<li>(拉格朗日乘数法，KKT条件)转换为对偶问题
-<ol>
+<li>(拉格朗日乘数法，KKT条件)转换为对偶问题<ol>
 <li>用QP求解</li>
 <li>直接求</li>
 </ol>
 </li>
 </ol>
-<h3 id="推导">推导</h3>
-<h4 id="几何-数学">几何-&gt;数学</h4>
-<ul>
-<li>样本 ${x_i, y_i}_{i=1}^N\ ,x_i\in\mathbb R^p, y_i\in{-1, +1}$</li>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><h4 id="几何-gt-数学"><a href="#几何-gt-数学" class="headerlink" title="几何-&gt;数学"></a>几何-&gt;数学</h4><ul>
+<li>样本 ${x<em>i, y_i}</em>{i=1}^N\ ,x_i\in\mathbb R^p, y_i\in{-1, +1}$</li>
 </ul>
-<p>hard-margin SVM即<em>最大间隔分类器</em></p>
+<p>hard-margin SVM即<em>最大间隔分类器</em>  </p>
 <ol>
 <li><em>分类器</em>：$f(w)=sign(w^Tx+b)$</li>
-<li><em>间隔</em>：$margin(w,b)=\min_{x_i}distance(w, b, x_i)$
-<ul>
+<li><em>间隔</em>：$margin(w,b)=\min_{x_i}distance(w, b, x_i)$<ul>
 <li><strong>几何距离</strong>，即点到超平面距离：$distance(w, b, x_i)=\frac{y_i}{||w||}(w^Tx_i+b)$</li>
 <li><strong>函数距离</strong>，函数值，即未归一化的几何距离：$\gamma_i=y_i(w^Tx_i+b)$</li>
 <li>几何距离不受wb尺度变化影响，为约束wb(从而得到唯一解)，使min函数距离=1</li>
 </ul>
 </li>
-<li><em>最大</em>间隔分类器：$$\begin{aligned}\max\ margin(w,b)&amp;=\max_{w, b}\min_{x_i}\frac{y_i}{||w||}(w^Tx_i+b),s.t.y_i(w^Tx_i+b)\\&amp;=\max_{w, b}\frac{1}{||w||}\min_{x_i}y_i(w^Tx_i+b),s.t.y_i(w^Tx_i+b)\\&amp;=\max_{w, b}\frac{1}{||w||},s.t.y_i(w^Tx_i+b)\\&amp;=\min_{w, b}\frac{1}{2}ww^T,s.t.y_i(w^Tx_i+b)\end{aligned}$$</li>
+<li><em>最大</em>间隔分类器：<script type="math/tex">\begin{aligned}\max\ margin(w,b)&=\max_{w, b}\min_{x_i}\frac{y_i}{||w||}(w^Tx_i+b),s.t.y_i(w^Tx_i+b)\\\\&=\max_{w, b}\frac{1}{||w||}\min_{x_i}y_i(w^Tx_i+b),s.t.y_i(w^Tx_i+b)\\\\&=\max_{w, b}\frac{1}{||w||},s.t.y_i(w^Tx_i+b)\\\\&=\min_{w, b}\frac{1}{2}ww^T,s.t.y_i(w^Tx_i+b)\end{aligned}</script></li>
 </ol>
-<h4 id="对偶">对偶</h4>
-<ol>
-<li><strong>拉格朗日乘子法</strong>，将 原带约束问题-&gt;无约束问题 (约束是对wb而言)
-<ol>
-<li>$$\mathcal L(w,b,\lambda)=\frac{1}{2}ww^T+\sum_{i=1}^N\lambda_i(1-y_i(w^Tx_i+b)),\ \lambda_i\ge0,(1-y_i(w^Tx_i+b))\le0$$</li>
-<li>故无约束原问题$$\begin{cases}\min_{w, b}\max_\lambda\mathcal L(w,b,\lambda)\\s.t.\lambda_i\ge0\ ,\forall i=1,…,N\end{cases}$$
-<ul>
+<h4 id="对偶"><a href="#对偶" class="headerlink" title="对偶"></a>对偶</h4><ol>
+<li><strong>拉格朗日乘子法</strong>，将 原带约束问题-&gt;无约束问题 (约束是对wb而言)<ol>
+<li><script type="math/tex; mode=display">\mathcal L(w,b,\lambda)=\frac{1}{2}ww^T+\sum_{i=1}^N\lambda_i(1-y_i(w^Tx_i+b)),\ \lambda_i\ge0,(1-y_i(w^Tx_i+b))\le0</script></li>
+<li>故无约束原问题<script type="math/tex">\begin{cases}\min_{w, b}\max_\lambda\mathcal L(w,b,\lambda)\\\\s.t.\lambda_i\ge0\ ,\forall i=1,..,N\end{cases}</script><ul>
 <li>若 $1-y_i(w^Tx_i+b&gt;0$，则 $\max \mathcal L(w,b,\lambda)=+\infty$</li>
 <li>若 $1-y_i(w^Tx_i+b\le0$，则 $\max \mathcal L(w,b,\lambda)=\frac{1}{2}ww^T$</li>
 </ul>
 </li>
 </ol>
 </li>
-<li>凸优化问题，<strong>KKT条件</strong>为原对偶问题为强对偶关系的充要条件
-<ul>
+<li>凸优化问题，<strong>KKT条件</strong>为原对偶问题为强对偶关系的充要条件<ul>
 <li>弱对偶：$\min\max\mathcal L\ge\max\min\mathcal L$</li>
 <li>强对偶：$\min\max\mathcal L=\max\min\mathcal L$</li>
 <li>KKT：$\begin{cases}\frac{\partial\mathcal L}{\partial w}=\frac{\partial\mathcal L}{\partial b}=\frac{\partial\mathcal L}{\partial\lambda}=0\\\lambda_i(1-y_i(w^Tx_i+b))=0,互补松弛条件\\\lambda_i\ge0\\1-y_i(w^Tx_i+b)\le0\end{cases}$</li>
-<li>故对偶问题为$$\begin{cases}\max_\lambda\min_{w, b}\mathcal L(w,b,\lambda)\\s.t.\lambda_i\ge0\ ,\forall i=1,…,N\end{cases}$$</li>
+<li>故对偶问题为<script type="math/tex">\begin{cases}\max_\lambda\min_{w, b}\mathcal L(w,b,\lambda)\\\\s.t.\lambda_i\ge0\ ,\forall i=1,..,N\end{cases}</script></li>
 </ul>
 </li>
-<li>求解对偶问题等价
-<ol>
-<li>$\frac{\partial\mathcal L}{\partial b}=0\rightarrow\sum_{i=1}^N\lambda_iy_i=0$ 代入 $\frac{\partial\mathcal L}{\partial w}=0\rightarrow w^*=\sum_{i=1}^N\lambda_iy_ix_i$</li>
-<li>代入对偶式子得$$\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i\lambda_jy_iy_jx_i^Tx_j-\sum_{i=1}^N\lambda_i\\s.t.\lambda_i\ge0\ ,\forall i=1,…,N\\\sum_{i=1}^N\lambda_iy_i=0\end{cases}$$</li>
-<li>$y_k(w^Tx_k+b)=1$，$\lambda_k$ 可以不为0，对w有影响，为支持向量，两边同乘 $y_k\rightarrow b^*=y_k-\sum_{i=1}^N\lambda_iy_ix_i^Tx_k$</li>
+<li>求解对偶问题等价<ol>
+<li>$\frac{\partial\mathcal L}{\partial b}=0\rightarrow\sum<em>{i=1}^N\lambda_iy_i=0$ 代入 $\frac{\partial\mathcal L}{\partial w}=0\rightarrow w^*=\sum</em>{i=1}^N\lambda_iy_ix_i$</li>
+<li>代入对偶式子得<script type="math/tex">\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i\lambda_jy_iy_jx_i^Tx_j-\sum_{i=1}^N\lambda_i\\\\s.t.\lambda_i\ge0\ ,\forall i=1,..,N\\\\\sum_{i=1}^N\lambda_iy_i=0\end{cases}</script></li>
+<li>$y<em>k(w^Tx_k+b)=1$，$\lambda_k$ 可以不为0，对w有影响，为支持向量，两边同乘 $y_k\rightarrow b^*=y_k-\sum</em>{i=1}^N\lambda_iy_ix_i^Tx_k$</li>
 </ol>
 </li>
 </ol>
-<h2 id="soft-margin-SVM">soft-margin SVM</h2>
-<blockquote>
-<p>允许一点点错误(目标函数加个loss)<br>
-![[支持向量机SVM 2022-12-28 16.04.29.excalidraw|300]]<br>
-$$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N\xi_i\\s.t.y_i(w^Tx_i+b)\ge1-\xi_i\ ,\forall i=1,…,N\\\xi_i=\max{0, 1-y_i(w^Tx_i+b)}\end{cases}$$</p>
-</blockquote>
-<ul>
+<h2 id="soft-margin-SVM"><a href="#soft-margin-SVM" class="headerlink" title="soft-margin SVM"></a>soft-margin SVM</h2><blockquote>
+<p>允许一点点错误(目标函数加个loss)<br>![[支持向量机SVM 2022-12-28 16.04.29.excalidraw|300]]</p>
+<script type="math/tex; mode=display">\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N\xi_i\\\\s.t.y_i(w^Tx_i+b)\ge1-\xi_i\ ,\forall i=1,..,N\\\\\xi_i=\max\{0, 1-y_i(w^Tx_i+b)\}\end{cases}</script><ul>
 <li>loss用的是合页损失hinge loss$=\max{0, 1-y_i(w^Tx_i+b)}$</li>
 </ul>
+</blockquote>
 <p>求解同[[支持向量机SVM#hard-margin SVM|hard-margin SVM]]</p>
-<h2 id="kernel-SVM">kernel SVM</h2>
-<p><strong>核方法</strong>是一类使用了<strong>核函数</strong> $\mathcal K(x^{(i)},x^{(j)})$ 的算法，如，包括 SVM，Gaussian processes，PCA，ridge regression，spectral clustering 等等。使用<strong>核技巧</strong>可以在原始数据空间下计算其在高维特征空间的相似性，从而避免<strong>高维计算内积</strong>效率低甚至无法计算，即用 $\mathcal K(x^{(i)},x^{(j)})$ 代替 $\Phi(x^{(i)})^T\Phi(x^{(j)})$</p>
+<h2 id="kernel-SVM"><a href="#kernel-SVM" class="headerlink" title="kernel SVM"></a>kernel SVM</h2><p><strong>核方法</strong>是一类使用了<strong>核函数</strong> $\mathcal K(x^{(i)},x^{(j)})$ 的算法，如，包括 SVM，Gaussian processes，PCA，ridge regression，spectral clustering 等等。使用<strong>核技巧</strong>可以在原始数据空间下计算其在高维特征空间的相似性，从而避免<strong>高维计算内积</strong>效率低甚至无法计算，即用 $\mathcal K(x^{(i)},x^{(j)})$ 代替 $\Phi(x^{(i)})^T\Phi(x^{(j)})$</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -591,17 +575,23 @@ $$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N\xi_i\\s.t.y_i(w^Tx_i+b)\
 </tr>
 <tr>
 <td>RBF核</td>
-<td>$\exp(-\frac{|x_i-x_j|^2}{\sigma^2})$</td>
+<td>$\exp(-\frac{\</td>
+<td>x_i-x_j\</td>
+<td>^2}{\sigma^2})$</td>
 <td>$\sigma&gt;0$</td>
 </tr>
 <tr>
 <td>高斯核</td>
-<td>$\exp(-\frac{|x_i-x_j|^2}{2\sigma^2})$</td>
+<td>$\exp(-\frac{\</td>
+<td>x_i-x_j\</td>
+<td>^2}{2\sigma^2})$</td>
 <td>$\sigma&gt;0$为高斯核的带宽</td>
 </tr>
 <tr>
 <td>拉普拉斯核</td>
-<td>$\exp(-\frac{|x_i-x_j|}{\sigma})$</td>
+<td>$\exp(-\frac{\</td>
+<td>x_i-x_j\</td>
+<td>}{\sigma})$</td>
 <td>$\sigma&gt;0$</td>
 </tr>
 <tr>
@@ -611,26 +601,25 @@ $$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N\xi_i\\s.t.y_i(w^Tx_i+b)\
 </tr>
 </tbody>
 </table>
-<p>映射到高维以可分为:$$\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i\lambda_jy_iy_j\Phi(x_i)^T\Phi(x_j)-\sum_{i=1}^N\lambda_i\\s.t.\lambda_i\ge0\ ,\forall i=1,…,N\\\sum_{i=1}^N\lambda_iy_i=0\end{cases}$$</p>
+</div>
+<p>映射到高维以可分为:<script type="math/tex">\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i\lambda_jy_iy_j\Phi(x_i)^T\Phi(x_j)-\sum_{i=1}^N\lambda_i\\\\s.t.\lambda_i\ge0\ ,\forall i=1,..,N\\\\\sum_{i=1}^N\lambda_iy_i=0\end{cases}</script></p>
 <ul>
-<li>$f(w)=sign (w^{<em>T}\Phi(x_j)+b^</em>)=sign(\sum_{i=1}^N\lambda_iy_i\Phi(x_i)^T\Phi(x_j)+y_k-\sum_{i=1}^N\lambda_iy_i\Phi(x_i)^T\Phi(x_k))$</li>
+<li>$f(w)=sign (w^{<em>T}\Phi(x_j)+b^</em>)=sign(\sum<em>{i=1}^N\lambda_iy_i\Phi(x_i)^T\Phi(x_j)+y_k-\sum</em>{i=1}^N\lambda_iy_i\Phi(x_i)^T\Phi(x_k))$</li>
 </ul>
-<p>故用核技巧可得：$$\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i\lambda_jy_iy_j\mathcal K(x_i,x_j)-\sum_{i=1}^N\lambda_i\\s.t.\lambda_i\ge0\ ,\forall i=1,…,N\\\sum_{i=1}^N\lambda_iy_i=0\end{cases}$$</p>
+<p>故用核技巧可得：<script type="math/tex">\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i\lambda_jy_iy_j\mathcal K(x_i,x_j)-\sum_{i=1}^N\lambda_i\\\\s.t.\lambda_i\ge0\ ,\forall i=1,..,N\\\\\sum_{i=1}^N\lambda_iy_i=0\end{cases}</script></p>
 <ul>
-<li>$f(w)=sign (w^{<em>T}\Phi(x_j)+b^</em>)=sign(\sum_{i=1}^N\lambda_iy_i\mathcal K(x_i,x_j)+y_k-\sum_{i=1}^N\lambda_iy_i\mathcal K(x_i,x_k))$</li>
+<li>$f(w)=sign (w^{<em>T}\Phi(x_j)+b^</em>)=sign(\sum<em>{i=1}^N\lambda_iy_i\mathcal K(x_i,x_j)+y_k-\sum</em>{i=1}^N\lambda_iy_i\mathcal K(x_i,x_k))$</li>
 </ul>
 <p>可以不管高维映射，直接定义核函数</p>
 <ul>
 <li>核函数必要条件：对称半正定</li>
-<li>选择核函数方法：
-<ul>
+<li>选择核函数方法：<ul>
 <li>特征数和样本数差不多，用线性核</li>
 <li>特征数少，样本数多，用高斯核</li>
 </ul>
 </li>
 </ul>
-<h2 id="SVR">SVR</h2>
-<blockquote>
+<h2 id="SVR"><a href="#SVR" class="headerlink" title="SVR"></a>SVR</h2><blockquote>
 <p>回归。使样本点离超平面最远的点最近</p>
 <p>模型：$f(x)=w^Tx+b$</p>
 </blockquote>
@@ -639,27 +628,21 @@ $$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N\xi_i\\s.t.y_i(w^Tx_i+b)\
 <li>soft</li>
 <li>kernel</li>
 </ol>
-<h3 id="hard-margin-SVR">hard-margin SVR</h3>
-<p>![[支持向量机SVM 2022-12-30 08.35.11.excalidraw|250]]<br>
-原问题：$$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw\\s.t.|y_i-(w^Tx_i+b)|\le\varepsilon\ ,\forall i=1,…,N\end{cases}$$</p>
+<h3 id="hard-margin-SVR"><a href="#hard-margin-SVR" class="headerlink" title="hard-margin SVR"></a>hard-margin SVR</h3><p>![[支持向量机SVM 2022-12-30 08.35.11.excalidraw|250]]<br>原问题：<script type="math/tex">\begin{cases}\min_{w, b}\frac{1}{2}w^Tw\\\\s.t.|y_i-(w^Tx_i+b)|\le\varepsilon\ ,\forall i=1,..,N\end{cases}</script></p>
 <ul>
 <li>$\varepsilon$ 一般取经验值</li>
 </ul>
-<p>#todo</p>
-<ul>
+<h1 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h1><ul>
 <li>[ ] 没搞清楚为啥要minw，这样就是最大化间隔，也会让回归线更平。但我不知道为啥要最大化间隔</li>
 <li>有人说是使由 ϵ 指定的误差带包含的数据点最多（即最大化由 ϵ 指定的误差带的几何间隔），换言之，SVR通过最大化间隔使得绝大多数样本点可以包含在超平面周围由 ϵ 指定的误差带之间。</li>
 <li>还有些说是为了flatness<a target="_blank" rel="noopener" href="https://link.springer.com/article/10.1023/B:STCO.0000035301.49549.88">A tutorial on support vector regression | SpringerLink</a></li>
 </ul>
-<p>对偶问题：$$\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N(\lambda_i-\lambda_i^<em>)(\lambda_j-\lambda_j^</em>)x_i^Tx_j+\varepsilon\sum^N_{i=1}(\lambda_i+\lambda_i^<em>)-\sum_{i=1}^Ny_i(\lambda_i-\lambda_i^</em>)\\s.t.\lambda_i^{(<em>)}\ge0\ ,\forall i=1,…,N\\\sum_{i=1}^N(\lambda_i-\lambda_i^</em>)=0\end{cases}$$</p>
+<p>对偶问题：<script type="math/tex">\begin{cases}\min_\lambda\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N(\lambda_i-\lambda_i^*)(\lambda_j-\lambda_j^*)x_i^Tx_j+\varepsilon\sum^N_{i=1}(\lambda_i+\lambda_i^*)-\sum_{i=1}^Ny_i(\lambda_i-\lambda_i^*)\\\\s.t.\lambda_i^{(*)}\ge0\ ,\forall i=1,..,N\\\\\sum_{i=1}^N(\lambda_i-\lambda_i^*)=0\end{cases}</script></p>
 <ul>
 <li>$w^<em>=\sum_{i=1}^N(\lambda_i-\lambda_i^</em>)x_i$</li>
 </ul>
-<h3 id="soft-margin-SVR">soft-margin SVR</h3>
-<p>![[支持向量机SVM 2022-12-30 08.50.00.excalidraw|250]]<br>
-$$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N(\xi_i+\xi_i^<em>)\\s.t.|y_i-(w^Tx_i+b)|\le\varepsilon\ ,\forall i=1,…,N\\\xi_i=\max{0, y_i-(w^Tx_i+b+\varepsilon)}\\\xi_i^</em>=\max{0, (w^Tx_i+b-\varepsilon)-y_i}\end{cases}$$</p>
-<h2 id="附录">附录</h2>
-<ul>
+<h3 id="soft-margin-SVR"><a href="#soft-margin-SVR" class="headerlink" title="soft-margin SVR"></a>soft-margin SVR</h3><p>![[支持向量机SVM 2022-12-30 08.50.00.excalidraw|250]]</p>
+<script type="math/tex; mode=display">\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N(\xi_i+\xi_i^*)\\\\s.t.|y_i-(w^Tx_i+b)|\le\varepsilon\ ,\forall i=1,..,N\\\\\xi_i=\max\{0, y_i-(w^Tx_i+b+\varepsilon)\}\\\\\xi_i^*=\max\{0, (w^Tx_i+b-\varepsilon)-y_i\}\end{cases}</script><h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
 <li>[[ml#支持向量机SVM]]</li>
 </ul>
 
@@ -811,7 +794,7 @@ $$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N(\xi_i+\xi_i^<em>)\\s.t.|
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">支持向量机SVM</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#hard-margin-SVM"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">hard-margin SVM</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">推导</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%87%A0%E4%BD%95-%E6%95%B0%E5%AD%A6"><span class="toc-nav-number">1.1.1.1.</span> <span class="toc-nav-text">几何-&gt;数学</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%AF%B9%E5%81%B6"><span class="toc-nav-number">1.1.1.2.</span> <span class="toc-nav-text">对偶</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#soft-margin-SVM"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">soft-margin SVM</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#kernel-SVM"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">kernel SVM</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SVR"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">SVR</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#hard-margin-SVR"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">hard-margin SVR</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#soft-margin-SVR"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text">soft-margin SVR</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">附录</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">支持向量机SVM</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#hard-margin-SVM"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">hard-margin SVM</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">推导</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%87%A0%E4%BD%95-gt-%E6%95%B0%E5%AD%A6"><span class="toc-nav-number">1.1.1.1.</span> <span class="toc-nav-text">几何-&gt;数学</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%AF%B9%E5%81%B6"><span class="toc-nav-number">1.1.1.2.</span> <span class="toc-nav-text">对偶</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#soft-margin-SVM"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">soft-margin SVM</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#kernel-SVM"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">kernel SVM</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SVR"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">SVR</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#hard-margin-SVR"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">hard-margin SVR</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#todo"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">todo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#soft-margin-SVR"><span class="toc-nav-number">2.0.1.</span> <span class="toc-nav-text">soft-margin SVR</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%E5%BD%95"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">附录</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -932,7 +915,7 @@ $$\begin{cases}\min_{w, b}\frac{1}{2}w^Tw+C\sum_{i=1}^N(\xi_i+\xi_i^<em>)\\s.t.|
         <p class="copyright text-muted">
           Copyright &copy;
           ysq
-          2024
+          2025
           <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
@@ -1371,20 +1354,5 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+	</body>
 </html>
